@@ -3,6 +3,7 @@
 Публичный каталог HTML-аудитов и исследований R52.RU.
 
 - Каталог: https://klima3567-sketch.github.io/r52-public/
+- NNOV Клиника v0.4: https://klima3567-sketch.github.io/r52-public/nnov-clinic/
 - Аудит ЖК «Огни Автозавода»: https://klima3567-sketch.github.io/r52-public/ogni-audit/
 
 ## Структура
@@ -10,6 +11,13 @@
 - `index.html` - главная страница каталога.
 - `ogni-audit/index.html` - самостоятельный HTML-аудит со встроенными шрифтами и изображениями.
 - `.nojekyll` - публикация статических файлов без обработки Jekyll.
+
+- `nnov-clinic/` - автономный прототип NNOV Клиники v0.4, исходники, ядро и текстовая презентация продукта.
+- `.github/workflows/nnov-clinic-check.yml` - сборка и проверка прототипа при изменениях его каталога.
+
+## NNOV Клиника
+
+Разработка: `cd nnov-clinic` и `npm run check` (Node.js 22+). Сборка должна обновлять `nnov-clinic/index.html`. Документация продукта находится в `nnov-clinic/docs/`; тексты ядра и презентации - в `product-core.md` и `presentation-text.md`. Практическое сравнение с действующей системой клиники ещё не проведено. Интеграции и данные демонстрационные.
 
 ## Публикация
 

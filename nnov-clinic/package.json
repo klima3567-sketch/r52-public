@@ -1,0 +1,13 @@
+{
+  "name": "nnov-clinic",
+  "version": "0.4.0",
+  "private": true,
+  "description": "NNOV Клиника - автономный прототип IT-продукта для управления клиникой",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node scripts/verify.mjs",
+    "check": "node scripts/build.mjs && node scripts/verify.mjs && node scripts/verify-export.mjs"
+  }
+}

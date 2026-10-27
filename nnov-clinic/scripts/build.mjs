@@ -1,0 +1,10 @@
+import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
+import vm from 'node:vm';
+const template=readFileSync('src/template.html','utf8');
+const js=['clinic-base.js','clinic-suite.js','clinic-assistant.js','clinic-workflow.js'].map(name=>readFileSync('src/'+name,'utf8')).join('\n');
+new vm.Script(js,{filename:'NNOV_Clinic_Prototype.html'});
+const css=['suite.css','assistant.css','workflow.css'].map(name=>readFileSync('src/'+name,'utf8')).join('\n');
+const html=template.replace('/* SUITE_STYLE */',css).replace('<!-- APP_SCRIPT -->','<script>\n'+js+'\n</script>').replaceAll('—','-');
+mkdirSync('dist',{recursive:true});writeFileSync('dist/index.html',html);
+writeFileSync('index.html',html);
+console.log(JSON.stringify({output:'dist/index.html',bytes:Buffer.byteLength(html),syntax:'ok'}));

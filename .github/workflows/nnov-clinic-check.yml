@@ -1,0 +1,29 @@
+name: Check NNOV Clinic
+
+on:
+  push:
+    branches: [main]
+    paths: ['nnov-clinic/**', '.github/workflows/nnov-clinic-check.yml']
+  pull_request:
+    paths: ['nnov-clinic/**', '.github/workflows/nnov-clinic-check.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    working-directory: nnov-clinic
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build and verify prototype
+        run: npm run check
+      - name: Ensure committed HTML matches sources
+        run: git diff --exit-code -- index.html
