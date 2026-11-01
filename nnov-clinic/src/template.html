@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#173e35">
-<meta name="description" content="NNOV Клиника. Интерактивный прототип: от свободного окна в расписании до состоявшегося визита и подтвержденной оплаты.">
+<meta name="description" content="NNOV Клиника. Интерактивное демо: единый дашборд, сверка источников, путь пациента, чек-листы и действия команды.">
 <title>NNOV Клиника — управление загрузкой</title>
 <style>
 :root{--bg:#f4f5f1;--paper:#fff;--ink:#213932;--muted:#75817a;--line:#e4e8e1;--green:#275d4b;--deep:#173e35;--mint:#e8f2e9;--lime:#d7ed9d;--orange:#a76a34;--sand:#fbf0df;--red:#af5a4b;--shadow:0 18px 55px #19392c12;--radius:18px}
@@ -22,7 +22,7 @@
   <div class="brand"><span class="brand-icon" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="brand-name">NNOV<span style="font-weight:400;opacity:.6">.</span></span></div>
   <div class="brand-sub">КЛИНИКА</div><div class="nav-title">Управление клиникой</div>
   <nav class="nav" id="navigation"></nav>
-  <div class="sidebar-bottom"><div class="pilot-note"><strong><span class="small-dot"></span>Продукт в действии</strong>Пациенты, команда<br>и экономика клиники.<br><button class="hint-link" style="color:#d7ed9d;margin-top:9px" onclick="startTour()">Сценарий презентации →</button></div><div class="profile"><span class="avatar">АК</span><div><strong><span id="roleName">Руководитель клиники</span></strong><small>NNOV.RU · Прототип 0.4</small></div></div></div>
+  <div class="sidebar-bottom"><div class="pilot-note"><strong><span class="small-dot"></span>Продукт в действии</strong>Пациенты, команда<br>и экономика клиники.<br><button class="hint-link" style="color:#d7ed9d;margin-top:9px" onclick="startTour()">Сценарий презентации →</button></div><div class="profile"><span class="avatar">АК</span><div><strong><span id="roleName">Руководитель клиники</span></strong><small>NNOV.RU · Прототип 0.5</small></div></div></div>
 </aside>
 <div class="main">
   <header class="topbar"><div class="clinic-picker"><span class="clinic-icon" id="clinicIcon"></span><label class="sr-only" for="clinicSelect">Демонстрационная клиника</label><select id="clinicSelect" onchange="changeClinic(this.value)"><option value="implant">Имплант52 / демо</option><option value="endo">Эндо360 / демо</option></select></div><div class="header-right"><label class="sr-only" for="roleSelect">Рабочее место</label><select class="role-select" id="roleSelect" onchange="changeRole(this.value)"><option value="owner">Руководитель</option><option value="admin">Администратор</option><option value="coordinator">Координатор</option></select><span class="date">Демо-день · 27 октября 2026</span><span class="demo-pill"><i></i>ВЫМЫШЛЕННЫЕ ДАННЫЕ</span><button class="circle-button" title="О прототипе" aria-label="О прототипе" onclick="showAbout()">?</button></div></header>
