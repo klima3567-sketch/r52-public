@@ -1,6 +1,6 @@
 {
   "name": "nnov-clinic",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "private": true,
   "description": "NNOV Клиника - автономный прототип IT-продукта для управления клиникой",
   "type": "module",
