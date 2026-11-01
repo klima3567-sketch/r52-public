@@ -9,7 +9,7 @@ function runtime(storage=new Map()){
  vm.runInContext(js,ctx);return {ctx,run:code=>vm.runInContext(code,ctx),el,storage};
 }
 const r=runtime();const {run,el}=r;
-assert.equal(run('NAV.length'),13);
+assert.equal(run('NAV.length'),16);
 assert.equal(run('DB.implant.plans.length+DB.endo.plans.length'),32);
 for(const key of ['implant','endo']){
  run(`clinic='${key}';render()`);
@@ -95,7 +95,7 @@ delete oldState.db.implant.assistant;delete oldState.db.endo.assistant;
 const migration=runtime(new Map([['nnov-clinic-suite-v2',JSON.stringify(oldState)]]));
 assert.equal(migration.run('financials().complete'),true,'existing schema-2 business progress is retained');
 assert.equal(migration.run('assistantThread().messages.length'),1,'assistant is added to old state');
-console.log('Verified: 56 page renders across all three workspaces and both clinics; two isolated clinic models; coherent ledger; booking/service/payment separation; duplicate and overpayment guards; cost coverage; browser-local restore; care prerequisites; role UI; training without invented revenue; offline assets.');
+console.log('Verified: 70 page renders across all three workspaces and both clinics; two isolated clinic models; coherent ledger; booking/service/payment separation; duplicate and overpayment guards; cost coverage; browser-local restore; care prerequisites; role UI; training without invented revenue; offline assets.');
 console.log('Assistant verified: live-data answers; missing-cost guard; explicit and idempotent task creation; stale-action protection; state-change updates; no navigation loops; history isolation and restore; schema-2 migration; escaped user text; shared scenario arithmetic.');
 
 // Twelve scenario outcomes for the v0.4 coordinator flow, independent of vendor claims.
@@ -135,3 +135,43 @@ const pulse=runtime();pulse.run("for(const p of data().plans)p.workflow.contactA
 assert.match(pulse.run("dashboardSignals().find(s=>s.icon==='note').title"),/P-104/,'dashboard includes an eligible agreed plan after excluding restricted cases');
 pulse.run("role='admin'");assert.equal(pulse.run("dashboardSignals().some(s=>s.icon==='note')"),false,'admin dashboard keeps its existing scope');
 console.log('Dashboard verified: shared workflow eligibility across two clinics and two workspaces, seven excluded states, agreed plans, and administrator scope.');
+
+// CJM is an independent organizational audit, not a clinical or financial event.
+const cj=runtime();
+assert.equal(cj.run('CJM_TEMPLATE.stages.length'),16);assert.equal(cj.run('CJM_TEMPLATE.items.length'),225);
+assert.equal(cj.run('CJM_TEMPLATE.touchpoints.length'),57);assert.equal(cj.run('CJM_TEMPLATE.crm.length'),17);
+assert.equal(cj.run('new Set(CJM_TEMPLATE.items.map(x=>x.id)).size'),225);
+assert.equal(cj.run('CJM_TEMPLATE.stages.every(s=>cjmItems(s.id).length>0)'),true);
+assert.equal(cj.run('cjmStats(CJM_TEMPLATE.items).checked'),0,'unreviewed audit has no invented score');
+for(const scenario of ['master','zabota','high','acute','base'])for(const mode of ['journey','matrix','contacts','crm']){
+ cj.run(`cjmSetScenario('${scenario}');cjmSetMode('${mode}');view='journey';render()`);
+ assert.ok(cj.el('main').innerHTML.length>100);assert.ok(!cj.el('main').innerHTML.includes('undefined'));
+}
+const cRevenue=cj.run('financials().revenue'),cPaid=cj.run('financials().paid');
+for(const [key,value] of Object.entries({cjmAuditStatus:'done',cjmAuditScore:'4',cjmAuditOwner:'Координатор',cjmAuditDue:'2026-10-28',cjmAuditProblem:'Нет согласованной даты',cjmAuditAction:'Проверить следующий шаг',cjmAuditEvidence:''}))cj.el(key).value=value;
+assert.equal(cj.run("saveCjmAudit('s11_1')"),false,'audit completion needs evidence');
+cj.el('cjmAuditEvidence').value='Проверен вымышленный регламент';assert.equal(cj.run("saveCjmAudit('s11_1',true)"),true);
+assert.equal(cj.run('cjmStats(cjmItems(11)).done'),1);assert.equal(cj.run("data().managerTasks.filter(t=>t.kind==='cjm').length"),1);
+cj.run("createCjmTask('s11_1')");assert.equal(cj.run("data().managerTasks.filter(t=>t.kind==='cjm').length"),1,'CJM task deduplicated');
+assert.equal(cj.run('financials().revenue'),cRevenue);assert.equal(cj.run('financials().paid'),cPaid,'audit does not invent payments');
+cj.run('persist()');assert.equal(runtime(cj.storage).run("data().cjm.records.s11_1.status"),'done','CJM restored additively');
+cj.run("clinic='endo';render()");assert.equal(cj.run('cjmStats(CJM_TEMPLATE.items).checked'),0,'clinic audits isolated');
+cj.run("clinic='implant';data().cjm.records.s11_1.problem='<img src=x onerror=alert(1)>';cjmStageId=11");assert.ok(!cj.run('cjmCheckRows()').includes('<img'),'CJM user notes escaped');
+cj.el('managerState').value='done';cj.el('managerOwner').value='Координатор';cj.el('managerNote').value='';cj.run("saveManagerTask('CJM-001')");assert.equal(cj.run("data().managerTasks.find(t=>t.id==='CJM-001').state"),'new','CJM task completion requires result');
+const pl=runtime();for(const key of ['implant','endo'])for(const period of ['month','week','today']){
+ pl.run(`clinic='${key}';platformPeriod='${period}';render()`);
+ assert.equal(pl.run('sum(marketingRows(),x=>x.revenue)'),pl.run('platformTotals().revenue'));
+ assert.equal(pl.run('sum(marketingRows(),x=>x.paid)'),pl.run('platformTotals().paid'));
+ assert.equal(pl.run('sum(marketingRows(),x=>x.rows.length)'),pl.run('platformRows().length'));
+}
+pl.run("setSourceState('mis','offline')");assert.equal(pl.run('platformTotals().revenue'),null,'unavailable source is not zero');
+pl.run("setSourceState('mis','fresh')");assert.ok(pl.run('platformTotals().revenue')>0);
+pl.run("setSourceState('payments','fresh')");assert.equal(pl.run('data().quality.sync'),true);
+pl.run("data().quality.sync=false;resolveQuality('sync')");assert.equal(pl.run('data().platform.sources.payments.state'),'fresh');
+assert.equal(pl.run('visitSourceRows().filter(x=>x.included).length'),pl.run('utilization().done'));
+assert.equal(pl.run('visitSourceRows().length'),pl.run('utilization().done')+2);
+const f0=pl.run('financials().revenue');pl.run('applyVisitRule()');assert.equal(pl.run('data().quality.visits'),true);assert.equal(pl.run('financials().revenue'),f0);
+assert.equal(pl.run('loyaltySimulation(10000,1500,5,20).cash'),8500);assert.equal(pl.run('loyaltySimulation(10000,5000,5,20).redeemed'),2000);
+assert.equal(pl.run('loyaltySimulation(-1,100,5,20)'),null);assert.equal(pl.run('loyaltySimulation(100,100,50,20)'),null);
+assert.equal(pl.run("loyaltyAccounts().find(x=>x.plan.id==='P-107').case.actionable"),false,'loyalty respects restricted contact');
+console.log('CJM/platform verified: 16 stages, 225 checks, five routes, isolated audit restore, evidence and task guards, financial conservation across periods, source availability, visit reconciliation and loyalty arithmetic.');
