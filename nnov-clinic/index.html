@@ -464,6 +464,14 @@ function markWorkflowAttendance(pid,sid){
 const workflowRenderBase=render;
 render=function(){ensureWorkflow(data());workflowTaskSync();workflowRenderBase();};
 const workflowOverviewBase=overview;
+const workflowDashboardSignalsBase=dashboardSignals;
+dashboardSignals=function(){
+  const signals=workflowDashboardSignalsBase().filter(s=>!s.action.startsWith('openPlan('));
+  if(role==='admin')return signals;
+  const c=workflowRows().find(c=>c.actionable);
+  if(c)signals.splice(Math.min(1,signals.length),0,{icon:'note',title:esc(c.title+' по плану '+c.p.id),body:esc(`${c.p.patient} · координатор ${c.p.coordinator}. ${c.reason}`),source:'План лечения + актуальная договорённость',button:'Открыть случай',action:`openWorkflowCase('${c.p.id}')`,badge:'К действию'});
+  return signals;
+};
 overview=function(){const html=workflowOverviewBase();if(role==='admin')return html;const n=workflowRows().filter(c=>c.actionable).length;return html.replace('<section class="metrics',`<section class="workflow-overview panel"><div><div class="eyebrow">Первый сценарий / v0.4</div><h2>Следующий шаг по планам</h2><p>${n} случаев к действию сейчас. Паузы, ограничения и записи вынесены в отдельные группы.</p></div><button class="btn primary" onclick="navigate('plans')">Открыть очередь ${ic('arrow')}</button></section><section class="metrics`);};
 const workflowOpenPlanBase=openPlan;
 openPlan=function(id){workflowOpenPlanBase(id);const root=document.getElementById('overlayRoot');root.innerHTML=root.innerHTML.replace('<div class="drawer-section"><h3>Решение пациента',`<button class="btn primary space-top" onclick="openWorkflowCase('${id}')">Договорённость и следующий шаг</button><div class="drawer-section"><h3>Решение пациента`);};
