@@ -117,3 +117,21 @@ const w12=workflowFixture();w12.run("wp.workflow.sourceLinked=false");assert.equ
 const oldWorkflow=JSON.parse(w9.storage.get('nnov-clinic-suite-v2'));delete oldWorkflow.db.implant.plans[0].workflow;const migratedWorkflow=runtime(new Map([['nnov-clinic-suite-v2',JSON.stringify(oldWorkflow)]]));assert.equal(migratedWorkflow.run('data().plans[0].choice'),'agreed','v0.3 decisions survive additive migration');
 w1.run("wp.workflow.note='<img src=x onerror=alert(1)>';openWorkflowCase('P-101')");assert.ok(!w1.el('overlayRoot').innerHTML.includes('<img'),'workflow note is escaped');
 console.log('Workflow verified: T01-T12 over fictional events; source/decision separation; pauses/refusal; booking and cancellation; version/stale guards; idempotency; financial invariants; additive restore and escaped notes. This does not verify DentalPRO or Statum.');
+
+// The dashboard must select the same eligible cases as the coordinator queue.
+for(const key of ['implant','endo']){
+ for(const currentRole of ['owner','coordinator']){
+  for(const condition of ['action','restricted','refused','medical','future','scheduled','source','complete']){
+   const d=runtime();
+   d.run(`clinic='${key}';role='${currentRole}';for(const p of data().plans)p.workflow.contactAllowed=false;var p=data().plans[0];p.choice='considering';Object.assign(p.workflow,{contactAllowed:true,pauseKind:'none',nextAt:'',sourceLinked:true});`);
+   const changes={action:'',restricted:'p.workflow.contactAllowed=false',refused:"p.choice='declined'",medical:"p.workflow.pauseKind='medical';p.workflow.nextAt='2026-10-29T12:00'",future:"p.workflow.nextAt='2026-10-28T12:00'",scheduled:"p.stages[1].status='scheduled';p.stages[1].appointment={day:28,room:0,col:4}",source:'p.workflow.sourceLinked=false',complete:"for(const s of p.stages)s.status='done'"};
+   d.run(changes[condition]);
+   assert.equal(d.run("dashboardSignals().filter(s=>s.icon==='note').length"),condition==='action'?1:0,`${key}/${currentRole}: dashboard excludes ${condition} cases consistently with the queue`);
+   if(condition==='action')assert.equal(d.run("dashboardSignals().find(s=>s.icon==='note').action"),"openWorkflowCase('P-101')");
+  }
+ }
+}
+const pulse=runtime();pulse.run("for(const p of data().plans)p.workflow.contactAllowed=false;role='owner';data().plans[3].workflow.contactAllowed=true");
+assert.match(pulse.run("dashboardSignals().find(s=>s.icon==='note').title"),/P-104/,'dashboard includes an eligible agreed plan after excluding restricted cases');
+pulse.run("role='admin'");assert.equal(pulse.run("dashboardSignals().some(s=>s.icon==='note')"),false,'admin dashboard keeps its existing scope');
+console.log('Dashboard verified: shared workflow eligibility across two clinics and two workspaces, seven excluded states, agreed plans, and administrator scope.');
