@@ -15,3 +15,10 @@
 @media(max-width:960px){.brand img{width:175px;height:48px}.hero-lead{font-size:21px;max-width:390px}.hero-price>strong{font-size:46px}.care-rhythm h3{font-size:29px}}
 @media(max-width:700px){.header-inner{gap:12px}.header-inner .brand img{width:143px;height:39px}.hero-inner{padding-bottom:20px}.hero-lead{font-size:20px;margin-bottom:18px;max-width:100%}.hero-price{margin:14px 0 22px;gap:13px}.hero-price>strong{font-size:45px}.hero-price>span{font-size:15px}.hero-note{font-size:14px;max-width:100%}.care-rhythm{grid-template-columns:minmax(0,1fr);gap:16px}.care-rhythm article{padding:27px}.care-rhythm h3{font-size:30px}.care-rhythm article>p:not(:first-child){font-size:18px}.rhythm-note{font-size:14px;margin-bottom:32px}.footer .brand img{width:190px;height:52px}}
 @media(max-width:370px){.header-inner{gap:10px}.header-inner .brand img{width:119px;height:33px}.header-inner>.button{font-size:13px;padding-left:12px;padding-right:12px}.hero-price>strong{font-size:42px}.hero-price>span{font-size:14px}.hero-lead{font-size:19px}.care-rhythm article{padding:23px}.care-rhythm h3{font-size:28px}}
+
+
+/* Цена гигиены и бесплатная Revyline - отдельные условия предложения. */
+.hero-price{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;max-width:450px;margin:22px 0 26px;padding:0}.offer-cost{min-width:0}.offer-cost>strong{display:block;font-family:Gilroy,Arial,sans-serif;font-size:45px;line-height:1.1;letter-spacing:-.045em;white-space:nowrap}.offer-cost>span{display:block;font-size:16px;line-height:1.35;margin-top:9px;color:#3e4d33}.hero-lead{max-width:510px}.hero-inner{padding-bottom:65px}
+@media(max-width:960px){.offer-cost>strong{font-size:39px}.hero-price{max-width:390px;gap:18px}}
+@media(max-width:700px){.hero-price{max-width:100%;gap:16px;margin:20px 0 24px}.offer-cost>strong{font-size:36px}.offer-cost>span{font-size:15px}.hero-inner{padding-bottom:20px}.hero-lead{max-width:100%}}
+@media(max-width:370px){.offer-cost>strong{font-size:32px}.offer-cost>span{font-size:14px}.hero-price{gap:14px}}

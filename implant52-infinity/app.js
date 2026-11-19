@@ -35,7 +35,7 @@
   let branch = 'Казанская набережная, 5';
   let intent = 'Гигиена и программа';
   let opener = null;
-  const updateMessage = () => { $('#booking-message').textContent = `Здравствуйте! Хочу записаться на профессиональную гигиену в Имплант52 (${branch}) и узнать о программе «Щётка бесконечности». Мой вопрос: ${intent}. Подскажите, пожалуйста, стоимость и свободные даты.`; $('#copy-status').textContent = ''; $('.booking-call').href = branch.startsWith('Страж') ? 'tel:+78312601220' : 'tel:+78312601200'; $('.booking-call').textContent = branch.startsWith('Страж') ? 'Позвонить: +7 (831) 260-12-20' : 'Позвонить: +7 (831) 260-12-00'; };
+  const updateMessage = () => { $('#booking-message').textContent = `Здравствуйте! Хочу записаться на профессиональную гигиену по акции за 5 000 ₽ в Имплант52 (${branch}) и узнать о программе «Щётка бесконечности» с бесплатной Revyline раз в три месяца. Мой вопрос: ${intent}. Подскажите, пожалуйста, свободные даты и порядок подключения.`; $('#copy-status').textContent = ''; $('.booking-call').href = branch.startsWith('Страж') ? 'tel:+78312601220' : 'tel:+78312601200'; $('.booking-call').textContent = branch.startsWith('Страж') ? 'Позвонить: +7 (831) 260-12-20' : 'Позвонить: +7 (831) 260-12-00'; };
   $$('[data-book]').forEach(b => b.addEventListener('click', () => { intent = b.dataset.book; opener = b; updateMessage(); closeMenu(); if (typeof dialog.showModal === 'function') { dialog.showModal(); document.body.classList.add('modal-open'); } else { location.href = $('.booking-call').href; } }));
   const closeDialog = () => dialog.close();
   $('.dialog-close').addEventListener('click', closeDialog);
@@ -45,3 +45,4 @@
   $('#copy-message').addEventListener('click', async () => { const txt = $('#booking-message').textContent; try { if (!navigator.clipboard) throw Error('unavailable'); await navigator.clipboard.writeText(txt); $('#copy-status').textContent = 'Скопировано. Можно вставить в чат клиники.'; } catch { const range = document.createRange(); range.selectNodeContents($('#booking-message')); const selection = window.getSelection(); selection.removeAllRanges(); selection.addRange(range); $('#copy-status').textContent = 'Текст выделен. Скопируйте его через меню устройства.'; } });
   updateMessage();
 })();
+
