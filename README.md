@@ -46,3 +46,10 @@ GitHub Pages: ветка `main`, папка `/(root)`. Изменения в э�
 - [Исходники и инструкция](website-development-skill/README.md).
 - Файлы навыка: `website-development-skill/skills/r52-website-development/`.
 - Лицензия MIT распространяется только на материалы в `website-development-skill/`; остальные разделы репозитория под нее не подпадают.
+
+## АБТЕХ / Абсолют
+
+- Сайт: https://klima3567-sketch.github.io/r52-public/abteh/
+- `abteh/index.html` - каталог продукции, собственные системы ABS, документация и подбор оборудования. Изображения и PDF встроены в HTML.
+- Все HTML раздела закрыты от индексации через `noindex`; добавлены директивы Googlebot и Yandex.
+- Формы подготавливают текст запроса; серверная отправка заявок пока не подключена.
