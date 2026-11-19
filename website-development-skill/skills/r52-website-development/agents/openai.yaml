@@ -1,0 +1,6 @@
+interface:
+  display_name: "R52.RU - разработка и переработка сайта"
+  short_description: "От аудита и конкурентов до интерактивного прототипа"
+  default_prompt: "Используй $r52-website-development: пройди шесть этапов разработки или переработки сайта, подготовь анализ конкурентов, JTBD, текстовый и интерактивный прототипы."
+policy:
+  allow_implicit_invocation: true

@@ -39,3 +39,10 @@ GitHub Pages: ветка `main`, папка `/(root)`. Изменения в э�
 - Страница самостоятельная, без внешних шрифтов, скриптов и библиотек. На ней установлен `noindex,nofollow`.
 - Персональные данные в примерах обезличены. Приложения открываются внутри страницы.
 - Проверки публикации запускаются в `.github/workflows/ai-cases-check.yml`; публикацию выполняет действующий GitHub Pages из `main`/`(root)`.
+
+## Открытый скилл разработки сайта
+
+- [Страница скилла](https://klima3567-sketch.github.io/r52-public/website-development-skill/) - шесть этапов, результаты и установка.
+- [Исходники и инструкция](website-development-skill/README.md).
+- Файлы навыка: `website-development-skill/skills/r52-website-development/`.
+- Лицензия MIT распространяется только на материалы в `website-development-skill/`; остальные разделы репозитория под нее не подпадают.

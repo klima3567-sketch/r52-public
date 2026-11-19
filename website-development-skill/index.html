@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Открытый скилл R52.RU для разработки сайта: аудит, конкуренты, JTBD, текстовый и интерактивный прототипы. Инструкция по установке и примеры запуска.">
+  <meta name="theme-color" content="#1558ef">
+  <title>Скилл разработки сайта - R52.RU</title>
+  <style>
+    :root{--ink:#162135;--muted:#657084;--blue:#1558ef;--line:#dde3ed;--paper:#f5f7fb;--white:#fff}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}a{color:var(--blue);text-underline-offset:4px}button{font:inherit}a:focus-visible,button:focus-visible{outline:3px solid #ec8f27;outline-offset:5px}header,main,footer{max-width:1120px;margin:auto;padding:0 28px}header{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:100px;border-bottom:1px solid var(--line)}.brand{color:var(--ink);font-size:26px;font-weight:850;letter-spacing:-1.2px;text-decoration:none}.brand span{color:var(--blue)}.back{font-size:14px}.hero{padding:76px 0 54px}.eyebrow{font-size:12px;font-weight:750;letter-spacing:1.6px;color:var(--blue);text-transform:uppercase}.hero h1{max-width:950px;margin:20px 0 24px;font-size:clamp(36px,5.6vw,65px);line-height:1.08;letter-spacing:-2.5px}.lead{max-width:770px;font-size:20px;color:var(--muted)}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}.button{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 20px;border:1px solid var(--line);border-radius:8px;background:var(--white);color:var(--ink);font-size:14px;font-weight:650;text-decoration:none;cursor:pointer}.primary{background:var(--blue);border-color:var(--blue);color:white}.button:hover{filter:brightness(.96)}.tags{display:flex;flex-wrap:wrap;gap:9px;margin-top:26px}.tag{border:1px solid var(--line);border-radius:100px;padding:5px 12px;font-size:12px;color:var(--muted)}section{margin-bottom:56px}h2{font-size:clamp(26px,3vw,36px);line-height:1.2;letter-spacing:-.8px;margin:0 0 18px}.section-intro{max-width:780px;color:var(--muted);margin:0 0 24px}.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.step{padding:26px;background:var(--white);border:1px solid var(--line);border-radius:12px}.number{font:700 13px/1 system-ui;color:var(--blue);margin-bottom:24px}.step h3{font-size:21px;line-height:1.25;margin:0 0 12px;letter-spacing:-.4px}.step p{font-size:14px;color:var(--muted);margin:0}.result{border-top:1px solid var(--line);padding-top:16px;margin-top:18px!important;color:var(--ink)!important}.result b{font-weight:650}.panel{padding:30px;background:white;border:1px solid var(--line);border-radius:12px}.panel h3{font-size:19px;margin:0 0 10px}.panel p{color:var(--muted)}.code-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:22px}.code-head span{font-size:13px;font-weight:650}.copy-button{min-height:38px;padding:6px 12px;font-size:12px}.code{margin:10px 0 0;background:#152137;color:#eef3ff;border-radius:8px;padding:20px;white-space:pre-wrap;overflow-wrap:anywhere;font:13px/1.8 ui-monospace,SFMono-Regular,Consolas,monospace}.notice{font-size:14px;color:var(--muted)}.columns{display:grid;grid-template-columns:1fr 1fr;gap:16px}.columns ul{margin:0;padding-left:21px;color:var(--muted);font-size:14px}.columns li+li{margin-top:9px}.status{min-height:24px;font-size:13px;color:var(--blue);margin:8px 0 0}.table-wrap{overflow:auto;background:#fff;border:1px solid var(--line);border-radius:10px}table{border-collapse:collapse;width:100%;font-size:14px}th,td{text-align:left;vertical-align:top;padding:15px 20px;border-bottom:1px solid var(--line)}th{background:#eef2fa;font-weight:650}tr:last-child td{border-bottom:0}td:first-child{white-space:nowrap}footer{border-top:1px solid var(--line);padding-top:25px;padding-bottom:35px;font-size:13px;color:var(--muted)}footer p{margin:5px 0}.skip{position:fixed;left:16px;top:-80px;background:white;padding:12px;z-index:20}.skip:focus{top:12px}
+    @media(max-width:850px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}.columns{grid-template-columns:1fr}}
+    @media(max-width:540px){header,main,footer{padding-left:20px;padding-right:20px}header{min-height:80px}.hero{padding-top:46px}.hero h1{letter-spacing:-1.4px}.lead{font-size:17px}.steps{grid-template-columns:1fr}.step,.panel{padding:23px}.actions .button{width:100%}.back{font-size:12px}.code-head{align-items:flex-start}.code{padding:16px;font-size:12px}th,td{padding:13px 15px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  </style>
+</head>
+<body>
+<a class="skip" href="#content">К содержанию</a>
+<header><a class="brand" href="../">R52<span>.RU</span></a><a class="back" href="../">Открытые материалы</a></header>
+<main id="content">
+  <section class="hero">
+    <div class="eyebrow">Открытый скилл для ИИ-агентов</div>
+    <h1>От аудита сайта<br>до интерактивного прототипа.</h1>
+    <p class="lead">Единый процесс разработки и переработки сайта. Исследование, задачи аудитории, структура, готовые тексты и работающий прототип - с понятным результатом каждого этапа.</p>
+    <div class="actions"><a class="button primary" href="#install">Как установить</a><a class="button" href="https://github.com/klima3567-sketch/r52-public/tree/main/website-development-skill">Исходники на GitHub ↗</a></div>
+    <div class="tags"><span class="tag">6 этапов</span><span class="tag">Шаблоны результатов</span><span class="tag">На русском языке</span><span class="tag">Лицензия MIT</span></div>
+  </section>
+  <section aria-labelledby="process-title">
+    <h2 id="process-title">Что входит в процесс</h2>
+    <p class="section-intro">Каждый значимый блок сайта опирается на задачу клиента, вывод аудита или наблюдение из исследования. Для нового сайта процесс учитывает отсутствие текущей версии.</p>
+    <div class="steps">
+      <article class="step"><div class="number">01 / АУДИТ</div><h3>Разобраться в текущем сайте</h3><p>Предложение, содержание, структура, мобильный интерфейс, путь к обращению и SEO.</p><p class="result"><b>Результат:</b> что сохранить, что исправить и с чего начать.</p></article>
+      <article class="step"><div class="number">02 / РЫНОК</div><h3>Изучить правила выбора</h3><p>Прямые конкуренты, альтернативы и полезные ориентиры с учетом рынка и географии.</p><p class="result"><b>Результат:</b> конкурентное окружение и возможности позиционирования.</p></article>
+      <article class="step"><div class="number">03 / СРАВНЕНИЕ</div><h3>Перевести наблюдения в решения</h3><p>Что хорошо у конкурентов, что можно адаптировать и что нужно проработать у себя.</p><p class="result"><b>Результат:</b> редактируемая таблица с источниками и приоритетами.</p></article>
+      <article class="step"><div class="number">04 / АУДИТОРИЯ</div><h3>Определить основной JTBD</h3><p>Ситуации выбора, задачи, барьеры, критерии и логичное действие посетителя.</p><p class="result"><b>Результат:</b> карта аудитории и основные пользовательские сценарии.</p></article>
+      <article class="step"><div class="number">05 / ТЕКСТЫ</div><h3>Спроектировать содержание</h3><p>Карта сайта, порядок аргументов, готовые заголовки, тексты, доказательства и CTA.</p><p class="result"><b>Результат:</b> текстовый прототип главной и ключевых типов страниц.</p></article>
+      <article class="step"><div class="number">06 / ПРОТОТИП</div><h3>Собрать работающий интерфейс</h3><p>Адаптивные страницы, переходы, меню, формы и необходимые состояния.</p><p class="result"><b>Результат:</b> интерактивный прототип, исходники и фактические проверки.</p></article>
+    </div>
+  </section>
+  <section id="install" aria-labelledby="install-title">
+    <h2 id="install-title">Установка и первый запуск</h2>
+    <p class="section-intro">Установите всю папку скилла вместе с методикой и шаблонами. Можно запускать процесс целиком или продолжать с нужного этапа.</p>
+    <div class="panel">
+      <h3>В Codex через установщик скиллов</h3>
+      <p>Передайте агенту команду ниже. Исходники открыты, регистрация для просмотра не нужна.</p>
+      <div class="code-head"><span>Команда для агента</span><button class="button copy-button" type="button" data-copy="install-prompt">Скопировать</button></div>
+      <pre class="code" id="install-prompt">$skill-installer Установи скилл из https://github.com/klima3567-sketch/r52-public/tree/main/website-development-skill/skills/r52-website-development</pre>
+      <p class="notice">Ручная установка для Codex и состав файлов описаны в <a href="https://github.com/klima3567-sketch/r52-public/blob/main/website-development-skill/README.md">README на GitHub</a>. В других средах используйте их штатный импорт навыков SKILL.md.</p>
+      <div class="code-head"><span>Первый запрос после установки</span><button class="button copy-button" type="button" data-copy="start-prompt">Скопировать</button></div>
+      <pre class="code" id="start-prompt">Используй $r52-website-development для переработки сайта [URL].
+Рынок и география: [описание].
+Приоритетные услуги: [перечень].
+Главная цель: [целевое действие].
+Пройди шесть этапов до интерактивного адаптивного прототипа.</pre>
+      <p class="status" id="copy-status" role="status" aria-live="polite"></p>
+    </div>
+  </section>
+  <section aria-labelledby="approach-title">
+    <h2 id="approach-title">Как устроена работа</h2>
+    <div class="columns">
+      <div class="panel"><h3>Понятные результаты</h3><ul><li>Паспорт проекта хранит статус этапов, решения и следующие действия.</li><li>Таблица конкурентов содержит пять листов: компании, наблюдения, наш сайт, план решений и источники.</li><li>Каждый блок текстового прототипа имеет задачу, готовый текст, доказательство и действие.</li><li>Интерактивный прототип проверяется по основным маршрутам и состояниям.</li></ul></div>
+      <div class="panel"><h3>Работа с реальными данными</h3><ul><li>Факты, наблюдения, гипотезы и решения обозначаются раздельно.</li><li>При нехватке цен, кейсов и аналитики формируется список нужных материалов.</li><li>Возможности поиска, файлов и браузера определяются средой запуска.</li><li>Непроверенные аспекты и неподключенные интеграции отражаются в передаче результата.</li></ul></div>
+    </div>
+  </section>
+  <section aria-labelledby="files-title">
+    <h2 id="files-title">Методика и шаблоны</h2>
+    <div class="table-wrap"><table><thead><tr><th scope="col">Материал</th><th scope="col">Содержание</th></tr></thead><tbody>
+      <tr><td><a href="./skills/r52-website-development/SKILL.md">Основной процесс</a></td><td>Шесть этапов, результаты и критерии готовности.</td></tr>
+      <tr><td><a href="./skills/r52-website-development/references/research.md">Исследование</a></td><td>Аудит, рынок, конкурентная таблица и приоритеты.</td></tr>
+      <tr><td><a href="./skills/r52-website-development/references/audience-and-copy.md">Аудитория и тексты</a></td><td>JTBD, карта сайта, сценарии и готовые блоки.</td></tr>
+      <tr><td><a href="./skills/r52-website-development/references/interactive-prototype.md">Интерактивный прототип</a></td><td>Реализация, состояния интерфейса и проверки.</td></tr>
+      <tr><td><a href="./skills/r52-website-development/references/project-templates.md">Шаблоны результатов</a></td><td>Паспорт, решения, материалы и итоговая передача.</td></tr>
+    </tbody></table></div>
+  </section>
+</main>
+<footer><p>Артём Климин / <a href="https://r52.ru/">R52.RU</a> · 2026</p><p><a href="./LICENSE">Лицензия MIT</a> действует на содержимое папки website-development-skill. <a href="https://github.com/klima3567-sketch/r52-public/tree/main/website-development-skill">Исходники и предложения по улучшению ↗</a></p></footer>
+<script>
+  document.querySelectorAll('[data-copy]').forEach(function(button){
+    button.addEventListener('click',async function(){
+      var text=document.getElementById(button.dataset.copy).textContent;
+      var status=document.getElementById('copy-status');
+      try{
+        if(!navigator.clipboard)throw new Error('Clipboard unavailable');
+        await navigator.clipboard.writeText(text);
+        status.textContent='Скопировано. Вставьте команду в запрос к агенту.';
+      }catch(error){
+        status.textContent='Не удалось скопировать автоматически. Выделите текст команды и скопируйте его вручную.';
+      }
+    });
+  });
+</script>
+</body>
+</html>
