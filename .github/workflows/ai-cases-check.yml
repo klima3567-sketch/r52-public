@@ -1,0 +1,56 @@
+name: Check AI cases
+
+on:
+  push:
+    branches: [main]
+    paths: ['fabrika-kompozitov/**', '.github/workflows/ai-cases-check.yml']
+  pull_request:
+    paths: ['fabrika-kompozitov/**', '.github/workflows/ai-cases-check.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify embedded files, links and JavaScript syntax
+        run: |
+          python3 - <<'PY'
+          import base64, hashlib, json, re, subprocess, tempfile
+          from html.parser import HTMLParser
+          from pathlib import Path
+          html = Path('fabrika-kompozitov/index.html').read_text()
+          class Links(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.ids, self.links = [], []
+              def handle_starttag(self, tag, attrs):
+                  attrs = dict(attrs)
+                  if 'id' in attrs:
+                      self.ids.append(attrs['id'])
+                  if attrs.get('href', '').startswith('#'):
+                      self.links.append(attrs['href'][1:])
+          page = Links()
+          page.feed(html)
+          assert len(page.ids) == len(set(page.ids)), 'Duplicate ids'
+          assert all(link in page.ids for link in page.links), 'Broken section link'
+          payload = json.loads(re.search(r'<script id="case-data" type="application/json">(.*?)</script>', html, re.S).group(1))
+          assert set(payload) == {'estimate', 'bitrix'}
+          scripts = [re.findall(r'<script(?:\s[^>]*)?>(.*?)</script>', html, re.S)[-1]]
+          for case in payload.values():
+              raw = base64.b64decode(case['data'])
+              assert hashlib.sha256(raw).hexdigest() == case['sha256'], 'Embedded example changed'
+              scripts += re.findall(r'<script(?:\s[^>]*)?>(.*?)</script>', raw.decode(), re.S)
+          with tempfile.TemporaryDirectory() as temp:
+              for number, script in enumerate(scripts):
+                  path = Path(temp) / f'script-{number}.js'
+                  path.write_text(script)
+                  subprocess.run(['node', '--check', str(path)], check=True)
+          print('Embedded files, section links and JavaScript syntax verified.')
+          PY
