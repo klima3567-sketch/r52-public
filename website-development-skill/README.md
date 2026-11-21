@@ -4,6 +4,16 @@
 
 [Читать удобную веб-версию](https://klima3567-sketch.github.io/r52-public/website-development-skill/) · [Основные инструкции](skills/r52-website-development/SKILL.md) · [MIT](LICENSE)
 
+## Быстрый старт в ChatGPT
+
+1. [Скачайте скилл для ChatGPT (ZIP)](https://github.com/klima3567-sketch/r52-public/raw/refs/heads/main/website-development-skill/r52-website-development.zip).
+2. В ChatGPT откройте **Plugins → Skills → Create → Upload from your computer** и загрузите скачанный ZIP.
+3. В новом чате наберите **@R52.RU**, выберите «R52.RU - разработка и переработка сайта» и опишите задачу.
+
+Например, «Проверь сайт [URL]. Мы устанавливаем кондиционеры в Самаре и хотим получать больше заявок на монтаж. Покажи, где на телефоне возникают трудности при заказе».
+
+Загрузка скиллов зависит от настроек рабочего пространства. [Справка OpenAI](https://help.openai.com/en/articles/20001066-skills-in-chatgpt)
+
 ## Что делает скилл
 
 | Этап | Что выполняет | Что получается |
@@ -17,9 +27,9 @@
 
 Каждое решение связывается с задачей аудитории, выводом аудита или наблюдением из исследования. Этапы содержат критерии готовности и шаблоны результатов.
 
-## Установка
+## Установка в Codex
 
-Устанавливать всю папку `skills/r52-website-development` вместе с `references/` и `agents/`. Одного файла `SKILL.md` недостаточно для полной методики.
+Установите всю папку `skills/r52-website-development` вместе с методикой, иконкой и настройками.
 
 ### Через установщик скиллов в Codex
 
@@ -91,6 +101,10 @@ cp -R r52-public-skills/website-development-skill/skills/r52-website-development
 | [interactive-prototype.md](skills/r52-website-development/references/interactive-prototype.md) | Реализация и проверки прототипа |
 | [project-templates.md](skills/r52-website-development/references/project-templates.md) | Паспорт проекта, решения и шаблоны результатов |
 | [agents/openai.yaml](skills/r52-website-development/agents/openai.yaml) | Название и пример запуска в совместимых средах |
+
+## Обновление архива
+
+После правки исходников откройте каталог `website-development-skill/skills/` и пересоберите архив командой `python3 -m zipfile -c ../r52-website-development.zip r52-website-development`. Сохраните исходники и ZIP в одном коммите. Страница и ссылка на скачивание останутся прежними.
 
 ## Автор и использование
 
