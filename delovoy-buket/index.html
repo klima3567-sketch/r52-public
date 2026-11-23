@@ -191,6 +191,18 @@ details[open] > summary .plus::after { transform: rotate(0deg); }
 .plan p { margin-bottom: 22px; color: var(--muted); font-size: .965rem; }
 .plan.main p { color: #e0e4d9; }
 .plan .btn { margin-top: auto; }
+.plan-details { display: grid; gap: 0; margin: 0 0 17px; font-size: .91rem; }
+.plan-details div { padding-block: 10px; border-top: 1px solid #c9baa0; }
+.plan-details dt { color: var(--muted); font-size: .82rem; font-weight: 700; }
+.plan-details dd { margin: 2px 0 0; }
+.plan.main .plan-details div { border-color: #c6c3a46b; }
+.plan.main .plan-details dt { color: var(--gold-light); }
+.plan-note { margin-top: 18px; color: var(--muted); font-size: .92rem; }
+.terms-layout { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(28px, 5.1vw, 76px); }
+.terms .section-intro { margin-top: 15px; }
+.terms-list { border-top: 1px solid var(--border); }
+.terms-list summary { min-height: 44px; }
+.terms-list p { max-width: 61ch; margin-bottom: 0; }
 .review-list { display: grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap: 20px; margin-top: 23px; }
 .review-card { margin: 0; padding: 22px; border: 1px solid var(--border); border-radius: 13px; }
 .review-card figcaption { margin-top: 12px; font-weight: 650; }
@@ -305,6 +317,7 @@ textarea { resize: vertical; min-height: 83px; }
   .hero-visual figcaption { margin-top: 8px; font-size: .99rem; }
   .solutions { order: -1; }
   .solution-layout, .occasion-layout, .about-grid, .form-layout, .finish-inner { grid-template-columns: 1fr; }
+  .terms-layout { grid-template-columns: 1fr; gap: 21px; }
   .solution-layout { gap: 23px; }
   .solution-copy { order: -1; }
   .solution-copy .section-intro { margin-block: 13px 18px; }
@@ -361,6 +374,111 @@ textarea { resize: vertical; min-height: 83px; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: 0s !important; animation: none !important; }
 }
+.request-details {
+  min-width: 0;
+  margin: 18px 0 0;
+  padding: 10px 13px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.request-details legend {
+  padding: 0 5px;
+  color: var(--green);
+  font-size: .91rem;
+  font-weight: 650;
+}
+.request-details legend span {
+  color: var(--muted);
+  font-weight: 500;
+}
+.request-details .input[type="date"] {
+  min-width: 0;
+}
+.request-contact {
+  margin-top: 16px;
+}
+
+@media (max-width: 660px) {
+  .request-details {
+    padding-inline: 10px;
+  }
+}
+.hero-quick-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 20px;
+  margin-top: 8px;
+}
+.hero-quick-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--gold-light);
+  font-size: 0.9rem;
+  font-weight: 650;
+  text-decoration: underline;
+  text-decoration-color: #e5cb8f88;
+  text-underline-offset: 4px;
+}
+.hero-quick-links a:hover { text-decoration-color: currentColor; }
+.solution-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  align-items: baseline;
+}
+.product-foot { flex-wrap: wrap; }
+.product-foot .inline-action { min-height: 44px; }
+.offer-share {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 12px;
+  color: var(--muted);
+}
+.plan .offer-share { margin-top: 5px; }
+.plan.main .offer-share { color: #e0e4d9; }
+.offer-share-button {
+  min-height: 44px;
+  padding: 6px 0;
+  border: none;
+  background: transparent;
+  color: var(--green);
+  font-size: 0.85rem;
+  font-weight: 650;
+  text-align: left;
+  text-decoration: underline;
+  text-decoration-color: #ad894b;
+  text-underline-offset: 4px;
+}
+.plan.main .offer-share-button { color: var(--gold-light); }
+.offer-share-button:hover { text-decoration-color: currentColor; }
+.share-feedback { font-size: 0.85rem; }
+.share-url {
+  width: 100%;
+  min-width: 0;
+  padding: 8px 10px;
+  margin-block: 4px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--paper);
+  color: var(--green);
+  font-size: 0.875rem;
+}
+.is-shared-offer {
+  outline: 2px solid #a9750a;
+  outline-offset: 5px;
+  border-radius: 14px;
+}
+@media (max-width: 1119px) {
+  .menu-toggle { margin-inline-start: auto; }
+  .head-cta { margin-left: 0; }
+  .main-nav.is-open {
+    max-height: calc(100vh - var(--header));
+    max-height: calc(100dvh - var(--header));
+    overflow-y: auto;
+  }
+}
 </style>
 </head>
 <body>
@@ -369,12 +487,12 @@ textarea { resize: vertical; min-height: 83px; }
 <header class="site-header on-dark">
   <div class="container nav-shell">
     <a class="brand" href="#home" aria-label="Деловой букет, на главную"><span class="logo-crop logo-symbol" aria-hidden="true"><img src="assets/delovoy-buket-logo.jpg" width="1280" height="853" alt="" decoding="async"></span><span class="logo-crop logo-name" aria-hidden="true"><img src="assets/delovoy-buket-logo.jpg" width="1280" height="853" alt="" decoding="async"></span></a>
+    <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Открыть меню" aria-controls="main-nav" aria-expanded="false"><svg class="icon" aria-hidden="true"><use href="#i-menu"></use></svg></button>
     <nav class="main-nav" id="main-nav" aria-label="Основное меню">
-      <a href="#home" aria-current="location">Главная</a><a href="#solutions">Решения для бизнеса</a><a href="#catalog">Каталог</a><a href="#subscription">Абонемент</a><a href="#about">О компании</a><a href="#request">Контакты</a>
+      <a href="#home" aria-current="location">Главная</a><a href="#solutions">Решения для бизнеса</a><a href="#catalog">Каталог</a><a href="#subscription">Абонемент</a><a href="#about">О компании</a><a href="#request">Заявка</a>
     </nav>
     <a class="nav-phone" id="nav-phone" hidden></a>
     <a class="btn btn-outline-light head-cta" href="#request" aria-label="Подготовить заявку"><span class="head-full">Подготовить заявку</span><span class="head-short" aria-hidden="true">Заявка</span></a>
-    <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Открыть меню" aria-controls="main-nav" aria-expanded="false"><svg class="icon" aria-hidden="true"><use href="#i-menu"></use></svg></button>
   </div>
 </header>
 <main id="main" tabindex="-1">
@@ -384,7 +502,11 @@ textarea { resize: vertical; min-height: 83px; }
         <p class="kicker">Корпоративный цветочный сервис</p>
         <h1 id="hero-title"><span>Сэкономьте</span> <em>время команды</em> <span>на заказе цветов</span></h1>
         <p class="hero-desc">Подбираем и доставляем цветы для сотрудников, партнёров и офиса. Вы задаёте повод, дату и бюджет.</p>
-        <div class="hero-actions"><a class="btn btn-gold" href="#request">Подготовить заявку</a><a class="btn btn-outline-light" href="#solutions">Посмотреть решения</a></div>
+        <div class="hero-actions"><a class="btn btn-gold" href="#request">Подготовить заявку</a></div>
+        <nav class="hero-quick-links" aria-label="Выбор формата заказа">
+          <a href="#catalog">Выбрать разовый букет</a>
+          <a href="#subscription">Сравнить абонементы</a>
+        </nav>
       </div>
       <figure class="hero-visual">
         <div class="arch"><img src="assets/hero.webp" width="1122" height="1402" fetchpriority="high" alt="Светлый букет садовых цветов в стеклянной вазе на столе переговорной">
@@ -420,27 +542,15 @@ textarea { resize: vertical; min-height: 83px; }
       </div>
     </section>
   </div>
-  <section class="section steps" id="process" aria-labelledby="steps-title">
-    <div class="container"><h2 class="section-title" id="steps-title">Как мы <em>организуем заказ</em></h2><ol class="step-list"><li><div class="step-head"><span class="step-number" aria-hidden="true">01</span></div><h3>Вы описываете задачу</h3><p>Расскажите, для кого нужны цветы и к какой дате.</p></li>
-<li><div class="step-head"><span class="step-number" aria-hidden="true">02</span></div><h3>Согласуем детали</h3><p>Уточним бюджет, количество и адреса.</p></li>
-<li><div class="step-head"><span class="step-number" aria-hidden="true">03</span></div><h3>Берём на себя подбор</h3><p>Предложим композиции. Для регулярных заказов соберём календарь.</p></li>
-<li><div class="step-head"><span class="step-number" aria-hidden="true">04</span></div><h3>Организуем доставку</h3><p>Передадим цветы получателю и пришлём фото готового заказа.</p></li></ol></div>
-  </section>
-  <section class="section about on-dark" id="about" aria-labelledby="about-title">
-    <div class="container about-grid">
-      <div><h2 class="section-title" id="about-title">Меньше задач <em>для вашей команды</em></h2><p>Вы согласуете бюджет и выбираете из предложенных композиций. Мы ведём календарь, собираем букеты и организуем доставку по нужным адресам.</p></div>
-      <ul class="benefits"><li><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg><span>Один календарь для всех поздравлений</span></li>
-<li><svg class="icon" aria-hidden="true"><use href="#i-folder"></use></svg><span>Подбор цветов и организация заказа</span></li>
-<li><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg><span>Бюджет согласуем заранее</span></li>
-<li><svg class="icon" aria-hidden="true"><use href="#i-palette"></use></svg><span>Оформление в вашем фирменном стиле</span></li>
-<li><svg class="icon" aria-hidden="true"><use href="#i-pin"></use></svg><span>Доставка по согласованным адресам</span></li>
-<li><svg class="icon" aria-hidden="true"><use href="#i-photo"></use></svg><span>Фото готовых заказов</span></li>
-<li><svg class="icon" aria-hidden="true"><use href="#i-cycle"></use></svg><span>Разовые и регулярные заказы</span></li></ul>
-    </div>
-  </section>
   <section class="section" id="catalog" aria-labelledby="catalog-title">
     <div class="container">
-      <div class="section-head"><h2 class="section-title" id="catalog-title">Подберём цветы <em>под вашу задачу</em></h2><p class="section-intro">Выберите подходящий формат. Мы предложим состав с учётом сезона и повода, согласуем стоимость и организуем доставку.</p></div>
+      <div class="section-head">
+        <h2 class="section-title" id="catalog-title">Подберём цветы <em>под вашу задачу</em></h2>
+        <div class="section-intro">
+          <p>Стоимость зависит от состава, размера, количества и адресов. Для регулярных заказов учитываем частоту доставок.</p>
+          <a class="inline-action" href="#terms">Как согласуем стоимость и доставку</a>
+        </div>
+      </div>
       <div class="catalog-tools" id="catalog-tools" aria-label="Фильтры каталога" role="group"></div>
       <p class="sr-only" id="catalog-count" role="status" aria-live="polite"></p>
       <div class="products" id="products"></div>
@@ -458,32 +568,90 @@ textarea { resize: vertical; min-height: 83px; }
 <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg><span>Фото готовых заказов</span></li>
 <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg><span>Сезонная замена цветов</span></li></ul>
       <div class="plan-grid" id="plans"></div>
+      <p class="plan-note">Количество, период и стоимость согласуем по вашему календарю и адресам.</p>
       <noscript><p>Базовый - для отдельных поводов. Команда - для регулярных поздравлений. Бизнес - для компаний с несколькими цветочными задачами.</p></noscript>
+    </div>
+  </section>
+  <section class="section terms" id="terms" aria-labelledby="terms-title">
+    <div class="container terms-layout">
+      <div>
+        <h2 class="section-title" id="terms-title">Условия <em>корпоративного заказа</em></h2>
+        <p class="section-intro">До заказа согласуем состав, бюджет, дату и условия доставки.</p>
+      </div>
+      <div class="terms-list">
+        <details class="solution" open>
+          <summary>Что влияет на стоимость?<span class="plus" aria-hidden="true"></span></summary>
+          <div class="solution-body"><p>Состав и размер композиции, количество и адреса. Для абонемента важны график и число доставок. Если бюджет уже утверждён, укажите его в заявке.</p></div>
+        </details>
+        <details class="solution">
+          <summary>Можно ли доставить к моей дате?<span class="plus" aria-hidden="true"></span></summary>
+          <div class="solution-body"><p>Укажите город, дату и место. Возможность доставки и её условия подтвердим при согласовании заказа. Для регулярных поставок обсудим график.</p></div>
+        </details>
+        <details class="solution">
+          <summary>Можно ли оплатить по счёту?<span class="plus" aria-hidden="true"></span></summary>
+          <div class="solution-body"><p>Если компания оплачивает по счёту или ей нужны закрывающие документы, укажите это в комментарии к заявке. Способ оплаты и перечень документов уточним до заказа.</p></div>
+        </details>
+        <details class="solution">
+          <summary>Что, если нужных цветов нет в сезоне?<span class="plus" aria-hidden="true"></span></summary>
+          <div class="solution-body"><p>Предложим сезонные варианты и согласуем состав с вами. Для оформленного заказа предусмотрено фото готовой композиции.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+  <section class="section about on-dark" id="about" aria-labelledby="about-title">
+    <div class="container about-grid">
+      <div><h2 class="section-title" id="about-title">Меньше задач <em>для вашей команды</em></h2><p>Вы согласуете бюджет и выбираете из предложенных композиций. Мы ведём календарь, собираем букеты и организуем доставку по нужным адресам.</p></div>
+      <ul class="benefits"><li><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg><span>Один календарь для всех поздравлений</span></li>
+<li><svg class="icon" aria-hidden="true"><use href="#i-folder"></use></svg><span>Подбор цветов и организация заказа</span></li>
+<li><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg><span>Бюджет согласуем заранее</span></li>
+<li><svg class="icon" aria-hidden="true"><use href="#i-palette"></use></svg><span>Оформление в вашем фирменном стиле</span></li>
+<li><svg class="icon" aria-hidden="true"><use href="#i-pin"></use></svg><span>Доставка по согласованным адресам</span></li>
+<li><svg class="icon" aria-hidden="true"><use href="#i-photo"></use></svg><span>Фото готовых заказов</span></li>
+<li><svg class="icon" aria-hidden="true"><use href="#i-cycle"></use></svg><span>Разовые и регулярные заказы</span></li></ul>
     </div>
   </section>
   <section class="section reviews" id="reviews" aria-labelledby="reviews-title" hidden>
     <div class="container"><h2 class="section-title" id="reviews-title">Нас выбирают компании, которым <em>важно внимание</em></h2><div class="review-list" id="review-list"></div></div>
   </section>
+  <section class="section steps" id="process" aria-labelledby="steps-title">
+    <div class="container"><h2 class="section-title" id="steps-title">Как мы <em>организуем заказ</em></h2><ol class="step-list"><li><div class="step-head"><span class="step-number" aria-hidden="true">01</span></div><h3>Вы описываете задачу</h3><p>Расскажите, для кого нужны цветы и к какой дате.</p></li>
+<li><div class="step-head"><span class="step-number" aria-hidden="true">02</span></div><h3>Согласуем детали</h3><p>Уточним бюджет, количество и адреса.</p></li>
+<li><div class="step-head"><span class="step-number" aria-hidden="true">03</span></div><h3>Берём на себя подбор</h3><p>Предложим композиции. Для регулярных заказов соберём календарь.</p></li>
+<li><div class="step-head"><span class="step-number" aria-hidden="true">04</span></div><h3>Организуем доставку</h3><p>Передадим цветы получателю и пришлём фото готового заказа.</p></li></ol></div>
+  </section>
   <section class="section request" id="request" aria-labelledby="request-title">
     <div class="container form-layout">
       <div class="form-copy">
         <h2 class="section-title" id="request-title" tabindex="-1">Заявка на <em>корпоративные цветы</em></h2>
-        <p class="section-intro">Выберите задачу. Дату, место доставки и бюджет можно указать в комментарии к заявке.</p>
+        <p class="section-intro">Выберите задачу. Если город, дата и бюджет уже известны, добавьте их к заявке.</p>
         <span class="form-flower" aria-hidden="true"><span class="logo-crop logo-symbol" aria-hidden="true"><img src="assets/delovoy-buket-logo.jpg" width="1280" height="853" alt="" decoding="async"></span></span>
       </div>
       <form class="form-panel" id="inquiry-form" novalidate>
         <div class="chosen" id="chosen" hidden><span>Ваш выбор - <b id="chosen-text"></b></span><button type="button" id="clear-choice">Сбросить</button></div>
-        <div class="form-grid">
+        <div class="field">
+          <label for="format">Что нужно вашей компании?</label>
+          <select name="format" id="format" required aria-describedby="err-format"><option value="">Выберите задачу</option></select>
+          <span class="field-error" id="err-format"></span>
+        </div>
+        <fieldset class="request-details" id="request-details" hidden disabled>
+          <legend>Детали заказа <span>(по желанию)</span></legend>
+          <div class="form-grid">
+            <div class="field"><label for="order-city">Город доставки</label><input class="input" id="order-city" name="city" maxlength="120" autocomplete="address-level2"></div>
+            <div class="field"><label for="order-date" id="order-date-label">Дата</label><input class="input" id="order-date" name="date" type="date" aria-describedby="err-date"><span class="field-error" id="err-date"></span></div>
+            <div class="field" id="quantity-field"><label for="quantity" id="quantity-label">Количество</label><input class="input" id="quantity" name="quantity" type="number" min="1" step="1" inputmode="numeric" aria-describedby="err-quantity"><label class="checkbox" for="quantity-unknown"><input type="checkbox" id="quantity-unknown">Пока не знаю</label><span class="field-error" id="err-quantity"></span></div>
+            <div class="field" id="schedule-field"><label for="order-schedule" id="order-schedule-label">График</label><select id="order-schedule" name="schedule"></select></div>
+            <div class="field"><label for="order-budget" id="order-budget-label">Бюджет, ₽</label><input class="input" id="order-budget" name="budget" type="number" min="1" step="1" inputmode="numeric" aria-describedby="err-budget"><span class="field-error" id="err-budget"></span></div>
+          </div>
+        </fieldset>
+        <div class="form-grid request-contact">
           <div class="field"><label for="client-name">Ваше имя</label><input class="input" id="client-name" name="name" autocomplete="name" maxlength="100" placeholder="Имя" required aria-describedby="err-name"><span class="field-error" id="err-name"></span></div>
           <div class="field"><label for="company">Компания</label><input class="input" id="company" name="company" autocomplete="organization" maxlength="160" placeholder="Название компании" required aria-describedby="err-company"><span class="field-error" id="err-company"></span></div>
-          <div class="field"><label for="contact">Телефон или e-mail</label><input class="input" id="contact" name="contact" maxlength="180" placeholder="Контакт для ответа" autocapitalize="off" required aria-describedby="err-contact"><span class="field-error" id="err-contact"></span></div>
-          <div class="field"><label for="quantity">Количество получателей</label><input class="input" id="quantity" name="quantity" type="number" min="1" step="1" inputmode="numeric" placeholder="Например, 12" required aria-describedby="err-quantity"><label class="checkbox" for="quantity-unknown"><input type="checkbox" id="quantity-unknown">Пока не знаю</label><span class="field-error" id="err-quantity"></span></div>
-          <div class="field field-wide"><label for="format">Интересующий формат</label><select name="format" id="format" required aria-describedby="err-format"><option value="">Выберите формат</option></select><span class="field-error" id="err-format"></span></div>
+          <div class="field field-wide"><label for="contact">Телефон или e-mail</label><input class="input" id="contact" name="contact" maxlength="180" placeholder="Контакт для ответа" autocapitalize="off" required aria-describedby="err-contact"><span class="field-error" id="err-contact"></span></div>
         </div>
         <details class="optional" id="optional-fields"><summary>Второй контакт и комментарий <span class="plus" aria-hidden="true"></span></summary>
           <div class="form-grid">
             <div class="field field-wide"><label for="other-contact">Дополнительный телефон или e-mail</label><input class="input" id="other-contact" name="otherContact" maxlength="180" autocapitalize="off" aria-describedby="err-other"><span class="field-error" id="err-other"></span></div>
-            <div class="field field-wide"><label for="comment">Комментарий</label><textarea id="comment" name="comment" maxlength="3000" placeholder="Дата, место доставки, бюджет или пожелания к цветам"></textarea></div>
+            <div class="field field-wide"><label for="comment">Комментарий</label><textarea id="comment" name="comment" maxlength="3000" placeholder="Адрес, пожелания к цветам, нужна ли оплата по счёту или документы"></textarea></div>
           </div>
         </details>
         <p class="form-note" id="form-note">Скачайте заполненную заявку и передайте файл тому, кто прислал вам ссылку на сайт.</p>
@@ -500,7 +668,7 @@ textarea { resize: vertical; min-height: 83px; }
 </main>
 <footer class="footer on-dark"><div class="container foot-main">
   <div class="foot-brand"><a class="brand" href="#home" aria-label="Деловой букет, на главную"><span class="logo-crop logo-full" aria-hidden="true"><img src="assets/delovoy-buket-logo.jpg" width="1280" height="853" alt="" decoding="async"></span></a><p>Подбор и доставка цветов для бизнеса. Разовые заказы и поздравления по календарю.</p></div>
-  <nav class="foot-links" id="foot-links" aria-label="Меню в подвале"><a href="#home">Главная</a><a href="#solutions">Решения для бизнеса</a><a href="#catalog">Каталог</a><a href="#subscription">Абонемент</a><a href="#about">О компании</a><a href="#request">Контакты</a></nav>
+  <nav class="foot-links" id="foot-links" aria-label="Меню в подвале"><a href="#home">Главная</a><a href="#solutions">Решения для бизнеса</a><a href="#catalog">Каталог</a><a href="#subscription">Абонемент</a><a href="#terms">Условия заказа</a><a href="#about">О компании</a><a href="#request">Заявка</a></nav>
 </div></footer>
 
 <!-- Редактируемые данные сайта и канал приёма заявок -->
@@ -576,6 +744,7 @@ textarea { resize: vertical; min-height: 83px; }
         "employee"
       ],
       "solution": "greetings",
+      "priceBasis": "Расчёт за букет",
       "price": null,
       "size": null
     },
@@ -590,6 +759,7 @@ textarea { resize: vertical; min-height: 83px; }
         "partner"
       ],
       "solution": "greetings",
+      "priceBasis": "Расчёт за букет",
       "price": null,
       "size": null
     },
@@ -603,19 +773,21 @@ textarea { resize: vertical; min-height: 83px; }
         "partner"
       ],
       "solution": "gifts",
+      "priceBasis": "Расчёт за букет с открыткой",
       "price": null,
       "size": null
     },
     {
       "id": "office",
       "title": "Цветы для офиса",
-      "copy": "Композиция для ресепшена или переговорной, соразмерная пространству.",
+      "copy": "Композиция для ресепшена или переговорной. Подберём высоту под стол, чтобы цветы не закрывали обзор.",
       "image": "assets/product-office.webp",
       "alt": "Цветы в вазе в современном офисном пространстве",
       "groups": [
         "office"
       ],
       "solution": "office",
+      "priceBasis": "Расчёт по числу зон и графику поставок",
       "price": null,
       "size": null
     },
@@ -629,6 +801,7 @@ textarea { resize: vertical; min-height: 83px; }
         "event"
       ],
       "solution": "events",
+      "priceBasis": "Расчёт по числу столов и зон",
       "price": null,
       "size": null
     },
@@ -644,6 +817,7 @@ textarea { resize: vertical; min-height: 83px; }
         "event"
       ],
       "solution": "gifts",
+      "priceBasis": "Расчёт за букет",
       "price": null,
       "size": null
     }
@@ -652,20 +826,29 @@ textarea { resize: vertical; min-height: 83px; }
     {
       "id": "base",
       "title": "Базовый",
-      "copy": "Для небольшой команды, в которой отмечают отдельные важные даты.",
-      "icon": "sprout"
+      "copy": "Для отдельных важных дат.",
+      "icon": "sprout",
+      "coverage": "Букеты к выбранным поводам",
+      "schedule": "Поставки к согласованным датам",
+      "estimate": "Даты, число букетов и адреса"
     },
     {
       "id": "team",
       "title": "Команда",
-      "copy": "Для регулярных поздравлений сотрудников по общему календарю.",
-      "icon": "people"
+      "copy": "Для регулярных поздравлений сотрудников.",
+      "icon": "people",
+      "coverage": "Поздравления по одному календарю",
+      "schedule": "По графику поздравлений",
+      "estimate": "Число поздравлений в месяц, адреса и бюджет"
     },
     {
       "id": "business",
       "title": "Бизнес",
-      "copy": "Для компаний, которым нужны поздравления, цветы в офис и оформление событий.",
-      "icon": "building"
+      "copy": "Для компаний с несколькими задачами.",
+      "icon": "building",
+      "coverage": "Поздравления, цветы в офис и оформление мероприятий",
+      "schedule": "Календарь, обновление композиций и даты мероприятий",
+      "estimate": "Число получателей, офисных зон и площадок"
     }
   ]
 }
@@ -708,13 +891,17 @@ function addOption(select, value, label) {
   option.value = value;
   select.append(option);
 }
-function choose(item, kind, formatId) {
+function setChoice(item, kind, formatId) {
   selection = { id: item.id, title: item.title, kind, formatId };
   format.value = formatId;
+  refreshInquiryFields();
   byId("chosen-text").textContent = kind === "plan" ? "Абонемент «" + item.title + "»" : item.title;
   byId("chosen").hidden = false;
   setError("format", "");
   byId("form-status").textContent = "";
+}
+function choose(item, kind, formatId) {
+  setChoice(item, kind, formatId);
   if (location.hash !== "#request") location.hash = "request";
   else byId("request").scrollIntoView({block: "start"});
   byId("request-title").focus({preventScroll: true});
@@ -723,8 +910,70 @@ function clearChoice(resetFormat) {
   selection = null;
   byId("chosen").hidden = true;
   byId("chosen-text").textContent = "";
-  if (resetFormat) format.value = "";
+  if (resetFormat) {
+    format.value = "";
+    refreshInquiryFields();
+  }
   byId("form-status").textContent = "";
+}
+function catalogLink(section, params) {
+  const url = new URL(location.pathname, location.href);
+  url.search = new URLSearchParams(params);
+  url.hash = section;
+  return url.href;
+}
+function shareLink(item, kind) {
+  const actions = element("div", "offer-share");
+  const feedback = element("span", "share-feedback");
+  feedback.setAttribute("role", "status");
+  const field = element("input", "share-url");
+  field.readOnly = true;
+  field.hidden = true;
+  field.setAttribute("aria-label", "Ссылка на «" + item.title + "»");
+  const button = action("Скопировать ссылку", "offer-share-button", async () => {
+    feedback.textContent = "";
+    const params = kind === "plan" ? { plan: item.id } : { item: item.id };
+    if (kind === "product" && item.groups.includes(filters.group)) params.group = filters.group;
+    const url = catalogLink(kind === "plan" ? "subscription" : "catalog", params);
+    try {
+      await navigator.clipboard.writeText(url);
+      field.hidden = true;
+      feedback.textContent = "Ссылка скопирована.";
+    } catch {
+      field.value = url;
+      field.hidden = false;
+      field.focus();
+      field.select();
+      feedback.textContent = "Скопируйте ссылку из поля.";
+    }
+  });
+  button.setAttribute("aria-label", "Скопировать ссылку на «" + item.title + "»");
+  actions.append(button, feedback, field);
+  return actions;
+}
+function productFormat(product, group = filters.group) {
+  const formats = { employee: "one-off", partner: "gifts", office: "office", event: "events" };
+  if (formats[group]) return formats[group];
+  return product.solution === "greetings" ? "one-off" : product.solution;
+}
+function restoreSharedChoice() {
+  const params = new URLSearchParams(location.search);
+  const product = data.products.find(item => item.id === params.get("item"));
+  const plan = data.plans.find(item => item.id === params.get("plan"));
+  const group = params.get("group");
+  if ((!product || product.groups.includes(group)) && data.categories.some(([id]) => id === group)) {
+    resetCatalogFilters(group);
+  }
+  if (!product && !plan) return;
+  const kind = product ? "product" : "plan";
+  const section = product ? "catalog" : "subscription";
+  const item = product || plan;
+  setChoice(item, kind, product ? productFormat(product) : "subscription");
+  const card = byId(kind + "-" + item.id);
+  card.classList.add("is-shared-offer");
+  if (!location.hash || location.hash === "#" + section || location.hash === "#" + card.id) {
+    window.addEventListener("load", () => card.scrollIntoView({ block: "start", behavior: "instant" }), { once: true });
+  }
 }
 function renderSolutions() {
   const list = byId("solution-list");
@@ -740,7 +989,24 @@ function renderSolutions() {
     const body = element("div", "solution-body");
     const select = action("Подобрать решение", "inline-action", () => choose(item, "solution", item.id));
     select.setAttribute("aria-label", "Подобрать решение - " + item.title);
-    body.append(element("p", "", item.copy), select);
+    const actions = element("div", "solution-actions");
+    actions.append(select);
+    if (item.id === "office") {
+      const browse = element("a", "inline-action", "Посмотреть цветы для офиса");
+      browse.href = catalogLink("catalog", { group: "office" });
+      browse.addEventListener("click", event => {
+        if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        resetCatalogFilters("office");
+        if (location.hash !== "#catalog") location.hash = "catalog";
+        else byId("catalog").scrollIntoView({ block: "start" });
+        const heading = byId("catalog-title");
+        heading.tabIndex = -1;
+        heading.focus({ preventScroll: true });
+      });
+      actions.append(browse);
+    }
+    body.append(element("p", "", item.copy), actions);
     details.append(summary, body);
     details.addEventListener("toggle", () => {
       if (!details.open) return;
@@ -750,6 +1016,7 @@ function renderSolutions() {
     });
     list.append(details);
   });
+  addOption(format, "one-off", "Разовый букет к дате");
   addOption(format, "subscription", "Абонемент");
   addOption(format, "help", "Помогите выбрать");
   format.addEventListener("change", () => {
@@ -760,9 +1027,10 @@ function renderSolutions() {
 function renderPlans() {
   data.plans.forEach((plan) => {
     const card = element("article", "plan" + (plan.id === "team" ? " main on-dark" : ""));
+    card.id = "plan-" + plan.id;
     const select = action("Выбрать абонемент", plan.id === "team" ? "btn btn-gold" : "btn btn-line", () => choose(plan, "plan", "subscription"));
     select.setAttribute("aria-label", "Выбрать абонемент «" + plan.title + "»");
-    card.append(icon(plan.icon), element("h3", "", plan.title), element("p", "", plan.copy), select);
+    card.append(icon(plan.icon), element("h3", "", plan.title), element("p", "", plan.copy), renderPlanDetails(plan), select, shareLink(plan, "plan"));
     byId("plans").append(card);
   });
 }
@@ -789,6 +1057,7 @@ function renderCatalog() {
   if (sizes.length) filterSelect("size", "По размеру", sizes.map(size => [size, size]));
   data.products.forEach((product) => {
     const card = element("article", "product");
+    card.id = "product-" + product.id;
     card.dataset.product = product.id;
     const figure = element("figure");
     const img = element("img");
@@ -800,22 +1069,22 @@ function renderCatalog() {
     img.height = 630;
     figure.append(img);
     const foot = element("div", "product-foot");
-    const label = Number.isFinite(product.price) ? "от " + currency.format(product.price) + " ₽" : "Стоимость по запросу";
-    const order = action("Выбрать", "inline-action", () => {
-      const formats = {employee: "greetings", partner: "gifts", office: "office", event: "events"};
-      choose(product, "product", formats[filters.group] || product.solution);
-    });
+    const label = Number.isFinite(product.price) ? "от " + currency.format(product.price) + " ₽" : product.priceBasis || "Стоимость по запросу";
+    const order = action("Выбрать", "inline-action", () => choose(product, "product", productFormat(product)));
     order.setAttribute("aria-label", "Выбрать - " + product.title);
     foot.append(element("span", "product-price", label), order);
-    card.append(figure, element("h3", "", product.title), element("p", "", product.copy), foot);
+    card.append(figure, element("h3", "", product.title), element("p", "", product.copy), foot, shareLink(product, "product"));
     byId("products").append(card);
   });
   byId("reset-filters").addEventListener("click", () => {
-    Object.assign(filters, {group: "all", budget: "", size: ""});
-    byId("catalog-tools").querySelectorAll("select").forEach(select => select.value = "");
-    updateCatalog();
+    resetCatalogFilters("all");
     byId("catalog-tools").querySelector("button").focus();
   });
+  updateCatalog();
+}
+function resetCatalogFilters(group) {
+  Object.assign(filters, { group, budget: "", size: "" });
+  byId("catalog-tools").querySelectorAll("select").forEach(select => select.value = "");
   updateCatalog();
 }
 function updateCatalog() {
@@ -879,12 +1148,97 @@ if ("IntersectionObserver" in window) {
   }, { rootMargin:"-12% 0px -56% 0px", threshold:0 });
   for (const id of ["home", "solutions", "about", "catalog", "subscription", "request"]) sectionObserver.observe(byId(id));
 }
-const errIds = { "client-name": "err-name", company: "err-company", contact: "err-contact", "other-contact": "err-other", quantity: "err-quantity", format: "err-format" };
+const oneOffInquiry = {
+  date: "Дата доставки",
+  quantity: "Количество получателей",
+  example: "Например, 5",
+  budget: "Бюджет за заказ, ₽"
+};
+const recurringInquiry = {
+  date: "Желаемая дата начала",
+  quantity: "Количество поздравлений в месяц",
+  example: "Например, 8",
+  budget: "Бюджет в месяц, ₽",
+  schedule: "Период, на который планируете заказы",
+  scheduleOptions: ["Месяц", "Квартал", "Полгода", "Год"]
+};
+const inquiryScenarios = {
+  "one-off": oneOffInquiry,
+  gifts: oneOffInquiry,
+  sets: { ...oneOffInquiry, quantity: "Количество наборов" },
+  greetings: recurringInquiry,
+  subscription: recurringInquiry,
+  office: {
+    date: "Дата первой доставки",
+    quantity: "Количество зон",
+    example: "Например, 2",
+    budget: "Бюджет на одну поставку, ₽",
+    schedule: "График обновления цветов",
+    scheduleOptions: ["Разовая доставка", "Раз в неделю", "Раз в две недели", "Раз в месяц", "Другой график"]
+  },
+  events: {
+    date: "Дата мероприятия",
+    quantity: "Количество столов или зон",
+    example: "Например, 10",
+    budget: "Бюджет на оформление, ₽"
+  },
+  help: { date: "Желаемая дата", budget: "Ориентир бюджета, ₽" }
+};
+const detailDraftFields = ["order-date", "quantity", "order-schedule", "order-budget", "comment"];
+const inquiryDrafts = new Map();
+let activeInquiryFormat = "";
+const errIds = {
+  format: "err-format",
+  "order-date": "err-date",
+  quantity: "err-quantity",
+  "order-budget": "err-budget",
+  "client-name": "err-name",
+  company: "err-company",
+  contact: "err-contact",
+  "other-contact": "err-other"
+};
 function setError(id, message) {
   byId(errIds[id]).textContent = message;
   if (message) byId(id).setAttribute("aria-invalid", "true");
   else byId(id).removeAttribute("aria-invalid");
 }
+function syncInquiryQuantity() {
+  const hasQuantity = Boolean(inquiryScenarios[activeInquiryFormat]?.quantity);
+  byId("quantity-field").hidden = !hasQuantity;
+  byId("quantity-unknown").disabled = !hasQuantity;
+  byId("quantity").disabled = !hasQuantity || byId("quantity-unknown").checked;
+}
+function refreshInquiryFields() {
+  if (activeInquiryFormat === format.value) return;
+  inquiryDrafts.set(activeInquiryFormat, {
+    values: detailDraftFields.map(id => byId(id).value),
+    quantityUnknown: byId("quantity-unknown").checked
+  });
+  activeInquiryFormat = format.value;
+  const scenario = inquiryScenarios[activeInquiryFormat];
+  const details = byId("request-details");
+  details.hidden = !scenario;
+  details.disabled = !scenario;
+
+  const schedule = byId("order-schedule");
+  schedule.replaceChildren();
+  addOption(schedule, "", "Пока не знаю");
+  for (const choice of scenario?.scheduleOptions ?? []) addOption(schedule, choice, choice);
+  byId("schedule-field").hidden = !scenario?.schedule;
+  schedule.disabled = !scenario?.schedule;
+  byId("order-schedule-label").textContent = scenario?.schedule ?? "";
+  byId("order-date-label").textContent = scenario?.date ?? "";
+  byId("order-budget-label").textContent = scenario?.budget ?? "";
+  byId("quantity-label").textContent = scenario?.quantity ?? "";
+  byId("quantity").placeholder = scenario?.example ?? "";
+
+  const draft = inquiryDrafts.get(activeInquiryFormat);
+  detailDraftFields.forEach((id, index) => { byId(id).value = draft?.values[index] ?? ""; });
+  byId("quantity-unknown").checked = draft?.quantityUnknown ?? false;
+  syncInquiryQuantity();
+  ["order-date", "quantity", "order-budget"].forEach(id => setError(id, ""));
+}
+format.addEventListener("change", refreshInquiryFields);
 function validContact(value) {
   if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return true;
   const digits = value.replace(/\D/g, "");
@@ -893,12 +1247,18 @@ function validContact(value) {
 function fieldError(id) {
   const input = byId(id);
   const value = input.value.trim();
+  if (input.matches(":disabled")) return "";
+  if (id === "format" && !value) return "Выберите задачу или «Помогите выбрать».";
   if (id === "client-name" && !value) return "Укажите ваше имя.";
   if (id === "company" && !value) return "Укажите название компании.";
   if (id === "contact" && !value) return "Укажите телефон или e-mail.";
   if ((id === "contact" || id === "other-contact") && value && !validContact(value)) return "Проверьте телефон или адрес электронной почты.";
-  if (id === "quantity" && !byId("quantity-unknown").checked && (!value || !Number.isSafeInteger(Number(value)) || Number(value) < 1)) return "Введите целое число от 1 или выберите «Пока не знаю».";
-  if (id === "format" && !value) return "Выберите формат или «Помогите выбрать».";
+  if (id === "order-date" && input.validity.badInput) return "Проверьте дату.";
+  if (id === "quantity" || id === "order-budget") {
+    if (input.validity.badInput || (value && (!Number.isSafeInteger(input.valueAsNumber) || input.valueAsNumber < 1))) {
+      return id === "quantity" ? "Введите целое число от 1 или выберите «Пока не знаю»." : "Введите бюджет целым числом рублей от 1.";
+    }
+  }
   return "";
 }
 function validateForm() {
@@ -913,10 +1273,8 @@ function validateForm() {
   first.focus();
   return false;
 }
-byId("quantity-unknown").addEventListener("change", event => {
-  const unknown = event.target.checked;
-  byId("quantity").disabled = unknown;
-  byId("quantity").required = !unknown;
+byId("quantity-unknown").addEventListener("change", () => {
+  syncInquiryQuantity();
   setError("quantity", "");
 });
 for (const id of Object.keys(errIds)) {
@@ -925,6 +1283,7 @@ for (const id of Object.keys(errIds)) {
 form.addEventListener("input", () => byId("form-status").textContent = "");
 function collect() {
   const selected = format.selectedOptions[0]?.textContent || "";
+  const scenario = inquiryScenarios[format.value];
   const mainContact = byId("contact").value.trim();
   const other = byId("other-contact").value.trim();
   const contacts = [mainContact, other].filter(Boolean);
@@ -932,7 +1291,15 @@ function collect() {
     name: byId("client-name").value.trim(), company: byId("company").value.trim(),
     contact: mainContact, otherContact: other, email: contacts.find(v => v.includes("@")) || "",
     phone: contacts.find(v => !v.includes("@")) || "", format: selected,
-    quantity: byId("quantity-unknown").checked ? "Пока не знаю" : byId("quantity").value.trim(),
+    city: byId("order-city").value.trim(),
+    date: scenario?.date ? byId("order-date").value : "",
+    dateLabel: scenario?.date ?? "",
+    quantity: scenario?.quantity ? (byId("quantity-unknown").checked ? "Пока не знаю" : byId("quantity").value.trim()) : "",
+    quantityLabel: scenario?.quantity ?? "",
+    schedule: scenario?.schedule ? byId("order-schedule").value : "",
+    scheduleLabel: scenario?.schedule ?? "",
+    budget: scenario?.budget ? byId("order-budget").value.trim() : "",
+    budgetLabel: scenario?.budget ?? "",
     choice: selection ? byId("chosen-text").textContent : "", comment: byId("comment").value.trim()
   };
 }
@@ -941,8 +1308,14 @@ function inquiryText(payload) {
     "Деловой букет", "Заявка на корпоративные цветы", "",
     "Имя: " + payload.name, "Компания: " + payload.company, "Контакт для ответа: " + payload.contact,
     payload.otherContact && "Дополнительный контакт: " + payload.otherContact,
-    "Количество получателей: " + payload.quantity, "Формат: " + payload.format,
-    payload.choice && "Выбор: " + payload.choice, payload.comment && "Комментарий: " + payload.comment
+    "Формат: " + payload.format,
+    payload.choice && "Выбор: " + payload.choice,
+    payload.city && "Город доставки: " + payload.city,
+    payload.date && payload.dateLabel + ": " + payload.date.split("-").reverse().join("."),
+    payload.quantity && payload.quantityLabel + ": " + payload.quantity,
+    payload.schedule && payload.scheduleLabel + ": " + payload.schedule,
+    payload.budget && payload.budgetLabel.replace(/, ₽$/, "") + ": " + currency.format(Number(payload.budget)) + " ₽",
+    payload.comment && "Комментарий: " + payload.comment
   ];
   return lines.filter((line, i) => line || i === 2).join("\r\n") + "\r\n";
 }
@@ -1001,6 +1374,21 @@ form.addEventListener("submit", async event => {
   downloadInquiry(text);
   status.textContent = "Заявка подготовлена к скачиванию. Передайте файл тому, кто прислал вам ссылку.";
 });
+function renderPlanDetails(plan) {
+  const details = element("dl", "plan-details");
+  for (const [label, value] of [
+    ["Задачи", plan.coverage],
+    ["График", plan.schedule],
+    ["Для расчёта", plan.estimate]
+  ]) {
+    if (!value) continue;
+    const row = element("div");
+    row.append(element("dt", "", label), element("dd", "", value));
+    details.append(row);
+  }
+  return details;
+}
+
 function renderProvidedContent() {
   const links = byId("foot-links");
   function footerLink(url, label) {
@@ -1041,6 +1429,7 @@ renderSolutions();
 renderPlans();
 renderCatalog();
 renderProvidedContent();
+restoreSharedChoice();
 submit.disabled = false;
 markNav(location.hash || "#home");
 </script>
