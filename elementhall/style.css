@@ -112,7 +112,7 @@ footer{background:var(--dark);color:#f9f5eb}
 .filters{margin:32px 0 20px;padding:20px 24px;border:1px solid var(--line);border-radius:4px;background:var(--surface);display:flex;gap:19px;align-items:flex-end;flex-wrap:wrap}
 label{font-size:.88rem;font-weight:600;line-height:1.45}
 .filters label{flex:1 1 175px}
-select,input,textarea{color:var(--ink);background:white;border:1px solid #aaa596;width:100%;min-height:47px;margin-top:6px;padding:10px 12px;font-weight:400;font-size:1rem}
+select,input,textarea{color:var(--ink);background:white;border:1px solid #817d70;width:100%;min-height:47px;margin-top:6px;padding:10px 12px;font-weight:400;font-size:1rem}
 select{appearance:none;padding-right:33px;background-image:linear-gradient(45deg,transparent 50%,#625e53 50%),linear-gradient(135deg,#625e53 50%,transparent 50%);background-position:calc(100% - 17px) center,calc(100% - 13px) center;background-size:4px 4px;background-repeat:no-repeat}
 .simple-link,.text-link{display:inline-block;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
 .filters .simple-link{line-height:48px}
@@ -184,3 +184,84 @@ textarea{resize:vertical}
 input:disabled{background:#eeede8;color:#78766d}
 .room-status{display:block;margin-top:7px;color:#4d6247;font-size:.85rem}
 .room-status.unverified{color:#6d6047}
+
+/* Площадка и условия */
+.venue-benefits{padding-bottom:0}
+.benefit-intro{display:grid;grid-template-columns:1fr .8fr;align-items:end;gap:20px;margin-bottom:28px}
+.benefit-intro p,.benefit-grid p,.venue-program p,.venue-questions p,.venue-visit p{color:var(--mute)}
+.benefit-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-block:1px solid var(--line)}
+.benefit-grid article{display:flex;flex-direction:column;align-items:flex-start;padding:22px 21px 24px;border-left:1px solid var(--line)}
+.benefit-grid article:first-child{border-left:0;padding-left:0}
+.benefit-grid article:last-child{padding-right:0}
+.benefit-grid h3{font-size:clamp(1.33rem,1.85vw,1.95rem)}
+.benefit-grid p{margin:10px 0 13px;font-size:.96rem}
+.benefit-grid a{margin-top:auto;font-size:.9rem;font-weight:600}
+.featured-rooms{padding-block:clamp(51px,5vw,82px)}
+.venue-program{border-block:1px solid var(--line);background:var(--surface)}
+.venue-program-inner,.venue-faq{display:grid;grid-template-columns:.82fr 1.18fr;gap:clamp(32px,6vw,96px);align-items:start}
+.venue-program-inner{padding-block:clamp(46px,6vw,84px)}
+.venue-program h2+p{margin:15px 0}
+.venue-stops{padding:0;margin:0;list-style:none;border-top:1px solid var(--line)}
+.venue-stops li{padding:17px 0;border-bottom:1px solid var(--line)}
+.venue-stops li div{display:flex;align-items:baseline;justify-content:space-between;gap:6px 18px;flex-wrap:wrap}
+.venue-stops strong{font-size:clamp(1.06rem,1.4vw,1.23rem)}
+.venue-stops a{color:#624e2e;text-decoration:underline;text-underline-offset:4px}
+.venue-stops p{margin-top:3px}
+.venue-questions{border-top:1px solid var(--line)}
+.venue-questions details{border-bottom:1px solid var(--line)}
+.venue-questions summary{min-height:56px;padding:15px 0;gap:12px;font-size:1.05rem;font-weight:600}
+.venue-questions summary:after{content:"+";color:#615339;font-size:1.5rem;font-weight:400;line-height:1}
+.venue-questions details[open] summary:after{content:"−"}
+.venue-questions p{padding:0 0 18px}
+.venue-visit{display:grid;grid-template-columns:1.05fr .95fr;align-items:stretch;scroll-margin-top:20px}
+.venue-visit-photo{background:#d9d4c9;min-width:0}
+.venue-visit-photo img{width:100%;height:100%;object-fit:cover;object-position:center;aspect-ratio:1.64}
+.venue-visit-copy{padding:clamp(22px,4vw,54px);display:flex;flex-direction:column;justify-content:center;background:#eae5da}
+.venue-visit h2{font-size:clamp(2.1rem,3.45vw,3.5rem)}
+.venue-visit address{font-style:normal;font-weight:600;margin:15px 0 6px}
+.venue-visit .actions{margin-top:20px}
+.venue-visit .btn{padding-inline:16px}
+.switcher button{min-width:44px;min-height:44px;display:grid;place-items:center}
+.top :focus-visible,.hero :focus-visible,.foot :focus-visible,.call :focus-visible{outline-color:#f3d9a8}
+html:not(.has-js) .switcher{display:none}
+#main:focus{outline:none}
+[tabindex="-1"]#main{scroll-margin-top:12px}
+@media(max-width:960px){
+  .benefit-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .benefit-grid article{padding:20px 18px}
+  .benefit-grid article:nth-child(odd){border-left:0;padding-left:0}
+  .benefit-grid article:nth-child(even){padding-right:0}
+  .benefit-grid article:nth-child(n+3){border-top:1px solid var(--line)}
+}
+@media(max-width:700px){
+  .benefit-intro,.venue-program-inner,.venue-faq,.venue-visit{grid-template-columns:1fr}
+  .benefit-intro{gap:10px;margin-bottom:21px}
+  .venue-faq,.venue-program-inner{gap:23px}
+  .venue-visit-photo img{aspect-ratio:1.78}
+  .switcher{bottom:10px}
+  .top-btn,.menu-button{min-height:44px}
+  .menu-button{width:44px}
+  html:not(.has-js) .bar{height:auto;min-height:62px;flex-wrap:wrap;padding-block:12px}
+  html:not(.has-js) .menu-button,html:not(.has-js) .switcher{display:none}
+  html:not(.has-js) .nav{display:flex;position:static;order:3;width:100%;padding:0;gap:20px;flex-wrap:wrap}
+}
+@media(max-width:385px){
+  .benefit-grid{grid-template-columns:1fr}
+  .benefit-grid article:nth-child(n){padding:16px 0;border-left:0}
+  .benefit-grid article+article{border-top:1px solid var(--line)}
+  .venue-visit .btn{width:100%}
+}
+
+/* Результаты подбора и параметры звонка */
+.result-group{font-size:clamp(1.3rem,2.4vw,2rem);margin:30px 0 16px;line-height:1.16}
+#unknown-rooms{margin-bottom:22px}
+#results:focus,.form-panel h2:focus{outline-offset:5px}
+#comparison{scroll-margin-top:6rem}
+.form-panel .form-heading{margin:0}
+#request-form > button{margin-top:22px}
+.group-limit{margin:15px 0;color:var(--ink);line-height:1.45}
+.call-summary{margin:18px 0;display:grid;gap:0}
+.call-summary>div{display:grid;grid-template-columns:minmax(80px,.75fr) minmax(0,1.3fr);gap:12px;padding:9px 0;border-bottom:1px solid var(--line)}
+.call-summary dt{color:var(--mute)}
+.call-summary dd{margin:0;font-weight:600}
+#call-advice{margin:15px 0 22px}
