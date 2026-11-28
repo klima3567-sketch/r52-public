@@ -515,7 +515,13 @@ html,body{margin:0;background:#F3F0EA}*{box-sizing:border-box}a{color:inherit}a:
   [data-screen-label] nav[aria-label="Хлебные крошки"] a:hover, [data-screen-label] footer nav a:hover { text-decoration: underline !important; text-underline-offset: .22em; }
 }
 @media (max-width:630px) { .bar-inner { padding-inline: clamp(12px,4vw,22px); gap: 8px; } .book-long { display: none; } .book-short { display: inline; } .header-book { padding-inline: 12px; gap: 6px; } }
-@media (max-width:360px) { .bar-actions { gap: 6px; } .header-book .button-arrow { display: none; } .atelier-brand { font-size: 22px; } }
+@media (max-width:360px) {
+  .bar-inner { padding-inline: 8px; gap: 6px; }
+  .bar-actions { gap: 6px; }
+  .header-book { padding-inline: 7px; }
+  .header-book .button-arrow { display: none; }
+  .atelier-brand { font-size: 20px; }
+}
 @media (prefers-reduced-motion:reduce) {
   .atelier-header *, .atelier-header *::after, .atelier-button, .button-arrow, .direction-choice, .choice-arrow, .filter-button, .step-control { animation: none !important; transition: none !important; }
 }
