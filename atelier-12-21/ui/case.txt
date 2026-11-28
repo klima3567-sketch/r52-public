@@ -15,13 +15,23 @@
 <main style="max-width:1440px;margin:0 auto;padding:18px clamp(20px,4.4vw,56px) 0">
   <nav aria-label="Хлебные крошки" style="display:flex;flex-wrap:wrap;gap:6px 10px;font-size:14px;color:#57524A">
     <a href="index.html" style="color:#57524A;text-decoration:none">Главная</a><span>/</span>
-    <a href="portfolio.html" style="color:#57524A;text-decoration:none">Работы</a><span>/</span>
+    <a href="{{ portfolioHref }}" style="color:#57524A;text-decoration:none">Работы</a><span>/</span>
     <span style="color:#171512">{{ w.title }}</span>
   </nav>
 
   <section style="display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,80px);align-items:flex-start;padding:clamp(28px,3.6vw,48px) 0 clamp(64px,8vw,112px)">
     <figure style="flex:1 1 380px;min-width:0;max-width:640px;margin:0">
-      <sc-if value="{{ hasSinglePhoto }}" hint-placeholder-val="{{ true }}"><div style="aspect-ratio:{{ ratio }};overflow:hidden;background:#D9D4CC"><img data-product-photo="true" src="{{ w.img }}" alt="{{ w.title }}" style="width:100%;height:100%;object-fit:contain;background:#F3F3F3;object-position:center center"></div></sc-if>
+      <sc-if value="{{ hasSinglePhoto }}" hint-placeholder-val="{{ true }}"><div style="aspect-ratio:{{ ratio }};overflow:hidden;background:#D9D4CC"><img id="work-photo" data-product-photo="true" src="{{ photo.img }}" alt="{{ photo.alt }}" style="width:100%;height:100%;object-fit:contain;background:#F3F3F3;object-position:center center"></div></sc-if>
+      <sc-if value="{{ hasAdditionalViews }}">
+        <div role="group" aria-label="Выбрать ракурс" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:12px">
+          <sc-for list="{{ views }}" as="v">
+            <button type="button" aria-controls="work-photo" aria-pressed="{{ v.selected }}" onClick="{{ v.pick }}" style="display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:4px 12px 4px 4px;border:1px solid {{ v.border }};background:{{ v.background }};color:#171512;cursor:pointer;font:inherit;font-size:14px">
+              <img src="{{ v.img }}" alt="" width="40" height="50" style="display:block;object-fit:contain;background:#F3F3F3">
+              <span>{{ v.label }}</span>
+            </button>
+          </sc-for>
+        </div>
+      </sc-if>
         <sc-if value="{{ hasPlates }}" hint-placeholder-val="{{ false }}"><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,145px),1fr));gap:12px;align-content:center;"><sc-for list="{{ plates }}" as="piece" hint-placeholder-count="3"><figure style="min-width:0;margin:0"><img data-product-photo="true" src="{{ piece.img }}" alt="{{ piece.alt }}" loading="lazy" style="display:block;width:100%;object-fit:contain;background:#F3F3F3;aspect-ratio:3 / 5"><figcaption style="margin-top:7px;font-size:14px;line-height:1.4;color:#57524A">{{ piece.alt }}</figcaption></figure></sc-for></div></sc-if>
     </figure>
     <div style="flex:1 1 400px;min-width:0;display:flex;flex-direction:column;gap:28px;position:{{ colPos }};top:104px;container-type:inline-size">
@@ -78,7 +88,7 @@
 <dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;work&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;mens-blazer&quot;,&quot;floral-dress&quot;,&quot;purple-dress&quot;,&quot;olive-suit&quot;,&quot;wedding-suit&quot;,&quot;brown-striped-dress&quot;,&quot;black-white-suit&quot;,&quot;mens-role&quot;,&quot;brown-suit&quot;,&quot;contrast-suit&quot;,&quot;capsule&quot;,&quot;grey-negotiation-suit&quot;,&quot;mens-double-coat&quot;,&quot;mens-scarf-coat&quot;,&quot;mens-capsule&quot;,&quot;womens-capsule&quot;,&quot;ivory-wedding-dress&quot;,&quot;green-evening-dress&quot;],&quot;default&quot;:&quot;olive-suit&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;work&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;mens-blazer&quot;,&quot;floral-dress&quot;,&quot;purple-dress&quot;,&quot;olive-suit&quot;,&quot;wedding-suit&quot;,&quot;brown-striped-dress&quot;,&quot;black-white-suit&quot;,&quot;mens-role&quot;,&quot;brown-suit&quot;,&quot;contrast-suit&quot;,&quot;capsule&quot;,&quot;grey-negotiation-suit&quot;,&quot;mens-double-coat&quot;,&quot;mens-scarf-coat&quot;,&quot;mens-capsule&quot;,&quot;womens-capsule&quot;,&quot;ivory-wedding-dress&quot;,&quot;green-evening-dress&quot;,&quot;bridal-satin-train&quot;,&quot;bridal-lace-train&quot;,&quot;bridal-lace-corset&quot;,&quot;bridal-satin-lace-veil&quot;,&quot;bridal-halter-separates&quot;,&quot;bridal-floral-mini&quot;,&quot;bridal-lace-midi&quot;,&quot;ivory-draped-midi&quot;,&quot;black-one-shoulder-gown&quot;,&quot;olive-slip-dress&quot;,&quot;green-corset-dress&quot;,&quot;black-button-dress&quot;,&quot;square-neck-mini&quot;,&quot;fuchsia-skirt-suit&quot;,&quot;scarlet-skirt-suit&quot;,&quot;pastel-tweed-suit&quot;,&quot;jacquard-skirt-suit&quot;,&quot;balloon-print-dress&quot;,&quot;graphite-zip-jacket&quot;,&quot;grey-stand-collar-vest&quot;],&quot;default&quot;:&quot;olive-suit&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
   state = { ready: !!window.SITE, wide: true };
   componentDidMount() {
@@ -98,6 +108,16 @@ class Component extends DCLogic {
     const svc = Object.fromEntries(S.services.map(s => [s.slug, s]));
     const link = S.workCard;
     const plates = w.plates || [];
+    const cover = { img: w.img, alt: w.alt || w.title, label: w.viewLabel || 'Общий вид' };
+    const photos = [cover, ...(w.additionalViews || [])];
+    const current = this.state.viewWork === w.id ? this.state.viewIndex : 0;
+    const views = photos.map((photo, index) => ({
+      ...photo,
+      selected: index === current ? 'true' : 'false',
+      border: index === current ? '#171512' : '#B9B5AD',
+      background: index === current ? '#E8E4DD' : 'transparent',
+      pick: () => this.setState({ viewWork: w.id, viewIndex: index })
+    }));
     const fields = w.details || [
       { label: 'Задача', value: w.task },
       { label: 'Решение', value: w.solution },
@@ -116,7 +136,10 @@ class Component extends DCLogic {
       dirs: w.dirs.map(d => ({ name: svc[d].name, href: 'directions.html?d=' + d })),
       dirHref: 'directions.html?d=' + main.slug,
       dirName: main.name,
-      fields, plates, caseNote, hasKind: !!w.kind, hasPlates: !!plates.length, hasSinglePhoto: !plates.length,
+      fields, plates, caseNote: w.photoNote || caseNote,
+      photo: photos[current] || cover, views, hasAdditionalViews: photos.length > 1,
+      portfolioHref: w.photoNote ? 'portfolio.html?f=' + main.slug : 'portfolio.html',
+      hasKind: !!w.kind, hasPlates: !!plates.length, hasSinglePhoto: !plates.length,
       prev: link(ws[(i - 1 + ws.length) % ws.length]),
       next: link(ws[(i + 1) % ws.length]),
       more: ws.filter(x => x.id !== w.id).sort((a, b) => (b.dirs.some(d => w.dirs.includes(d)) ? 1 : 0) - (a.dirs.some(d => w.dirs.includes(d)) ? 1 : 0)).slice(0, 4).map(link)
