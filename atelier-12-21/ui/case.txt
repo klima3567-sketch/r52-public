@@ -21,18 +21,18 @@
 
   <section style="display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,80px);align-items:flex-start;padding:clamp(28px,3.6vw,48px) 0 clamp(64px,8vw,112px)">
     <figure style="flex:1 1 380px;min-width:0;max-width:640px;margin:0">
-      <sc-if value="{{ hasSinglePhoto }}" hint-placeholder-val="{{ true }}"><div style="aspect-ratio:{{ ratio }};overflow:hidden;background:#D9D4CC"><img id="work-photo" data-product-photo="true" src="{{ photo.img }}" alt="{{ photo.alt }}" style="width:100%;height:100%;object-fit:contain;background:#F3F3F3;object-position:center center"></div></sc-if>
+      <sc-if value="{{ hasSinglePhoto }}" hint-placeholder-val="{{ true }}"><div style="aspect-ratio:{{ ratio }};overflow:hidden;background:#fff"><img id="work-photo" data-product-photo="true" src="{{ photo.img }}" alt="{{ photo.alt }}" style="width:100%;height:100%;object-fit:contain;background:#fff;object-position:center center"></div></sc-if>
       <sc-if value="{{ hasAdditionalViews }}">
         <div role="group" aria-label="Выбрать ракурс" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:12px">
           <sc-for list="{{ views }}" as="v">
             <button type="button" aria-controls="work-photo" aria-pressed="{{ v.selected }}" onClick="{{ v.pick }}" style="display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:4px 12px 4px 4px;border:1px solid {{ v.border }};background:{{ v.background }};color:#171512;cursor:pointer;font:inherit;font-size:14px">
-              <img src="{{ v.img }}" alt="" width="40" height="50" style="display:block;object-fit:contain;background:#F3F3F3">
+              <img data-product-photo="true" src="{{ v.img }}" alt="" width="40" height="50" style="display:block;object-fit:contain;background:#fff">
               <span>{{ v.label }}</span>
             </button>
           </sc-for>
         </div>
       </sc-if>
-        <sc-if value="{{ hasPlates }}" hint-placeholder-val="{{ false }}"><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,145px),1fr));gap:12px;align-content:center;"><sc-for list="{{ plates }}" as="piece" hint-placeholder-count="3"><figure style="min-width:0;margin:0"><img data-product-photo="true" src="{{ piece.img }}" alt="{{ piece.alt }}" loading="lazy" style="display:block;width:100%;object-fit:contain;background:#F3F3F3;aspect-ratio:3 / 5"><figcaption style="margin-top:7px;font-size:14px;line-height:1.4;color:#57524A">{{ piece.alt }}</figcaption></figure></sc-for></div></sc-if>
+        <sc-if value="{{ hasPlates }}" hint-placeholder-val="{{ false }}"><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,145px),1fr));gap:12px;align-content:center;"><sc-for list="{{ plates }}" as="piece" hint-placeholder-count="3"><figure style="min-width:0;margin:0"><img data-product-photo="true" src="{{ piece.img }}" alt="{{ piece.alt }}" loading="lazy" style="display:block;width:100%;object-fit:contain;background:#fff;aspect-ratio:3 / 5"><figcaption style="margin-top:7px;font-size:14px;line-height:1.4;color:#57524A">{{ piece.alt }}</figcaption></figure></sc-for></div></sc-if>
     </figure>
     <div style="flex:1 1 400px;min-width:0;display:flex;flex-direction:column;gap:28px;position:{{ colPos }};top:104px;container-type:inline-size">
       <div style="display:flex;flex-wrap:wrap;gap:8px">
@@ -72,7 +72,7 @@
     <div class="aligned-grid work-grid" style="grid-template-columns:repeat(auto-fill,minmax(min(100%,220px),1fr));column-gap:20px">
       <sc-for list="{{ more }}" as="m" hint-placeholder-count="4">
         <a href="{{ m.href }}" style="text-decoration:none" style-hover="color:#171512">
-          <span style="display:block;aspect-ratio:4 / 5;overflow:hidden;background:#D9D4CC"><img data-product-photo="true" src="{{ m.img }}" alt="{{ m.title }}" loading="lazy" style="width:100%;height:100%;object-fit:contain;background:#F3F3F3;object-position:center center;transition:transform .8s ease" style-hover="transform:scale(1.03)"></span>
+          <span style="display:block;aspect-ratio:4 / 5;overflow:hidden;background:#fff"><img data-product-photo="true" src="{{ m.img }}" alt="{{ m.title }}" loading="lazy" style="width:100%;height:100%;object-fit:contain;background:#fff;object-position:center center;transition:transform .8s ease" style-hover="transform:scale(1.03)"></span>
           <span class="work-title" style="font-size:17px;font-weight:600;line-height:1.35">{{ m.title }}</span>
           <sc-if value="{{ m.hasKind }}" hint-placeholder-val="{{ false }}"><span class="work-kind" style="font-size:13px;color:#57524A">{{ m.kind }}</span></sc-if>
           <p data-work-description="" style="margin:0;font-size:15px;line-height:1.5;color:#3A3631">{{ m.description }}</p>
