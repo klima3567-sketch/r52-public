@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+<x-dc>
+
+<div data-screen-label="Политика конфиденциальности" style="background:#F3F0EA;color:#171512;font-family:Inter,sans-serif;font-size:17px;line-height:1.55">
+<dc-import name="SiteHeader" hint-size="100%,72px" style="position:sticky;top:0;z-index:50;display:block"></dc-import>
+
+<main style="max-width:1440px;margin:0 auto;padding:18px clamp(20px,4.4vw,56px) clamp(64px,8vw,120px)">
+  <nav aria-label="Хлебные крошки" style="display:flex;flex-wrap:wrap;gap:6px 10px;font-size:14px;color:#57524A"><a href="index.html" style="color:#57524A;text-decoration:none">Главная</a><span>/</span><span style="color:#171512">Политика конфиденциальности</span></nav>
+  <div style="display:flex;flex-direction:column;gap:18px;padding:clamp(32px,4vw,56px) 0 clamp(32px,4vw,48px);max-width:960px;container-type:inline-size">
+    <div style="display:flex;align-items:center;gap:14px;font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:#A1120A"><span style="width:40px;height:1px;background:#A1120A"></span>Документ</div>
+    <h1 style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:min(clamp(30px,5vw,72px),8.6cqi);line-height:1.04;letter-spacing:-0.02em" lang="ru">Политика конфиденциальности</h1>
+    <p style="margin:0;font-size:15px;color:#57524A">Редакция от <span style="padding:1px 6px;background:#E6E2DA;color:#6F1512">[дата]</span></p>
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;gap:40px clamp(40px,6vw,96px);align-items:flex-start;padding-top:32px;border-top:1px solid #171512">
+    <aside style="flex:0 1 280px;min-width:0;position:{{ asidePos }};top:104px;display:flex;flex-direction:column;gap:2px;font-size:15px;line-height:1.35">
+      <a href="#p1" style="padding:7px 0;text-decoration:none">1. Общие положения</a>
+      <a href="#p2" style="padding:7px 0;text-decoration:none">2. Какие данные мы получаем</a>
+      <a href="#p3" style="padding:7px 0;text-decoration:none">3. Цели обработки</a>
+      <a href="#p4" style="padding:7px 0;text-decoration:none">4. Основания и сроки</a>
+      <a href="#p5" style="padding:7px 0;text-decoration:none">5. Передача и защита</a>
+      <a href="#p6" style="padding:7px 0;text-decoration:none">6. Ваши права</a>
+      <a href="#p7" style="padding:7px 0;text-decoration:none">7. Контакты оператора</a>
+    </aside>
+    <article style="flex:1 1 520px;min-width:0;max-width:760px;display:flex;flex-direction:column;gap:40px;font-size:17px;line-height:1.7;color:#2B2925">
+      <section id="p1" style="display:flex;flex-direction:column;gap:12px"><h2 style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:clamp(24px,2.4vw,32px);line-height:1.15;color:#171512">1. Общие положения</h2><p style="margin:0">Политика описывает, как ателье 12|21 (далее — оператор) обрабатывает персональные данные посетителей сайта atelie1221.ru. Оператор: <span style="padding:1px 6px;background:#E6E2DA;color:#6F1512">[ФИО или наименование ИП, ИНН, ОГРНИП]</span>.</p><p style="margin:0">Отправляя форму на сайте, вы соглашаетесь с этой политикой.</p></section>
+      <section id="p2" style="display:flex;flex-direction:column;gap:12px"><h2 style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:clamp(24px,2.4vw,32px);line-height:1.15;color:#171512">2. Какие данные мы получаем</h2><p style="margin:0">Имя, телефон и текст обращения, которые вы указываете в форме записи. Если вы выбираете направление, оно передаётся вместе с заявкой.</p><p style="margin:0"><span style="padding:1px 6px;background:#E6E2DA;color:#6F1512">[Уточнить: используются ли cookies и сервисы веб-аналитики]</span></p></section>
+      <section id="p3" style="display:flex;flex-direction:column;gap:12px"><h2 style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:clamp(24px,2.4vw,32px);line-height:1.15;color:#171512">3. Цели обработки</h2><p style="margin:0">Данные используются для обратной связи по вашей заявке: чтобы связаться с вами, выбрать время встречи и обсудить пошив.</p></section>
+      <section id="p4" style="display:flex;flex-direction:column;gap:12px"><h2 style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:clamp(24px,2.4vw,32px);line-height:1.15;color:#171512">4. Основания и сроки</h2><p style="margin:0">Обработка ведётся на основании вашего согласия в соответствии с Федеральным законом № 152-ФЗ «О персональных данных». Данные хранятся <span style="padding:1px 6px;background:#E6E2DA;color:#6F1512">[срок хранения]</span> или до отзыва согласия.</p></section>
+      <section id="p5" style="display:flex;flex-direction:column;gap:12px"><h2 style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:clamp(24px,2.4vw,32px);line-height:1.15;color:#171512">5. Передача и защита</h2><p style="margin:0">Оператор не передаёт данные третьим лицам, кроме случаев, предусмотренных законодательством Российской Федерации, и принимает меры для их защиты от неправомерного доступа.</p></section>
+      <section id="p6" style="display:flex;flex-direction:column;gap:12px"><h2 style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:clamp(24px,2.4vw,32px);line-height:1.15;color:#171512">6. Ваши права</h2><p style="margin:0">Вы можете запросить сведения об обработке своих данных, потребовать их уточнения или удаления и отозвать согласие, написав на atelier1221nn@gmail.com.</p></section>
+      <section id="p7" style="display:flex;flex-direction:column;gap:12px"><h2 style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:clamp(24px,2.4vw,32px);line-height:1.15;color:#171512">7. Контакты оператора</h2><p style="margin:0">Нижний Новгород, Варварская ул., 32, этаж 4, офис 40<br><a href="tel:+79103955546" style="text-decoration:none">+7 (910) 395-55-46</a> · <a href="mailto:atelier1221nn@gmail.com" style="text-decoration:none">atelier1221nn@gmail.com</a></p></section>
+    </article>
+  </div>
+</main>
+<dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { wide: true };
+  componentDidMount() {
+    this.onR = () => { const w = window.innerWidth >= 900; if (w !== this.state.wide) this.setState({ wide: w }); };
+    this.onR(); window.addEventListener('resize', this.onR);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this.onR); }
+  renderVals() { return { asidePos: this.state.wide ? 'sticky' : 'static' }; }
+}
+</script>
+</body>
+</html>

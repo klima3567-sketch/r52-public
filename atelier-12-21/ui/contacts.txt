@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+<x-dc>
+
+<div data-screen-label="Контакты" style="background:#F3F0EA;color:#171512;font-family:Inter,sans-serif;font-size:17px;line-height:1.55">
+<dc-import name="SiteHeader" active="contacts" hint-size="100%,72px" style="position:sticky;top:0;z-index:50;display:block"></dc-import>
+
+<main style="max-width:1440px;margin:0 auto;padding:18px clamp(20px,4.4vw,56px) clamp(64px,8vw,112px)">
+  <nav aria-label="Хлебные крошки" style="display:flex;flex-wrap:wrap;gap:6px 10px;font-size:14px;color:#57524A"><a href="index.html" style="color:#57524A;text-decoration:none">Главная</a><span>/</span><span style="color:#171512">Контакты</span></nav>
+  <div style="display:flex;flex-direction:column;gap:18px;padding:clamp(32px,4vw,56px) 0 clamp(32px,4vw,48px)">
+    <div style="display:flex;align-items:center;gap:14px;font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:#A1120A"><span style="width:40px;height:1px;background:#A1120A"></span>Ателье 12|21 · Ольга Вострецова</div>
+    <h1 style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:clamp(44px,5.4vw,80px);line-height:1;letter-spacing:-0.02em">Контакты</h1>
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;gap:clamp(32px,4vw,56px);align-items:stretch">
+    <div style="flex:1 1 340px;min-width:0;display:flex;flex-direction:column;border-top:1px solid #171512">
+      <div style="display:flex;flex-direction:column;gap:8px;padding:24px 0;border-bottom:1px solid #D9D4CC">
+        <span style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#57524A">Адрес</span>
+        <address style="font-style:normal;font-family:'Noto Serif Display',Georgia,serif;font-size:clamp(24px,2.4vw,32px);line-height:1.2">Нижний Новгород,<br>Варварская ул., 32</address>
+        <span style="font-size:16px;color:#3A3631">этаж 4, офис 40</span>
+        <a href="https://yandex.ru/maps/?text=Нижний%20Новгород%2C%20Варварская%20улица%2C%2032" style="align-self:flex-start;margin-top:6px;font-size:15px;font-weight:500;text-underline-offset:6px;text-decoration-color:#A1120A">Как добраться ↗</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;padding:24px 0;border-bottom:1px solid #D9D4CC">
+        <span style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#57524A">Телефон</span>
+        <a href="tel:+79103955546" style="font-family:'Noto Serif Display',Georgia,serif;font-size:clamp(24px,2.4vw,32px);line-height:1.2;white-space:nowrap;text-decoration:none;color:#171512">+7 (910) 395-55-46</a>
+        <span style="font-size:16px;color:#3A3631">Позвоните в ателье, чтобы выбрать время встречи с Ольгой и обсудить пошив.</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;padding:24px 0;border-bottom:1px solid #D9D4CC">
+        <span style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#57524A">Почта</span>
+        <a href="mailto:atelier1221nn@gmail.com" style="font-size:clamp(18px,1.6vw,21px);overflow-wrap:anywhere;text-decoration:none;color:#171512">atelier1221nn@gmail.com</a>
+      </div>
+      <a href="#form" class="atelier-button" style="align-self:flex-start;min-height:56px;margin-top:28px">Записаться на консультацию <span class="button-arrow" aria-hidden="true">→</span></a>
+    </div>
+    <div style="flex:1.5 1 420px;min-width:0;min-height:420px;position:relative;background:#E6E2DA;overflow:hidden">
+      <iframe title="Ателье 12|21 на карте" src="https://yandex.ru/map-widget/v1/?text=%D0%9D%D0%B8%D0%B6%D0%BD%D0%B8%D0%B9%20%D0%9D%D0%BE%D0%B2%D0%B3%D0%BE%D1%80%D0%BE%D0%B4%2C%20%D0%92%D0%B0%D1%80%D0%B2%D0%B0%D1%80%D1%81%D0%BA%D0%B0%D1%8F%20%D1%83%D0%BB%D0%B8%D1%86%D0%B0%2C%2032&z=16" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;border:0;filter:grayscale(.85) contrast(.95)"></iframe>
+    </div>
+  </div>
+</main>
+
+<dc-import name="ContactBlock" hint-size="100%,760px"></dc-import>
+<dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+<x-dc>
+
+<div data-screen-label="Об ателье" style="background:#F3F0EA;color:#171512;font-family:Inter,sans-serif;font-size:17px;line-height:1.55">
+<dc-import name="SiteHeader" active="about" hint-size="100%,72px" style="position:sticky;top:0;z-index:50;display:block"></dc-import>
+
+<main>
+  <div style="max-width:1440px;margin:0 auto;padding:18px clamp(20px,4.4vw,56px) 0">
+    <nav aria-label="Хлебные крошки" style="display:flex;flex-wrap:wrap;gap:6px 10px;font-size:14px;color:#57524A"><a href="index.html" style="color:#57524A;text-decoration:none">Главная</a><span>/</span><span style="color:#171512">Об ателье</span></nav>
+  </div>
+
+  <section class="founder-layout" style="max-width:1440px;margin:0 auto;padding:clamp(24px,3vw,44px) clamp(20px,4.4vw,56px) 0">
+    <div class="founder-intro">
+      <div style="display:flex;flex-direction:column;gap:18px;container-type:inline-size">
+        <div style="display:flex;align-items:center;gap:14px;font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:#A1120A"><span style="width:40px;height:1px;background:#A1120A"></span>Основатель ателье</div>
+        <h1 style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:min(clamp(48px,6vw,92px),16.4cqi);line-height:1;letter-spacing:-0.02em">Ольга Вострецова</h1>
+        <p style="margin:0;font-size:16px;color:#57524A">Основатель ателье 12|21 · 12+ лет в ремесле</p>
+      </div>
+      <p style="margin:0;display:flex;flex-direction:column;container-type:inline-size">
+        <span style="font-family:'Noto Serif Display',Georgia,serif;font-size:clamp(26px,5.6cqi,50px);line-height:1.05">одежда создаётся</span>
+        <span style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:800;font-size:min(14.5cqi,144px);line-height:.88;text-transform:uppercase;letter-spacing:-0.01em;color:#A1120A;white-space:nowrap">не потоком,</span>
+        <span style="font-family:'Noto Serif Display',Georgia,serif;font-style:italic;font-size:clamp(26px,5.6cqi,50px);line-height:1.1">а персонально для человека</span>
+      </p>
+    </div>
+    <div class="founder-photo"><img src="media/olga-portrait.jpg" alt="Ольга Вострецова, основатель ателье 12|21" style="width:100%;height:100%;object-fit:cover;object-position:center top"></div>
+    <div class="founder-story">
+      <p style="margin:0">Моя история началась задолго до открытия ателье — с детства, в котором одежда была отдельным миром. Мама и бабушка передали мне уважение к ткани, любовь к красоте, усидчивость и понимание силуэтов.</p>
+      <p style="margin:0">Позже было осознанное обучение моделированию, конструированию, портновскому мастерству и очные обучения у сильных мастеров по bespoke пошиву. Особое место для меня занял мужской костюм — одна из самых сложных категорий в индивидуальном пошиве.</p>
+      <p style="margin:0">Сегодня Ателье 12|21 — пространство, где одежда создаётся не потоком, а персонально для человека. В процессе работы я стараюсь максимально освободить время клиентов и продумать в вещах любую мелочь, которая будет удобна для клиента в процессе использования изделия.</p>
+    </div>
+  </section>
+
+  <section style="max-width:1440px;margin:0 auto;padding:clamp(24px,3vw,40px) clamp(20px,4.4vw,56px) 0">
+    <ul style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:0 32px;border-top:1px solid #D9D4CC">
+      <li style="display:flex;gap:12px;padding:16px 0;border-bottom:1px solid #D9D4CC"><span style="color:#A1120A">—</span>Bespoke-подход к мужскому костюму</li>
+      <li style="display:flex;gap:12px;padding:16px 0;border-bottom:1px solid #D9D4CC"><span style="color:#A1120A">—</span>Ручная работа и сложные изделия</li>
+      <li style="display:flex;gap:12px;padding:16px 0;border-bottom:1px solid #D9D4CC"><span style="color:#A1120A">—</span>Личное ведение каждого заказа</li>
+      <li style="display:flex;gap:12px;padding:16px 0;border-bottom:1px solid #D9D4CC"><span style="color:#A1120A">—</span>Сопровождение в носке</li>
+    </ul>
+  </section>
+
+  <section style="max-width:1440px;margin:0 auto;padding:clamp(64px,8vw,120px) clamp(20px,4.4vw,56px) 0">
+    <div style="aspect-ratio:16 / 7;overflow:hidden;background:#D9D4CC"><img src="media/atelier-hero.jpg" alt="Мастерская ателье 12|21" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
+  </section>
+
+  <section style="max-width:1440px;margin:0 auto;padding:clamp(64px,8vw,120px) clamp(20px,4.4vw,56px);display:flex;flex-wrap:wrap;gap:24px clamp(32px,5vw,80px);align-items:flex-start">
+    <div style="flex:1 1 380px;min-width:0;display:flex;flex-direction:column;gap:16px">
+      <div style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:#A1120A">Принцип ателье</div>
+      <h2 style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:clamp(34px,4.2vw,60px);line-height:1.04;letter-spacing:-0.015em;text-wrap:balance">Одежда не должна говорить громче человека</h2>
+    </div>
+    <div style="flex:1 1 400px;min-width:0;display:flex;flex-direction:column;gap:16px;font-size:18px;line-height:1.65;color:#3A3631">
+      <p style="margin:0">Хороший деловой костюм работает тише: собирает фигуру, соответствует ситуации и оставляет правильное впечатление.</p>
+      <p style="margin:0">Хорошая посадка не меняет вас. Она приводит пропорции в порядок.</p>
+    </div>
+  </section>
+
+  <section style="background:#C9D0C2">
+    <div style="max-width:1440px;margin:0 auto;padding:clamp(64px,8vw,112px) clamp(20px,4.4vw,56px);display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,80px);align-items:center">
+      <div style="flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:20px">
+        <div style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:#6F1512">Личное ведение заказа</div>
+        <h2 style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-style:italic;font-weight:400;font-size:clamp(34px,4.2vw,58px);line-height:1.05;letter-spacing:-0.015em">«За каждый заказ я отвечаю лично»</h2>
+        <p style="margin:0;max-width:34em;font-size:18px;line-height:1.65;color:#2E3323">Я лично обсуждаю задачу, работаю с посадкой, провожу примерки, принимаю ключевые решения по конструкции и контролирую результат.</p>
+        <p style="margin:0;max-width:34em;font-size:18px;line-height:1.65;color:#2E3323">Вы общаетесь с мастером, который отвечает за результат.</p>
+      </div>
+      <div style="flex:1 1 340px;min-width:0;max-width:480px;aspect-ratio:870 / 1080;overflow:hidden;background:#8F9773"><img data-product-photo="true" src="media/mens-jacket.webp" alt="Коричневый двубортный мужской пиджак" loading="lazy" style="width:100%;height:100%;object-fit:contain;background:#F3F3F3;object-position:center center"></div>
+    </div>
+  </section>
+
+  <section style="max-width:1440px;margin:0 auto;padding:clamp(64px,8vw,120px) clamp(20px,4.4vw,56px) 0">
+    <div style="display:flex;flex-wrap:wrap;gap:20px 64px;align-items:flex-end;margin-bottom:clamp(32px,4vw,48px)">
+      <div style="flex:1 1 440px;min-width:0;display:flex;flex-direction:column;gap:16px">
+        <div style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:#A1120A">Как мы работаем</div>
+        <h2 style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:clamp(34px,4.2vw,60px);line-height:1.04;letter-spacing:-0.015em">Процесс пошива в 5 шагов</h2>
+      </div>
+      <p style="flex:1 1 320px;min-width:0;margin:0;font-size:18px;color:#3A3631">Прозрачно, по шагам, с вашим участием ровно настолько, насколько вам комфортно.</p>
+    </div>
+    <ol class="aligned-grid steps-grid" style="list-style:none;padding:0;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));column-gap:24px">
+      <li style="padding-top:18px;border-top:1px solid #171512"><span style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:800;font-size:44px;line-height:1;color:#8F9773">01</span><h3 style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:24px">Консультация</h3><p style="margin:0;font-size:16px;color:#3A3631">Обсуждаем задачу, образ жизни и сценарии носки. Без обязательств.</p></li>
+      <li style="padding-top:18px;border-top:1px solid #171512"><span style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:800;font-size:44px;line-height:1;color:#8F9773">02</span><h3 style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:24px">Ткани и модель</h3><p style="margin:0;font-size:16px;color:#3A3631">Подбираем ткань, фурнитуру и силуэт под фигуру и стиль.</p></li>
+      <li style="padding-top:18px;border-top:1px solid #171512"><span style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:800;font-size:44px;line-height:1;color:#8F9773">03</span><h3 style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:24px">Снятие мерок</h3><p style="margin:0;font-size:16px;color:#3A3631">Работаем по точной портновской методике. Заносим в карту клиента.</p></li>
+      <li style="padding-top:18px;border-top:1px solid #171512"><span style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:800;font-size:44px;line-height:1;color:#8F9773">04</span><h3 style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:24px">Примерки</h3><p style="margin:0;font-size:16px;color:#3A3631">1–3 примерки в зависимости от изделия. Корректируем посадку по ходу.</p></li>
+      <li style="padding-top:18px;border-top:1px solid #171512"><span style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:800;font-size:44px;line-height:1;color:#A1120A">05</span><h3 style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:24px">Готовое изделие</h3><p style="margin:0;font-size:16px;color:#3A3631">Финальная сдача, инструкции по уходу и сопровождение в носке.</p></li>
+    </ol>
+  </section>
+
+  <section style="max-width:1440px;margin:0 auto;padding:clamp(64px,8vw,120px) clamp(20px,4.4vw,56px)">
+    <div style="display:flex;flex-direction:column;gap:16px;margin-bottom:clamp(32px,4vw,48px)">
+      <div style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:#A1120A">Отзывы клиентов</div>
+      <h2 style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:clamp(34px,4.2vw,60px);line-height:1.04;letter-spacing:-0.015em">Что говорят о работе с нами</h2>
+    </div>
+    <div class="aligned-grid review-grid" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));column-gap:40px">
+      <blockquote style="padding-top:24px;border-top:1px solid #171512;"><p style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-size:clamp(21px,1.9vw,25px);line-height:1.35">Костюм сел идеально. Получаю комплименты на каждой встрече с партнёрами. Это первый раз, когда я не думаю о том, как выгляжу.</p><footer style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:#57524A">— Алексей, СЕО IT-компании</footer></blockquote>
+      <blockquote style="padding-top:24px;border-top:1px solid #171512;"><p style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-size:clamp(21px,1.9vw,25px);line-height:1.35">Ольга поняла меня с полуслова. Капсула из 6 вещей закрыла все мои рабочие сценарии. Перестала тратить часы на выбор.</p><footer style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:#57524A">— Марина, 52, директор клиники</footer></blockquote>
+      <blockquote style="padding-top:24px;border-top:1px solid #171512;"><p style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-size:clamp(21px,1.9vw,25px);line-height:1.35">Свадебный костюм — это было волнительно. Но процесс был настолько спокойным и понятным, что я просто доверился. Результат превзошёл ожидания.</p><footer style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:#57524A">— Дмитрий, жених</footer></blockquote>
+    </div>
+  </section>
+</main>
+
+<dc-import name="ContactBlock" hint-size="100%,760px"></dc-import>
+<dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+</body>
+</html>

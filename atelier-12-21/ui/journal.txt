@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+<x-dc>
+
+<div data-screen-label="Журнал" style="background:#F3F0EA;color:#171512;font-family:Inter,sans-serif;font-size:17px;line-height:1.55">
+<dc-import name="SiteHeader" active="journal" hint-size="100%,72px" style="position:sticky;top:0;z-index:50;display:block"></dc-import>
+
+<main style="max-width:1440px;margin:0 auto;padding:18px clamp(20px,4.4vw,56px) clamp(64px,8vw,120px)">
+  <nav aria-label="Хлебные крошки" style="display:flex;flex-wrap:wrap;gap:6px 10px;font-size:14px;color:#57524A"><a href="index.html" style="color:#57524A;text-decoration:none">Главная</a><span>/</span><span style="color:#171512">Журнал</span></nav>
+  <div style="display:flex;flex-wrap:wrap;gap:20px 64px;align-items:flex-end;padding:clamp(32px,4vw,56px) 0 clamp(32px,4vw,56px)">
+    <div style="flex:1 1 440px;min-width:0;display:flex;flex-direction:column;gap:18px">
+      <div style="display:flex;align-items:center;gap:14px;font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:#A1120A"><span style="width:40px;height:1px;background:#A1120A"></span>Журнал ателье 12|21</div>
+      <h1 style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:clamp(44px,5.4vw,80px);line-height:1;letter-spacing:-0.02em">Журнал ателье</h1>
+    </div>
+    <p style="flex:1 1 340px;min-width:0;margin:0;font-size:19px;color:#3A3631">Ткани, посадка и гардероб: полезные материалы перед заказом.</p>
+  </div>
+
+  <div class="aligned-grid journal-grid" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));column-gap:24px">
+    <a href="article.html?a=kak-vybrat-tkan" style="text-decoration:none" style-hover="color:#171512">
+      <span data-journal-cover="true" style="display:block;position:relative;aspect-ratio:4 / 5;overflow:hidden;background:#F3F0EA"><img src="media/journal-fabric.svg" alt="Обложка статьи «Как выбрать ткань»" loading="lazy" decoding="async" style="display:block;width:100%;height:100%;object-fit:contain;transition:transform .65s ease" style-hover="transform:scale(1.025)"></span>
+      <strong style="font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:clamp(24px,2.2vw,30px);line-height:1.15">Как выбрать ткань</strong>
+      <span style="font-size:16px;color:#57524A">Сезон, образ жизни, уход и бюджет: что обсудить до пошива.</span>
+      <span style="font-size:15px;font-weight:500;color:#A1120A">Читать статью →</span>
+    </a>
+    <a href="article.html?a=chto-proverit-na-primerke" style="text-decoration:none" style-hover="color:#171512">
+      <span data-journal-cover="true" style="display:block;position:relative;aspect-ratio:4 / 5;overflow:hidden;background:#F3F0EA"><img src="media/journal-fitting.svg" alt="Обложка статьи «Что проверить на примерке»" loading="lazy" decoding="async" style="display:block;width:100%;height:100%;object-fit:contain;transition:transform .65s ease" style-hover="transform:scale(1.025)"></span>
+      <strong style="font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:clamp(24px,2.2vw,30px);line-height:1.15">Что проверить на примерке</strong>
+      <span style="font-size:16px;color:#57524A">Длина, движение и привычные ощущения: как оценить изделие вместе с мастером.</span>
+      <span style="font-size:15px;font-weight:500;color:#A1120A">Читать статью →</span>
+    </a>
+    <a href="article.html?a=s-chego-nachat-kapsulu" style="text-decoration:none" style-hover="color:#171512">
+      <span data-journal-cover="true" style="display:block;position:relative;aspect-ratio:4 / 5;overflow:hidden;background:#F3F0EA"><img src="media/journal-wardrobe.svg" alt="Обложка статьи «С чего начать капсулу»" loading="lazy" decoding="async" style="display:block;width:100%;height:100%;object-fit:contain;transition:transform .65s ease" style-hover="transform:scale(1.025)"></span>
+      <strong style="font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:clamp(24px,2.2vw,30px);line-height:1.15">С чего начать капсулу</strong>
+      <span style="font-size:16px;color:#57524A">Как определить нужные сочетания и очередность пошива.</span>
+      <span style="font-size:15px;font-weight:500;color:#A1120A">Читать статью →</span>
+    </a>
+  </div>
+</main>
+
+<section style="background:#C9D0C2">
+  <div style="max-width:1440px;margin:0 auto;padding:clamp(56px,7vw,96px) clamp(20px,4.4vw,56px);display:flex;flex-wrap:wrap;gap:24px clamp(32px,5vw,80px);align-items:flex-end">
+    <div style="flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:16px">
+      <h2 style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:clamp(34px,4.2vw,58px);line-height:1.04">Обсудим вашу задачу?</h2>
+      <p style="margin:0;max-width:30em;font-size:18px;color:#2E3323">Позвоните в ателье, чтобы выбрать время встречи с Ольгой и обсудить пошив.</p>
+    </div>
+    <div style="flex:1 1 320px;min-width:0;display:flex;flex-direction:column;gap:14px;align-items:flex-start">
+      <a href="tel:+79103955546" style="font-family:'Noto Serif Display',Georgia,serif;font-size:clamp(28px,3vw,40px);line-height:1.1;white-space:nowrap;text-decoration:none;color:#171512">+7 (910) 395-55-46</a>
+      <a href="index.html#services" style="font-size:15px;font-weight:500;text-underline-offset:6px;color:#171512">Посмотреть направления →</a>
+    </div>
+  </div>
+</section>
+<dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+</body>
+</html>

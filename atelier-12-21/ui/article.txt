@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+<x-dc>
+
+<div data-screen-label="Статья" style="background:#F3F0EA;color:#171512;font-family:Inter,sans-serif;font-size:17px;line-height:1.55">
+<dc-import name="SiteHeader" active="journal" subpage="true" hint-size="100%,72px" style="position:sticky;top:0;z-index:50;display:block"></dc-import>
+
+<sc-if value="{{ ready }}" hint-placeholder-val="{{ true }}">
+<main style="max-width:1440px;margin:0 auto;padding:18px clamp(20px,4.4vw,56px) 0">
+  <nav aria-label="Хлебные крошки" style="display:flex;flex-wrap:wrap;gap:6px 10px;font-size:14px;color:#57524A">
+    <a href="index.html" style="color:#57524A;text-decoration:none">Главная</a><span>/</span>
+    <a href="journal.html" style="color:#57524A;text-decoration:none">Журнал</a><span>/</span>
+    <span style="color:#171512">{{ a.title }}</span>
+  </nav>
+
+  <header style="display:flex;flex-wrap:wrap;gap:32px clamp(32px,5vw,80px);align-items:flex-end;padding:clamp(32px,4vw,56px) 0 clamp(40px,5vw,72px)">
+    <div style="flex:1.3 1 440px;min-width:0;display:flex;flex-direction:column;gap:20px;container-type:inline-size">
+      <div style="display:flex;align-items:center;gap:14px;font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:#A1120A"><span style="width:40px;height:1px;background:#A1120A"></span>Журнал ателье 12|21</div>
+      <h1 style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:min(clamp(36px,5.6vw,84px),17.4cqi);line-height:1;letter-spacing:-0.02em;text-wrap:balance">{{ a.title }}</h1>
+      <p style="margin:0;max-width:28em;font-size:clamp(18px,1.6vw,21px);line-height:1.5;color:#3A3631">{{ a.lead }}</p>
+    </div>
+    <figure data-journal-cover="true" style="flex:1 1 300px;min-width:0;max-width:480px;aspect-ratio:4 / 3;margin:0;overflow:hidden;background:#F3F0EA"><img src="{{ a.coverWide }}" alt="{{ a.title }}" decoding="async" style="display:block;width:100%;height:100%;object-fit:contain"></figure>
+  </header>
+
+  <div style="display:flex;flex-wrap:wrap;gap:40px clamp(40px,6vw,96px);align-items:flex-start;padding-top:32px;border-top:1px solid #171512">
+    <aside style="flex:0 1 280px;min-width:0;position:{{ asidePos }};top:104px;display:flex;flex-direction:column;gap:4px">
+      <span style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#57524A;padding-bottom:8px">В статье</span>
+      <sc-for list="{{ toc }}" as="t" hint-placeholder-count="5">
+        <a href="{{ t.href }}" style="display:grid;grid-template-columns:28px minmax(0,1fr);gap:6px;padding:8px 0;font-size:15px;line-height:1.35;text-decoration:none;color:#171512"><span style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:13px;color:#A1120A">{{ t.n }}</span>{{ t.h }}</a>
+      </sc-for>
+    </aside>
+    <article style="flex:1 1 520px;min-width:0;max-width:760px;display:flex;flex-direction:column;gap:clamp(40px,4.4vw,56px)">
+      <sc-for list="{{ toc }}" as="t" hint-placeholder-count="5">
+        <section id="{{ t.id }}" style="display:flex;flex-direction:column;gap:14px">
+          <span style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:800;font-size:22px;line-height:1;color:#A1120A">{{ t.n }}</span>
+          <h2 style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:clamp(28px,3vw,40px);line-height:1.1;letter-spacing:-0.01em">{{ t.h }}</h2>
+          <p style="margin:0;font-size:clamp(17px,1.4vw,19px);line-height:1.7;color:#2B2925">{{ t.p }}</p>
+        </section>
+      </sc-for>
+      <div style="display:flex;flex-wrap:wrap;gap:12px 28px;padding-top:24px;border-top:1px solid #D9D4CC">
+        <a href="{{ dirHref }}" style="font-size:15px;font-weight:500;text-underline-offset:6px;text-decoration-color:#A1120A">Направление: {{ dirName }} ↗</a>
+      </div>
+    </article>
+  </div>
+
+  <section style="padding:clamp(64px,8vw,120px) 0">
+    <h2 style="margin:0 0 32px;font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:clamp(30px,3.4vw,46px);line-height:1.05">Читать дальше</h2>
+    <div class="aligned-grid related-reading" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));column-gap:24px">
+      <sc-for list="{{ more }}" as="m" hint-placeholder-count="2">
+        <a href="{{ m.href }}" style="text-decoration:none" style-hover="color:#171512">
+          <span data-journal-cover="true" style="flex:0 0 clamp(110px,12vw,160px);display:block;position:relative;aspect-ratio:4 / 5;overflow:hidden;background:#F3F0EA"><img src="{{ m.cover }}" alt="{{ m.title }}" loading="lazy" decoding="async" style="display:block;width:100%;height:100%;object-fit:contain;transition:transform .65s ease" style-hover="transform:scale(1.025)"></span>
+          <span class="reading-copy"><strong style="font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:clamp(22px,2vw,28px);line-height:1.15">{{ m.title }}</strong><span style="font-size:15px;color:#57524A">{{ m.lead }}</span><span style="font-size:15px;font-weight:500;color:#A1120A">Читать статью →</span></span>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+</main>
+</sc-if>
+
+<section style="background:#C9D0C2">
+  <div style="max-width:1440px;margin:0 auto;padding:clamp(56px,7vw,96px) clamp(20px,4.4vw,56px);display:flex;flex-wrap:wrap;gap:24px clamp(32px,5vw,80px);align-items:flex-end">
+    <div style="flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:16px">
+      <h2 style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:clamp(34px,4.2vw,58px);line-height:1.04">Обсудим вашу задачу?</h2>
+      <p style="margin:0;max-width:30em;font-size:18px;color:#2E3323">Позвоните в ателье, чтобы выбрать время встречи с Ольгой и обсудить пошив.</p>
+    </div>
+    <div style="flex:1 1 320px;min-width:0;display:flex;flex-direction:column;gap:14px;align-items:flex-start">
+      <a href="tel:+79103955546" style="font-family:'Noto Serif Display',Georgia,serif;font-size:clamp(28px,3vw,40px);line-height:1.1;white-space:nowrap;text-decoration:none;color:#171512">+7 (910) 395-55-46</a>
+      <a href="index.html#services" style="font-size:15px;font-weight:500;text-underline-offset:6px;color:#171512">Посмотреть направления →</a>
+    </div>
+  </div>
+</section>
+<dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;article&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;kak-vybrat-tkan&quot;,&quot;chto-proverit-na-primerke&quot;,&quot;s-chego-nachat-kapsulu&quot;],&quot;default&quot;:&quot;kak-vybrat-tkan&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { ready: !!window.SITE, wide: true };
+  componentDidMount() {
+    this.onR = () => { const w = window.innerWidth >= 900; if (w !== this.state.wide) this.setState({ wide: w }); };
+    this.onR(); window.addEventListener('resize', this.onR);
+    if (!window.SITE) this._t = setInterval(() => { if (window.SITE) { clearInterval(this._t); this.setState({ ready: true }); } }, 30);
+  }
+  componentWillUnmount() { clearInterval(this._t); window.removeEventListener('resize', this.onR); }
+  renderVals() {
+    const S = window.SITE;
+    if (!S) return { ready: false, a: {}, asidePos: 'static' };
+    let q = null; try { q = new URLSearchParams(this.props.currentquery ?? location.search).get('a'); } catch (_) {}
+    const a = S.articles.find(x => x.slug === (q || this.props.article)) || S.articles[0];
+    const dir = S.services.find(s => s.slug === a.dir);
+    return {
+      ready: true, a, asidePos: this.state.wide ? 'sticky' : 'static',
+      toc: a.sections.map((s, i) => ({ ...s, n: String(i + 1).padStart(2, '0'), id: 's' + (i + 1), href: '#s' + (i + 1) })),
+      dirHref: 'directions.html?d=' + dir.slug, dirName: dir.name,
+      more: S.articles.filter(x => x.slug !== a.slug).map(x => ({ ...x, href: 'article.html?a=' + x.slug }))
+    };
+  }
+}
+</script>
+</body>
+</html>

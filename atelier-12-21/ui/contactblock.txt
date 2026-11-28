@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+<x-dc>
+<section id="form" style="background:#F3F0EA;color:#171512;font-family:Inter,sans-serif;font-size:17px;line-height:1.55;border-top:1px solid #171512">
+  <div style="max-width:1440px;margin:0 auto;padding:clamp(64px,8vw,112px) clamp(20px,4.4vw,56px);display:flex;flex-wrap:wrap;gap:clamp(40px,5vw,72px);align-items:flex-start">
+    <div style="flex:1 1 360px;min-width:0;display:flex;flex-direction:column;gap:22px;container-type:inline-size">
+      <div style="display:flex;align-items:center;gap:14px;font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:#A1120A"><span style="width:40px;height:1px;background:#A1120A"></span>Обратная связь</div>
+      <h2 style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:min(clamp(36px,4.4vw,60px),13cqi);line-height:1.04;letter-spacing:-0.015em">Запишитесь на консультацию</h2>
+      <p style="margin:0;max-width:28em;font-size:18px;color:#57524A">Расскажите, что хотите сшить. Обсудим изделие, материалы и смету до начала работы.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:24px;margin-top:12px;padding-top:24px;border-top:1px solid #171512">
+        <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#57524A">Адрес</span><address style="font-style:normal">Нижний Новгород<br>Варварская ул., 32<br>этаж 4, офис 40</address><a href="https://yandex.ru/maps/?text=Нижний%20Новгород%2C%20Варварская%20улица%2C%2032" style="font-size:15px;color:#171512;text-underline-offset:5px">Как добраться ↗</a></div>
+        <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#57524A">Контакты</span><a href="tel:+79103955546" style="font-family:'Noto Serif Display',Georgia,serif;font-size:24px;white-space:nowrap;color:#171512;text-decoration:none">+7 (910) 395-55-46</a><a href="mailto:atelier1221nn@gmail.com" style="overflow-wrap:anywhere;color:#171512;text-decoration:none">atelier1221nn@gmail.com</a></div>
+      </div>
+    </div>
+    <form onSubmit="{{ submit }}" style="flex:1 1 400px;min-width:0;background:#E6E2DA;padding:clamp(24px,3.2vw,44px);display:flex;flex-direction:column;gap:22px">
+      <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:14px;padding:24px 0">
+          <span style="width:40px;height:2px;background:#A1120A"></span>
+          <p style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-size:32px;line-height:1.15">Спасибо, вы заполнили форму.</p>
+          <p style="margin:0;color:#57524A">Для записи позвоните в ателье по номеру <a href="tel:+79103955546">+7 (910) 395-55-46</a>.</p>
+          <button type="button" onClick="{{ reset }}" style="align-self:flex-start;padding:0;border:0;background:transparent;color:#171512;font-size:15px;font-weight:500;text-decoration:underline;text-underline-offset:6px;cursor:pointer">Заполнить ещё раз</button>
+        </div>
+      </sc-if>
+      <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+        <label style="display:flex;flex-direction:column;gap:4px"><span style="font-size:14px;color:#57524A">Ваше имя</span><input required="" placeholder="Как к вам обращаться" style="background:transparent;border:0;border-radius:0;border-bottom:1px solid #171512;padding:12px 0;font:inherit;font-size:18px;color:#171512;outline:none"></label>
+        <label style="display:flex;flex-direction:column;gap:4px"><span style="font-size:14px;color:#57524A">Телефон</span><input required="" type="tel" placeholder="+7 (___) ___-__-__" style="background:transparent;border:0;border-radius:0;border-bottom:1px solid #171512;padding:12px 0;font:inherit;font-size:18px;color:#171512;outline:none"></label>
+        <label style="display:flex;flex-direction:column;gap:4px"><span style="font-size:14px;color:#57524A">Направление</span>
+          <span style="position:relative;display:block"><select value="{{ dir }}" onChange="{{ onDir }}" style="width:100%;appearance:none;-webkit-appearance:none;background:transparent;border:0;border-radius:0;border-bottom:1px solid #171512;padding:12px 28px 12px 0;margin:0;font:inherit;font-size:18px;color:#171512;outline:none;cursor:pointer">
+            <sc-for list="{{ options }}" as="o" hint-placeholder-count="6"><option value="{{ o.value }}">{{ o.label }}</option></sc-for>
+          </select><span style="position:absolute;right:4px;top:50%;width:8px;height:8px;border-right:1.5px solid #171512;border-bottom:1.5px solid #171512;transform:translateY(-70%) rotate(45deg);pointer-events:none"></span></span>
+        </label>
+        <label style="display:flex;flex-direction:column;gap:4px"><span style="font-size:14px;color:#57524A">Что хотите сшить?</span><textarea rows="3" placeholder="Изделие, повод, желаемая дата…" style="background:transparent;border:0;border-radius:0;border-bottom:1px solid #171512;padding:12px 0;font:inherit;font-size:18px;line-height:1.5;color:#171512;outline:none;resize:none"></textarea></label>
+        <label style="display:flex;gap:12px;align-items:flex-start;font-size:14px;color:#57524A"><input required="" type="checkbox" style="flex:none;margin-top:3px;width:18px;height:18px;accent-color:#A1120A"><span>Согласен на обработку имени, телефона и текста обращения для обратной связи. <a href="privacy.html" style="color:#171512;text-underline-offset:4px">Политика конфиденциальности</a></span></label>
+        <p style="margin:0;color:#57524A;font-size:14px">Демонстрационная форма. Записаться на встречу можно по телефону ателье.</p>
+      <button type="submit" class="atelier-button" style="height:56px">Отправить заявку</button>
+      </sc-if>
+    </form>
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:&quot;760px&quot;},&quot;direction&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;&quot;,&quot;Мужской костюм и верхняя одежда&quot;,&quot;Женский костюм и пальто&quot;,&quot;Свадебный и событийный пошив&quot;,&quot;Капсульный гардероб&quot;,&quot;Вещь как искусство&quot;],&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { dir: null, sent: false };
+  names = ['Мужской костюм и верхняя одежда', 'Женский костюм и пальто', 'Свадебный и событийный пошив', 'Капсульный гардероб', 'Вещь как искусство'];
+  componentDidUpdate(prev) { if (prev.direction !== this.props.direction && this.state.dir !== null) this.setState({ dir: null }); }
+  renderVals() {
+    const dir = this.state.dir ?? (this.props.direction || '');
+    return {
+      dir,
+      onDir: (e) => this.setState({ dir: e.target.value }),
+      options: [{ value: '', label: 'Пока не определился' }, ...this.names.map(n => ({ value: n, label: n }))],
+      sent: this.state.sent, notSent: !this.state.sent,
+      submit: (e) => { e.preventDefault(); this.setState({ sent: true }); },
+      reset: () => this.setState({ sent: false })
+    };
+  }
+}
+</script>
+</body>
+</html>

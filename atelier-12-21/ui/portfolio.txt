@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+<x-dc>
+
+<div data-screen-label="Работы" style="background:#F3F0EA;color:#171512;font-family:Inter,sans-serif;font-size:17px;line-height:1.55">
+<dc-import name="SiteHeader" active="works" hint-size="100%,72px" style="position:sticky;top:0;z-index:50;display:block"></dc-import>
+
+<main style="max-width:1440px;margin:0 auto;padding:18px clamp(20px,4.4vw,56px) clamp(64px,8vw,120px)">
+  <nav aria-label="Хлебные крошки" style="display:flex;flex-wrap:wrap;gap:6px 10px;font-size:14px;color:#57524A">
+    <a href="index.html" style="color:#57524A;text-decoration:none">Главная</a><span>/</span><span style="color:#171512">Работы</span>
+  </nav>
+  <div style="display:flex;flex-wrap:wrap;gap:20px 64px;align-items:flex-end;padding:clamp(32px,4vw,56px) 0 clamp(28px,3vw,40px)">
+    <div style="flex:1 1 440px;min-width:0;display:flex;flex-direction:column;gap:18px">
+      <div style="display:flex;align-items:center;gap:14px;font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:#A1120A"><span style="width:40px;height:1px;background:#A1120A"></span>Портфолио</div>
+      <h1 style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:clamp(44px,5.4vw,80px);line-height:1;letter-spacing:-0.02em">Работы ателье</h1>
+    </div>
+    <p style="flex:1 1 340px;min-width:0;margin:0;font-family:'Noto Serif Display',Georgia,serif;font-style:italic;font-size:clamp(20px,1.9vw,25px);line-height:1.3;text-wrap:pretty">Каждое изделие — диалог с конкретным человеком: его задачами, статусом и характером.</p>
+  </div>
+
+  <div role="tablist" aria-label="Фильтр по направлениям" style="display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;margin-bottom:clamp(28px,3vw,40px);scrollbar-width:none">
+    <sc-for list="{{ filters }}" as="f" hint-placeholder-count="6">
+      <button type="button" class="filter-button" role="tab" aria-selected="{{ f.sel }}" onClick="{{ f.pick }}" style="flex:none;height:44px;padding:0 18px;border:1px solid #171512;font-size:15px;white-space:nowrap;cursor:pointer;transition:background-color .25s,color .25s;background:{{ f.bg }};color:{{ f.fg }}">{{ f.label }} <span style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:13px;opacity:.7">{{ f.count }}</span></button>
+    </sc-for>
+  </div>
+
+  <div class="aligned-grid work-grid portfolio-grid" style="grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));column-gap:20px">
+    <sc-for list="{{ items }}" as="w" hint-placeholder-count="8">
+      <a href="{{ w.href }}" style="text-decoration:none" style-hover="color:#171512">
+        <sc-if value="{{ w.hasSinglePhoto }}" hint-placeholder-val="{{ true }}"><span style="display:block;position:relative;aspect-ratio:4 / 5;overflow:hidden;background:#D9D4CC"><img data-product-photo="true" src="{{ w.img }}" alt="{{ w.title }}" loading="lazy" style="width:100%;height:100%;object-fit:contain;background:#F3F3F3;object-position:center center;transition:transform .8s ease" style-hover="transform:scale(1.03)"></span></sc-if>
+        <sc-if value="{{ w.hasPlates }}" hint-placeholder-val="{{ false }}"><div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;align-content:center;aspect-ratio:4 / 5;background:#F3F3F3;"><sc-for list="{{ w.plates }}" as="piece" hint-placeholder-count="3"><img data-product-photo="true" src="{{ piece.img }}" alt="{{ piece.alt }}" loading="lazy" style="display:block;width:100%;object-fit:contain;background:#F3F3F3;aspect-ratio:3 / 5"></sc-for></div></sc-if>
+        <span class="work-title work-title-numbered"><span style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:14px;color:#A1120A">{{ w.n }}</span><span style="font-size:18px;font-weight:600;line-height:1.35">{{ w.title }}</span></span>
+        <span class="work-kind" style="font-size:14px;color:#57524A">{{ w.dirNames }}</span>
+        <p data-work-description="" style="margin:0;font-size:15px;line-height:1.5;color:#3A3631">{{ w.description }}</p>
+        <sc-if value="{{ w.hasFabric }}" hint-placeholder-val="{{ false }}"><p class="work-fabric" style="margin:0;font-size:14px;line-height:1.45;color:#57524A"><strong style="font-weight:600;color:#39362F">Ткань и фурнитура</strong><br>{{ w.fabric }}</p></sc-if>
+        <sc-if value="{{ w.hasTiming }}" hint-placeholder-val="{{ false }}"><p class="work-timing" style="margin:0;font-size:14px;line-height:1.45;color:#57524A"><strong style="font-weight:600;color:#39362F">Пошив</strong> · {{ w.timing }}</p></sc-if>
+      </a>
+    </sc-for>
+  </div>
+  <p style="margin:clamp(40px,5vw,64px) 0 0;padding-top:24px;border-top:1px solid #D9D4CC;max-width:44em;font-size:15px;color:#57524A">В карточках работ — задача, детали пошива и сроки. Примеры моделей и сочетаний помогут выбрать силуэт для своего заказа.</p>
+</main>
+
+<dc-import name="ContactBlock" hint-size="100%,760px"></dc-import>
+<dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { f: null, ready: !!window.SITE };
+  componentDidMount() {
+    if (!window.SITE) this._t = setInterval(() => { if (window.SITE) { clearInterval(this._t); this.setState({ ready: true }); } }, 30);
+  }
+  componentWillUnmount() { clearInterval(this._t); }
+  pick(f) {
+    const search = f ? '?f=' + f : '';
+    if (this.props.setquery) return this.props.setquery(search);
+    try { history.replaceState(null, '', search || location.pathname); } catch (_) {}
+    this.setState({ f });
+  }
+  renderVals() {
+    const S = window.SITE;
+    if (!S) return {};
+    let q = null; try { q = new URLSearchParams(this.props.currentquery ?? location.search).get('f'); } catch (_) {}
+    const f = this.state.f !== null ? this.state.f : (S.services.some(s => s.slug === q) ? q : '');
+    const name = Object.fromEntries(S.services.map(s => [s.slug, s.name]));
+    const list = S.works.filter(w => !f || w.dirs.includes(f));
+    const opts = [{ slug: '', label: 'Все работы' }, ...S.services.map(s => ({ slug: s.slug, label: s.name }))];
+    return {
+      filters: opts.map(o => {
+        const on = o.slug === f;
+        return { label: o.label, count: o.slug ? S.works.filter(w => w.dirs.includes(o.slug)).length : S.works.length, sel: on ? 'true' : 'false', bg: on ? '#171512' : 'transparent', fg: on ? '#F3F0EA' : '#171512', pick: () => this.pick(o.slug) };
+      }),
+      items: list.map((work, i) => ({
+        ...S.workCard(work),
+        n: String(i + 1).padStart(2, '0'),
+        dirNames: [work.kind, ...work.dirs.map(d => name[d])].filter(Boolean).join(' · ')
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

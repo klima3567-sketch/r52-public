@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+<x-dc>
+
+<div data-screen-label="Кейс" style="background:#F3F0EA;color:#171512;font-family:Inter,sans-serif;font-size:17px;line-height:1.55">
+<dc-import name="SiteHeader" active="works" subpage="true" hint-size="100%,72px" style="position:sticky;top:0;z-index:50;display:block"></dc-import>
+
+<sc-if value="{{ ready }}" hint-placeholder-val="{{ true }}">
+<main style="max-width:1440px;margin:0 auto;padding:18px clamp(20px,4.4vw,56px) 0">
+  <nav aria-label="Хлебные крошки" style="display:flex;flex-wrap:wrap;gap:6px 10px;font-size:14px;color:#57524A">
+    <a href="index.html" style="color:#57524A;text-decoration:none">Главная</a><span>/</span>
+    <a href="portfolio.html" style="color:#57524A;text-decoration:none">Работы</a><span>/</span>
+    <span style="color:#171512">{{ w.title }}</span>
+  </nav>
+
+  <section style="display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,80px);align-items:flex-start;padding:clamp(28px,3.6vw,48px) 0 clamp(64px,8vw,112px)">
+    <figure style="flex:1 1 380px;min-width:0;max-width:640px;margin:0">
+      <sc-if value="{{ hasSinglePhoto }}" hint-placeholder-val="{{ true }}"><div style="aspect-ratio:{{ ratio }};overflow:hidden;background:#D9D4CC"><img data-product-photo="true" src="{{ w.img }}" alt="{{ w.title }}" style="width:100%;height:100%;object-fit:contain;background:#F3F3F3;object-position:center center"></div></sc-if>
+        <sc-if value="{{ hasPlates }}" hint-placeholder-val="{{ false }}"><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,145px),1fr));gap:12px;align-content:center;"><sc-for list="{{ plates }}" as="piece" hint-placeholder-count="3"><figure style="min-width:0;margin:0"><img data-product-photo="true" src="{{ piece.img }}" alt="{{ piece.alt }}" loading="lazy" style="display:block;width:100%;object-fit:contain;background:#F3F3F3;aspect-ratio:3 / 5"><figcaption style="margin-top:7px;font-size:14px;line-height:1.4;color:#57524A">{{ piece.alt }}</figcaption></figure></sc-for></div></sc-if>
+    </figure>
+    <div style="flex:1 1 400px;min-width:0;display:flex;flex-direction:column;gap:28px;position:{{ colPos }};top:104px;container-type:inline-size">
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <sc-for list="{{ dirs }}" as="d" hint-placeholder-count="1">
+          <a class="case-tag" href="{{ d.href }}" style="padding:8px 14px;border:1px solid #171512;font-size:14px;text-decoration:none">{{ d.name }}</a>
+        </sc-for>
+      </div>
+      <sc-if value="{{ hasKind }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:14px;color:#57524A">{{ w.kind }}</p></sc-if>
+      <h1 style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:min(clamp(32px,4.4vw,64px),13.3cqi);line-height:1.04;letter-spacing:-0.015em;text-wrap:balance">{{ w.title }}</h1>
+      <p data-work-description="" style="margin:0;max-width:42em;font-size:18px;line-height:1.55;color:#3A3631">{{ w.description }}</p>
+      <dl style="margin:0;border-top:1px solid #171512">
+        <sc-for list="{{ fields }}" as="f" hint-placeholder-count="4">
+          <div style="display:flex;flex-wrap:wrap;gap:6px 32px;padding:18px 0;border-bottom:1px solid #D9D4CC">
+            <dt style="flex:0 0 180px;font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#57524A;padding-top:3px">{{ f.label }}</dt>
+            <dd style="flex:1 1 240px;min-width:0;margin:0;font-size:17px;color:#171512">{{ f.value }}</dd>
+          </div>
+        </sc-for>
+      </dl>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px">
+        <a href="#form" class="atelier-button" style="min-height:56px">Обсудить похожее изделие <span class="button-arrow" aria-hidden="true">→</span></a>
+        <a href="{{ dirHref }}" style="font-size:15px;font-weight:500;text-underline-offset:6px;text-decoration-color:#A1120A">О направлении ↗</a>
+      </div>
+      <p style="margin:0;font-size:14px;color:#57524A">{{ caseNote }}</p>
+    </div>
+  </section>
+
+  <div style="display:flex;justify-content:space-between;gap:16px;padding:20px 0;border-top:1px solid #171512;border-bottom:1px solid #171512">
+    <a href="{{ prev.href }}" style="display:flex;flex-direction:column;gap:4px;min-width:0;text-decoration:none"><span style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#57524A">← Предыдущая</span><span style="font-family:'Noto Serif Display',Georgia,serif;font-size:clamp(17px,1.7vw,22px);line-height:1.2">{{ prev.title }}</span></a>
+    <a href="{{ next.href }}" style="display:flex;flex-direction:column;align-items:flex-end;text-align:right;gap:4px;min-width:0;text-decoration:none"><span style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#57524A">Следующая →</span><span style="font-family:'Noto Serif Display',Georgia,serif;font-size:clamp(17px,1.7vw,22px);line-height:1.2">{{ next.title }}</span></a>
+  </div>
+
+  <section style="padding:clamp(56px,7vw,96px) 0">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:32px">
+      <h2 style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:clamp(30px,3.4vw,46px);line-height:1.05">Другие работы</h2>
+      <a href="portfolio.html" style="flex:none;font-size:15px;font-weight:500;text-underline-offset:6px;text-decoration-color:#A1120A">Все работы →</a>
+    </div>
+    <div class="aligned-grid work-grid" style="grid-template-columns:repeat(auto-fill,minmax(min(100%,220px),1fr));column-gap:20px">
+      <sc-for list="{{ more }}" as="m" hint-placeholder-count="4">
+        <a href="{{ m.href }}" style="text-decoration:none" style-hover="color:#171512">
+          <span style="display:block;aspect-ratio:4 / 5;overflow:hidden;background:#D9D4CC"><img data-product-photo="true" src="{{ m.img }}" alt="{{ m.title }}" loading="lazy" style="width:100%;height:100%;object-fit:contain;background:#F3F3F3;object-position:center center;transition:transform .8s ease" style-hover="transform:scale(1.03)"></span>
+          <span class="work-title" style="font-size:17px;font-weight:600;line-height:1.35">{{ m.title }}</span>
+          <sc-if value="{{ m.hasKind }}" hint-placeholder-val="{{ false }}"><span class="work-kind" style="font-size:13px;color:#57524A">{{ m.kind }}</span></sc-if>
+          <p data-work-description="" style="margin:0;font-size:15px;line-height:1.5;color:#3A3631">{{ m.description }}</p>
+          <sc-if value="{{ m.hasFabric }}" hint-placeholder-val="{{ false }}"><p class="work-fabric" style="margin:0;font-size:14px;line-height:1.45;color:#57524A"><strong style="font-weight:600;color:#39362F">Ткань и фурнитура</strong><br>{{ m.fabric }}</p></sc-if>
+          <sc-if value="{{ m.hasTiming }}" hint-placeholder-val="{{ false }}"><p class="work-timing" style="margin:0;font-size:14px;line-height:1.45;color:#57524A"><strong style="font-weight:600;color:#39362F">Пошив</strong> · {{ m.timing }}</p></sc-if>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+</main>
+<dc-import name="ContactBlock" direction="{{ dirName }}" hint-size="100%,760px"></dc-import>
+</sc-if>
+<dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;work&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;mens-blazer&quot;,&quot;floral-dress&quot;,&quot;purple-dress&quot;,&quot;olive-suit&quot;,&quot;wedding-suit&quot;,&quot;brown-striped-dress&quot;,&quot;black-white-suit&quot;,&quot;mens-role&quot;,&quot;brown-suit&quot;,&quot;contrast-suit&quot;,&quot;capsule&quot;,&quot;grey-negotiation-suit&quot;,&quot;mens-double-coat&quot;,&quot;mens-scarf-coat&quot;,&quot;mens-capsule&quot;,&quot;womens-capsule&quot;,&quot;ivory-wedding-dress&quot;,&quot;green-evening-dress&quot;],&quot;default&quot;:&quot;olive-suit&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { ready: !!window.SITE, wide: true };
+  componentDidMount() {
+    this.onR = () => { const w = window.innerWidth >= 900; if (w !== this.state.wide) this.setState({ wide: w }); };
+    this.onR(); window.addEventListener('resize', this.onR);
+    if (!window.SITE) this._t = setInterval(() => { if (window.SITE) { clearInterval(this._t); this.setState({ ready: true }); } }, 30);
+  }
+  componentWillUnmount() { clearInterval(this._t); window.removeEventListener('resize', this.onR); }
+  renderVals() {
+    const S = window.SITE;
+    if (!S) return { ready: false, w: {}, prev: {}, next: {}, colPos: 'static' };
+    let q = null; try { q = new URLSearchParams(location.search).get('w'); } catch (_) {}
+    const ws = S.works;
+    let i = ws.findIndex(x => x.id === (this.props.selected || q || this.props.work));
+    if (i < 0) i = 0;
+    const w = ws[i];
+    const svc = Object.fromEntries(S.services.map(s => [s.slug, s]));
+    const link = S.workCard;
+    const plates = w.plates || [];
+    const fields = w.details || [
+      { label: 'Задача', value: w.task },
+      { label: 'Решение', value: w.solution },
+      { label: 'Ткань и фурнитура', value: w.fabric },
+      { label: 'Сроки и примерки', value: w.timing }
+    ].filter(field => field.value);
+    const caseNote = plates.length
+      ? 'Каждое фото показывает отдельное изделие. Для вашей капсулы совместимость цветов, тканей и вещей подберём на встрече.'
+      : w.kind === 'Визуализация модели · ИИ' ? 'Пример возможного пошива. Изображение создано с помощью ИИ. Ткань, конструкцию и сроки обсудим на консультации.'
+      : w.kind ? 'По этой модели можно обсудить силуэт и детали своего заказа.' : 'Изделие из портфолио ателье. Цвет, силуэт и сочетание деталей нового изделия обсуждаем индивидуально.';
+    const main = svc[w.dirs[0]];
+    return {
+      ready: true, w, colPos: this.state.wide ? 'sticky' : 'static',
+      ratio: w.ratio || '4 / 5',
+      pos: w.imgPos || 'center top',
+      dirs: w.dirs.map(d => ({ name: svc[d].name, href: 'directions.html?d=' + d })),
+      dirHref: 'directions.html?d=' + main.slug,
+      dirName: main.name,
+      fields, plates, caseNote, hasKind: !!w.kind, hasPlates: !!plates.length, hasSinglePhoto: !plates.length,
+      prev: link(ws[(i - 1 + ws.length) % ws.length]),
+      next: link(ws[(i + 1) % ws.length]),
+      more: ws.filter(x => x.id !== w.id).sort((a, b) => (b.dirs.some(d => w.dirs.includes(d)) ? 1 : 0) - (a.dirs.some(d => w.dirs.includes(d)) ? 1 : 0)).slice(0, 4).map(link)
+    };
+  }
+}
+</script>
+</body>
+</html>

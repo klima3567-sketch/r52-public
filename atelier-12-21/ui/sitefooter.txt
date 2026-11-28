@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+<x-dc>
+<footer style="background:#171512;color:#D9D4CC;font-family:Inter,sans-serif;font-size:15px;line-height:1.55">
+  <div style="max-width:1440px;margin:0 auto;padding:56px clamp(20px,4.4vw,56px) 28px;display:flex;flex-direction:column;gap:40px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:32px">
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <a href="index.html" style="font-family:'Noto Serif Display',Georgia,serif;font-size:30px;line-height:1;color:#F3F0EA;text-decoration:none">12<span style="color:#C73324">|</span>21</a>
+        <span>Ателье · Ольга Вострецова</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <span style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#C9D0C2">Адрес</span>
+        <address style="font-style:normal;color:#F3F0EA">Нижний Новгород<br>Варварская ул., 32<br>этаж 4, офис 40</address>
+        <a href="https://yandex.ru/maps/?text=Нижний%20Новгород%2C%20Варварская%20улица%2C%2032" style="color:#C9D0C2;text-decoration:none" style-hover="color:#F3F0EA">Как добраться ↗</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <span style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#C9D0C2">Контакты</span>
+        <a href="tel:+79103955546" style="font-family:'Noto Serif Display',Georgia,serif;font-size:22px;white-space:nowrap;color:#F3F0EA;text-decoration:none" style-hover="color:#C9D0C2">+7 (910) 395-55-46</a>
+        <a href="mailto:atelier1221nn@gmail.com" style="color:#C9D0C2;text-decoration:none;overflow-wrap:anywhere" style-hover="color:#F3F0EA">atelier1221nn@gmail.com</a>
+      </div>
+      <nav style="display:flex;flex-direction:column;gap:8px">
+        <span style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#C9D0C2">Разделы</span>
+        <a href="index.html#services" style="color:#F3F0EA;text-decoration:none" style-hover="color:#C9D0C2">Направления</a>
+        <a href="portfolio.html" style="color:#F3F0EA;text-decoration:none" style-hover="color:#C9D0C2">Работы</a>
+        <a href="about.html" style="color:#F3F0EA;text-decoration:none" style-hover="color:#C9D0C2">Об ателье</a>
+        <a href="journal.html" style="color:#F3F0EA;text-decoration:none" style-hover="color:#C9D0C2">Журнал</a>
+        <a href="contacts.html" style="color:#F3F0EA;text-decoration:none" style-hover="color:#C9D0C2">Контакты</a>
+      </nav>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px 32px;padding-top:20px;border-top:1px solid rgba(243,240,234,.14);font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:600;font-size:13px;letter-spacing:.1em;text-transform:uppercase">
+      <span>© 2026 · Все права защищены</span>
+      <span style="display:flex;flex-wrap:wrap;gap:12px 28px"><a href="privacy.html" style="color:#D9D4CC;text-decoration:none" style-hover="color:#C9D0C2">Политика конфиденциальности</a><a href="#" style="color:#D9D4CC;text-decoration:none" style-hover="color:#C9D0C2">Наверх ↑</a></span>
+    </div>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:&quot;420px&quot;}}"></script>
+</body>
+</html>

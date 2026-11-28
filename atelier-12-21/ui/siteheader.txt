@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+<x-dc>
+
+<header class="atelier-header" ref="{{ headRef }}" onKeyDown="{{ keyNav }}" onClick="{{ followLink }}">
+  <div class="bar-inner">
+    <a href="index.html" class="atelier-brand" aria-label="Ателье 12|21 — главная">Ателье <span class="brand-digits">12<span class="brand-rule">|</span>21</span></a>
+    <sc-if value="{{ desktop }}" hint-placeholder-val="{{ true }}">
+      <nav class="top-nav" aria-label="Основная навигация">
+        <div class="services-disclosure" ref="{{ servicesRef }}" onMouseEnter="{{ enterServices }}" onMouseLeave="{{ leaveServices }}">
+          <button type="button" class="top-link services-toggle" ref="{{ triggerRef }}" onClick="{{ toggleServices }}" aria-expanded="{{ dropStr }}" aria-controls="atelier-directions" data-section-active="{{ inServices }}">Направления<span class="nav-chevron" aria-hidden="true"></span></button>
+          <div id="atelier-directions" class="services-menu" hidden="{{ hideServices }}">
+            <sc-for list="{{ services }}" as="s" hint-placeholder-count="5">
+              <a class="service-choice" href="{{ s.href }}" aria-current="{{ s.current }}"><span class="nav-number" aria-hidden="true">{{ s.n }}</span><span>{{ s.name }}</span><span class="nav-arrow" aria-hidden="true">↗</span></a>
+            </sc-for>
+            <a class="services-overview" href="index.html#services">Все направления<span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+        <sc-for list="{{ links }}" as="l" hint-placeholder-count="4">
+          <a class="top-link" href="{{ l.href }}" aria-current="{{ l.current }}">{{ l.label }}</a>
+        </sc-for>
+      </nav>
+    </sc-if>
+    <div class="bar-actions">
+      <a class="atelier-button header-book" href="contacts.html#form" aria-label="Записаться на встречу"><span class="book-long">Записаться на встречу</span><span class="book-short">Записаться</span><span class="button-arrow" aria-hidden="true">→</span></a>
+      <sc-if value="{{ mobile }}" hint-placeholder-val="{{ false }}">
+        <button type="button" class="menu-toggle" ref="{{ menuRef }}" onClick="{{ toggleMenu }}" aria-label="{{ menuLabel }}" aria-expanded="{{ openStr }}" aria-controls="atelier-mobile-menu"><span class="menu-glyph" aria-hidden="true"><i></i><i></i><i></i></span></button>
+      </sc-if>
+    </div>
+  </div>
+  <sc-if value="{{ mobile }}" hint-placeholder-val="{{ false }}">
+    <div class="menu-scrim" hidden="{{ hideMenu }}" onClick="{{ dismissMenu }}" aria-hidden="true"></div>
+    <nav id="atelier-mobile-menu" class="mobile-sheet" aria-label="Основная навигация" hidden="{{ hideMenu }}">
+      <a class="mobile-page" href="index.html" aria-current="{{ homeCurrent }}">Главная</a>
+      <button type="button" class="mobile-page services-toggle" onClick="{{ toggleServices }}" ref="{{ triggerRef }}" aria-expanded="{{ dropStr }}" aria-controls="mobile-directions" data-section-active="{{ inServices }}">Направления<span class="nav-chevron" aria-hidden="true"></span></button>
+      <div class="mobile-services" id="mobile-directions" hidden="{{ hideServices }}">
+        <sc-for list="{{ services }}" as="s" hint-placeholder-count="5">
+          <a class="service-choice" href="{{ s.href }}" aria-current="{{ s.current }}"><span class="nav-number" aria-hidden="true">{{ s.n }}</span><span>{{ s.name }}</span><span class="nav-arrow" aria-hidden="true">↗</span></a>
+        </sc-for>
+        <a class="services-overview" href="index.html#services">Все направления<span aria-hidden="true">→</span></a>
+      </div>
+      <sc-for list="{{ links }}" as="l" hint-placeholder-count="4">
+        <a class="mobile-page" href="{{ l.href }}" aria-current="{{ l.current }}">{{ l.label }}</a>
+      </sc-for>
+      <a class="menu-phone" href="tel:+79103955546">+7 (910) 395-55-46</a>
+    </nav>
+  </sc-if>
+</header>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:&quot;72px&quot;},&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;&quot;,&quot;services&quot;,&quot;works&quot;,&quot;about&quot;,&quot;journal&quot;,&quot;contacts&quot;],&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { mobile: window.innerWidth < 1040, open: false, disclosure: 'closed' };
+  head = React.createRef();
+  servicesBox = React.createRef();
+  menuButton = React.createRef();
+  trigger = React.createRef();
+  nav = [['works', 'Работы', 'portfolio.html'], ['about', 'Об ателье', 'about.html'], ['journal', 'Журнал', 'journal.html'], ['contacts', 'Контакты', 'contacts.html']];
+
+  componentDidMount() {
+    this.resize = () => {
+      const mobile = window.innerWidth < 1040;
+      if (mobile !== this.state.mobile) this.setState({ mobile, open: false, disclosure: 'closed' });
+      if (this.state.open) this.sizeMenu();
+    };
+    this.outside = e => {
+      if (this.state.open && !this.head.current?.contains(e.target)) this.close();
+      if (!this.state.mobile && this.state.disclosure !== 'closed' && !this.servicesBox.current?.contains(e.target)) this.setDisclosure('closed');
+    };
+    window.addEventListener('resize', this.resize);
+    window.visualViewport?.addEventListener('resize', this.resize);
+    document.addEventListener('pointerdown', this.outside);
+    document.addEventListener('focusin', this.outside);
+  }
+  componentWillUnmount() {
+    clearTimeout(this.leaveTimer);
+    this.unlock();
+    window.removeEventListener('resize', this.resize);
+    window.visualViewport?.removeEventListener('resize', this.resize);
+    document.removeEventListener('pointerdown', this.outside);
+    document.removeEventListener('focusin', this.outside);
+  }
+  componentDidUpdate() {
+    if (this.state.open && !this.locked) {
+      let scroller = this.head.current?.parentElement;
+      while (scroller && scroller !== document.body && !/(auto|scroll)/.test(getComputedStyle(scroller).overflowY)) scroller = scroller.parentElement;
+      this.locked = scroller && scroller !== document.body ? scroller : document.scrollingElement;
+      if (this.locked) {
+        this.oldOverflow = this.locked.style.overflowY;
+        this.locked.style.overflowY = 'hidden';
+      }
+      this.sizeMenu();
+    } else if (!this.state.open && this.locked) this.unlock();
+  }
+  sizeMenu() {
+    const node = this.head.current;
+    if (node) node.style.setProperty('--menu-room', Math.max(0, (window.visualViewport?.height || window.innerHeight) - node.getBoundingClientRect().bottom) + 'px');
+  }
+  unlock() {
+    if (!this.locked) return;
+    this.locked.style.overflowY = this.oldOverflow;
+    this.locked = null;
+  }
+  setDisclosure(mode, next) {
+    clearTimeout(this.leaveTimer);
+    this.setState({ disclosure: mode }, next);
+  }
+  close = (restore = false) => {
+    clearTimeout(this.leaveTimer);
+    this.setState({ open: false, disclosure: 'closed' }, () => { if (restore) this.menuButton.current?.focus(); });
+  };
+  toggle = () => {
+    if (this.state.open) this.close(true);
+    else this.setState({ open: true, disclosure: this.props.active === 'services' ? 'open' : 'closed' });
+  };
+  enter = () => {
+    clearTimeout(this.leaveTimer);
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches && this.state.disclosure === 'closed') this.setDisclosure('hover');
+  };
+  leave = () => {
+    if (this.state.disclosure !== 'hover') return;
+    this.leaveTimer = setTimeout(() => {
+      if (this.state.disclosure === 'hover' && !this.servicesBox.current?.contains(document.activeElement)) this.setDisclosure('closed');
+    }, 160);
+  };
+  onKey = e => {
+    const { mobile, open, disclosure } = this.state;
+    if (e.key === 'Escape') {
+      if (!mobile && disclosure !== 'closed') {
+        e.preventDefault();
+        this.setDisclosure('closed', () => this.trigger.current?.focus());
+      } else if (mobile && open) {
+        e.preventDefault();
+        this.close(true);
+      }
+      return;
+    }
+    if (mobile || !['ArrowDown','ArrowUp','Home','End'].includes(e.key) || !this.servicesBox.current?.contains(e.target)) return;
+    const isTrigger = this.trigger.current === e.target;
+    if (isTrigger && (e.key === 'Home' || e.key === 'End')) return;
+    e.preventDefault();
+    const key = e.key, target = e.target;
+    this.setDisclosure('open', () => {
+      const items = Array.from(this.servicesBox.current?.querySelectorAll('.services-menu a') || []);
+      if (!items.length) return;
+      const index = items.indexOf(target), last = items.length - 1;
+      let next;
+      if (key === 'Home' || (isTrigger && key === 'ArrowDown')) next = 0;
+      else if (key === 'End' || (isTrigger && key === 'ArrowUp')) next = last;
+      else next = (index + (key === 'ArrowDown' ? 1 : -1) + items.length) % items.length;
+      items[next]?.focus();
+    });
+  };
+  renderVals() {
+    const { mobile, open, disclosure } = this.state;
+    const active = this.props.active || '';
+    const currentSlug = this.props.currentdirection || '';
+    return {
+      desktop: !mobile, mobile, menuOpen: mobile && open, hideMenu: !open,
+      hideServices: disclosure === 'closed', dropStr: String(disclosure !== 'closed'), openStr: String(open),
+      menuLabel: open ? 'Закрыть меню' : 'Открыть меню', inServices: String(active === 'services'),
+      homeCurrent: active === 'home' ? 'page' : 'false',
+      headRef: this.head, servicesRef: this.servicesBox, triggerRef: this.trigger, menuRef: this.menuButton,
+      toggle: this.toggle, toggleMenu: this.toggle, dismissMenu: () => this.close(true),
+      toggleServices: () => this.setDisclosure(disclosure === 'open' ? 'closed' : 'open'),
+      enterServices: this.enter, leaveServices: this.leave, keyNav: this.onKey,
+      followLink: e => { if (e.target.closest('a') && (open || disclosure !== 'closed')) this.close(); },
+      services: (window.SITE?.services || []).map(s => ({ ...s, href: 'directions.html?d=' + s.slug, current: active === 'services' && currentSlug === s.slug ? 'page' : 'false' })),
+      links: this.nav.map(([key,label,href]) => ({ label, href, current: key === active ? (this.props.subpage ? 'location' : 'page') : 'false' }))
+    };
+  }
+}
+</script>
+</body>
+</html>

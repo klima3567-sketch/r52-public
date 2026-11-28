@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+<x-dc>
+
+<div data-screen-label="Направление" style="background:#F3F0EA;color:#171512;font-family:Inter,sans-serif;font-size:17px;line-height:1.55">
+<dc-import name="SiteHeader" active="services" currentdirection="{{ svc.slug }}" hint-size="100%,72px" style="position:sticky;top:0;z-index:50;display:block"></dc-import>
+
+<sc-if value="{{ ready }}" hint-placeholder-val="{{ true }}">
+<div style="max-width:1440px;margin:0 auto;padding:18px clamp(20px,4.4vw,56px) 0;display:flex;flex-direction:column;gap:14px">
+  <nav aria-label="Хлебные крошки" style="display:flex;flex-wrap:wrap;gap:6px 10px;font-size:14px;color:#57524A">
+    <a href="index.html" style="color:#57524A;text-decoration:none">Главная</a><span>/</span>
+    <a href="index.html#services" style="color:#57524A;text-decoration:none">Направления</a><span>/</span>
+    <span style="color:#171512">{{ svc.crumb }}</span>
+  </nav>
+  <div style="display:flex;gap:clamp(18px,2.4vw,36px);overflow-x:auto;border-bottom:1px solid #D9D4CC;scrollbar-width:none">
+    <sc-for list="{{ dirTabs }}" as="t" hint-placeholder-count="5">
+      <a href="{{ t.href }}" style="flex:none;display:flex;gap:8px;align-items:baseline;padding:12px 0;margin-bottom:-1px;white-space:nowrap;text-decoration:none;font-size:15px;color:{{ t.color }};border-bottom:2px solid {{ t.border }}"><span style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:13px;color:{{ t.numColor }}">{{ t.n }}</span>{{ t.name }}</a>
+    </sc-for>
+  </div>
+</div>
+
+<section style="max-width:1440px;margin:0 auto;padding:clamp(32px,4vw,56px) clamp(20px,4.4vw,56px) 0;display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,80px);align-items:center">
+  <div style="flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:24px;container-type:inline-size">
+    <div style="display:flex;align-items:center;gap:14px;font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:#A1120A"><span style="flex:none;width:40px;height:1px;background:#A1120A"></span>{{ svc.eyebrow }}</div>
+    <h1 style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:min(clamp(34px,5vw,74px),13.3cqi);line-height:1.04;letter-spacing:-0.02em;text-wrap:balance">{{ svc.h1 }}</h1>
+    <sc-if value="{{ hasSub }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-style:italic;font-size:clamp(21px,2vw,26px);line-height:1.3;color:#6F7440">{{ svc.sub }}</p></sc-if>
+    <p style="margin:0;max-width:30em;font-size:clamp(17px,1.4vw,19px);line-height:1.55;color:#3A3631;text-wrap:pretty">{{ svc.lead }}</p>
+    <div style="display:flex;flex-direction:column;align-items:flex-start;gap:12px;padding-top:4px">
+      <a href="#form" class="atelier-button" style="min-height:56px">{{ svc.cta }} <span class="button-arrow" aria-hidden="true">→</span></a>
+      <span style="font-size:14px;color:#57524A">{{ svc.note }}</span>
+    </div>
+  </div>
+  <div style="flex:1 1 360px;min-width:0;max-width:600px;aspect-ratio:4 / 5;overflow:hidden;background:#D9D4CC">
+    <img data-product-photo="true" src="{{ svc.img }}" alt="{{ svc.alt }}" style="width:100%;height:100%;object-fit:contain;object-position:center center;background:#F3F3F3">
+  </div>
+</section>
+
+<sc-for list="{{ sections }}" as="s" hint-placeholder-count="0">
+  <section style="background:{{ s.bg }}">
+    <div style="max-width:1440px;margin:0 auto;padding:{{ s.pad }}">
+
+      <sc-if value="{{ s.stdHead }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-wrap:wrap;gap:20px 64px;align-items:flex-end;margin-bottom:clamp(32px,4vw,48px)">
+          <div style="flex:1 1 440px;min-width:0;display:flex;flex-direction:column;gap:16px">
+            <div style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:{{ s.eyeColor }}">{{ s.eyebrow }}</div>
+            <h2 style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:clamp(34px,4.2vw,60px);line-height:1.04;letter-spacing:-0.015em;text-wrap:balance">{{ s.title }}</h2>
+          </div>
+          <sc-if value="{{ s.hasLead }}" hint-placeholder-val="{{ false }}"><p style="flex:1 1 320px;min-width:0;margin:0;font-size:18px;color:#3A3631;text-wrap:pretty">{{ s.lead }}</p></sc-if>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ s.isItems }}" hint-placeholder-val="{{ false }}">
+        <div style="border-top:1px solid #171512">
+          <sc-for list="{{ s.list }}" as="it" hint-placeholder-count="3">
+            <div style="display:flex;flex-wrap:wrap;gap:8px 48px;align-items:baseline;padding:24px 0;border-bottom:1px solid #D9D4CC">
+              <h3 style="flex:1 1 {{ it.titleBasis }};min-width:0;margin:0;font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:clamp(24px,2.4vw,32px);line-height:1.15">{{ it.title }}</h3>
+              <sc-if value="{{ it.hasText }}" hint-placeholder-val="{{ true }}"><p style="flex:2 1 340px;min-width:0;margin:0;font-size:16px;color:#57524A">{{ it.text }}</p></sc-if>
+              <sc-if value="{{ it.hasPrice }}" hint-placeholder-val="{{ false }}"><span style="flex:0 0 auto;margin-left:auto;font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:20px;letter-spacing:.02em;white-space:nowrap;color:#171512">{{ it.priceText }}</span></sc-if>
+            </div>
+          </sc-for>
+        </div>
+        <sc-if value="{{ s.hasNote }}" hint-placeholder-val="{{ true }}"><p style="margin:20px 0 0;max-width:40em;font-size:15px;color:#57524A">{{ s.note }}</p></sc-if>
+      </sc-if>
+
+      <sc-if value="{{ s.isTrio }}" hint-placeholder-val="{{ false }}">
+        <div class="aligned-grid trio-grid" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,{{ s.minCol }}),1fr));column-gap:32px">
+          <sc-for list="{{ s.items }}" as="it" hint-placeholder-count="3">
+            <div style="border-top:1px solid #171512;padding-top:20px;">
+              <sc-if value="{{ it.hasN }}" hint-placeholder-val="{{ true }}"><span style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:800;font-size:40px;line-height:1;color:#A1120A">{{ it.n }}</span></sc-if>
+              <h3 class="trio-title" style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-weight:400;line-height:1.2"><span>{{ it.title }}</span></h3>
+              <p style="margin:0;font-size:16px;color:#3A3631">{{ it.text }}</p>
+            </div>
+          </sc-for>
+        </div>
+        <sc-if value="{{ s.hasNote }}" hint-placeholder-val="{{ false }}"><p style="margin:40px 0 0;max-width:30em;font-family:'Noto Serif Display',Georgia,serif;font-style:italic;font-size:clamp(22px,2.2vw,30px);line-height:1.25">{{ s.note }}</p></sc-if>
+      </sc-if>
+
+      <sc-if value="{{ s.isSplit }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,80px);align-items:center;flex-direction:{{ s.flexDir }}">
+          <div style="flex:1 1 400px;min-width:0;display:flex;flex-direction:column;gap:20px">
+            <div style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:{{ s.eyeColor }}">{{ s.eyebrow }}</div>
+            <h2 style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:clamp(34px,4.2vw,58px);line-height:1.05;letter-spacing:-0.015em;text-wrap:balance;font-style:{{ s.titleStyle }}">{{ s.title }}</h2>
+            <sc-if value="{{ s.hasMeta }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;flex-direction:column;gap:2px"><strong style="font-weight:600">{{ s.meta0 }}</strong><span style="font-size:15px;color:#3A3631">{{ s.meta1 }}</span></div>
+            </sc-if>
+            <sc-for list="{{ s.paraList }}" as="p" hint-placeholder-count="2"><p style="margin:0;max-width:34em;font-size:18px;line-height:1.65;color:#3A3631">{{ p.t }}</p></sc-for>
+            <sc-if value="{{ s.hasStat }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;align-items:baseline;gap:16px;padding-top:16px;border-top:1px solid #171512"><span style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:800;font-size:clamp(48px,5vw,72px);line-height:.9;color:#A1120A">{{ s.statNum }}</span><span style="font-size:16px">{{ s.statLabel }}</span></div>
+            </sc-if>
+            <sc-if value="{{ s.hasSub }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;flex-direction:column;gap:8px;padding-top:20px;border-top:1px solid #D9D4CC"><h3 style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:26px;line-height:1.2">{{ s.subTitle }}</h3><p style="margin:0;max-width:34em;font-size:16px;color:#3A3631">{{ s.subText }}</p></div>
+            </sc-if>
+            <sc-if value="{{ s.hasLink }}" hint-placeholder-val="{{ false }}"><a href="{{ s.linkHref }}" style="align-self:flex-start;font-size:15px;font-weight:500;text-underline-offset:6px;text-decoration-color:#A1120A">{{ s.linkLabel }}</a></sc-if>
+          </div>
+          <figure style="flex:1 1 380px;min-width:0;margin:0;display:flex;flex-direction:column;gap:10px;max-width:{{ s.imgMax }}">
+            <div style="aspect-ratio:{{ s.ratio }};width:{{ s.imgWidth }};align-self:center;overflow:hidden;background:#D9D4CC"><img src="{{ s.img }}" alt="{{ s.alt }}" loading="lazy" style="width:100%;height:100%;object-fit:{{ s.imgFit }};object-position:{{ s.imgPos }};background:#F3F3F3"></div>
+            <sc-if value="{{ s.hasCaption }}" hint-placeholder-val="{{ false }}"><figcaption style="font-size:14px;color:#57524A">{{ s.caption }}</figcaption></sc-if>
+          </figure>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ s.isQuote }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,80px);align-items:flex-start">
+          <div style="flex:1 1 400px;min-width:0;display:flex;flex-direction:column;gap:20px">
+            <div style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:#A1120A">{{ s.eyebrow }}</div>
+            <h2 style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:clamp(34px,4.2vw,58px);line-height:1.05;letter-spacing:-0.015em;text-wrap:balance">{{ s.title }}</h2>
+            <sc-for list="{{ s.paraList }}" as="p" hint-placeholder-count="2"><p style="margin:0;max-width:34em;font-size:18px;line-height:1.65;color:#3A3631">{{ p.t }}</p></sc-for>
+          </div>
+          <blockquote style="flex:1 1 400px;min-width:0;margin:0;padding:clamp(24px,3vw,44px);background:#E6E2DA;display:flex;flex-direction:column;gap:18px">
+            <div style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#57524A">{{ s.qEyebrow }}</div>
+            <p style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-style:italic;font-size:clamp(28px,3vw,40px);line-height:1.12;color:#A1120A">{{ s.quote }}</p>
+            <p style="margin:0;font-size:17px;line-height:1.6">{{ s.qText }}</p>
+            <footer style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:#57524A">{{ s.author }}</footer>
+          </blockquote>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ s.isWide }}" hint-placeholder-val="{{ false }}">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:20px 48px;margin-bottom:32px">
+          <sc-for list="{{ s.paraList }}" as="p" hint-placeholder-count="2"><p style="margin:0;font-size:18px;line-height:1.65;color:#3A3631">{{ p.t }}</p></sc-for>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:20px">
+          <sc-for list="{{ s.gallery }}" as="g" hint-placeholder-count="3">
+            <figure style="margin:0;display:flex;flex-direction:column;gap:12px">
+              <div style="aspect-ratio:4 / 5;overflow:hidden;background:#F3F3F3"><img data-product-photo="true" src="{{ g.img }}" alt="{{ g.alt }}" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center center"></div>
+              <figcaption style="font-size:15px;color:#57524A">{{ g.title }}</figcaption>
+            </figure>
+          </sc-for>
+        </div>
+        <sc-if value="{{ s.hasLink }}" hint-placeholder-val="{{ false }}"><a href="{{ s.linkHref }}" style="display:inline-block;margin-top:20px;font-size:15px;font-weight:500;text-underline-offset:6px;text-decoration-color:#A1120A">{{ s.linkLabel }}</a></sc-if>
+      </sc-if>
+
+      <sc-if value="{{ s.isWorks }}" hint-placeholder-val="{{ false }}">
+        <div class="aligned-grid work-grid" style="grid-template-columns:repeat(auto-fill,minmax(min(100%,240px),1fr));column-gap:20px">
+          <sc-for list="{{ s.workList }}" as="w" hint-placeholder-count="3">
+            <a href="{{ w.href }}" style="text-decoration:none" style-hover="color:#171512">
+              <sc-if value="{{ w.hasSinglePhoto }}" hint-placeholder-val="{{ true }}"><span style="display:block;aspect-ratio:4 / 5;overflow:hidden;background:#D9D4CC"><img src="{{ w.img }}" alt="{{ w.title }}" loading="lazy" style="width:100%;height:100%;object-fit:contain;object-position:center center;background:#F3F3F3;transition:transform .8s ease" style-hover="transform:scale(1.03)"></span></sc-if>
+        <sc-if value="{{ w.hasPlates }}" hint-placeholder-val="{{ false }}"><div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;align-content:center;aspect-ratio:4 / 5;background:#F3F3F3;"><sc-for list="{{ w.plates }}" as="piece" hint-placeholder-count="3"><img data-product-photo="true" src="{{ piece.img }}" alt="{{ piece.alt }}" loading="lazy" style="display:block;width:100%;object-fit:contain;background:#F3F3F3;aspect-ratio:3 / 5"></sc-for></div></sc-if>
+              <span class="work-title" style="font-size:18px;font-weight:600;line-height:1.35">{{ w.title }}</span>
+              <sc-if value="{{ w.hasKind }}" hint-placeholder-val="{{ false }}"><span class="work-kind" style="font-size:13px;color:#57524A">{{ w.kind }}</span></sc-if>
+              <p data-work-description="" style="margin:0;font-size:15px;line-height:1.5;color:#3A3631">{{ w.description }}</p>
+              <sc-if value="{{ w.hasFabric }}" hint-placeholder-val="{{ false }}"><p class="work-fabric" style="margin:0;font-size:14px;line-height:1.45;color:#57524A"><strong style="font-weight:600;color:#39362F">Ткань и фурнитура</strong><br>{{ w.fabric }}</p></sc-if>
+              <sc-if value="{{ w.hasTiming }}" hint-placeholder-val="{{ false }}"><p class="work-timing" style="margin:0;font-size:14px;line-height:1.45;color:#57524A"><strong style="font-weight:600;color:#39362F">Пошив</strong> · {{ w.timing }}</p></sc-if>
+            </a>
+          </sc-for>
+        </div>
+        <a href="{{ allWorksHref }}" style="display:inline-block;margin-top:32px;font-size:15px;font-weight:500;text-underline-offset:6px;text-decoration-color:#A1120A">Все работы →</a>
+      </sc-if>
+
+      <sc-if value="{{ s.isProcess }}" hint-placeholder-val="{{ false }}">
+        <ol class="aligned-grid steps-grid" style="list-style:none;padding:0;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));column-gap:24px">
+          <sc-for list="{{ s.steps }}" as="st" hint-placeholder-count="5">
+            <li style="padding-top:18px;border-top:1px solid #2E3323">
+              <span style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:800;font-size:44px;line-height:1;color:#6F7440">{{ st.n }}</span>
+              <h3 style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:24px;line-height:1.2">{{ st.title }}</h3>
+              <p style="margin:0;font-size:16px;color:#2E3323">{{ st.text }}</p>
+            </li>
+          </sc-for>
+        </ol>
+        <div style="display:flex;flex-wrap:wrap;gap:24px clamp(32px,5vw,72px);margin-top:clamp(40px,5vw,64px);padding-top:28px;border-top:1px solid #2E3323">
+          <sc-for list="{{ s.stats }}" as="x" hint-placeholder-count="2">
+            <div style="display:flex;flex-direction:column;gap:4px"><span style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:800;font-size:clamp(36px,3.8vw,52px);line-height:1">{{ x.num }}</span><span style="font-size:15px;color:#2E3323">{{ x.label }}</span></div>
+          </sc-for>
+        </div>
+        <p style="margin:24px 0 0;max-width:40em;font-size:15px;color:#2E3323">{{ s.note }}</p>
+      </sc-if>
+
+      <sc-if value="{{ s.isPrep }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-wrap:wrap;gap:24px clamp(32px,5vw,80px);align-items:flex-start;padding-top:32px;border-top:1px solid #171512">
+          <div style="flex:1 1 380px;min-width:0;display:flex;flex-direction:column;gap:16px">
+            <div style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:#A1120A">{{ s.eyebrow }}</div>
+            <h2 style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:clamp(34px,4.2vw,58px);line-height:1.05;letter-spacing:-0.015em">{{ s.title }}</h2>
+          </div>
+          <div style="flex:1 1 400px;min-width:0;display:flex;flex-direction:column;gap:18px">
+            <p style="margin:0;font-size:19px;line-height:1.6">{{ s.text }}</p>
+            <sc-if value="{{ s.hasText2 }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:17px;color:#57524A">{{ s.text2 }}</p></sc-if>
+            <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;padding-top:8px">
+              <a href="#form" class="atelier-button" style="min-height:56px">{{ s.cta }} <span class="button-arrow" aria-hidden="true">→</span></a>
+              <sc-for list="{{ s.links }}" as="l" hint-placeholder-count="1"><a href="{{ l.href }}" style="font-size:15px;font-weight:500;text-underline-offset:6px;text-decoration-color:#A1120A">{{ l.label }}</a></sc-for>
+            </div>
+            <sc-if value="{{ s.hasCtaNote }}" hint-placeholder-val="{{ false }}"><span style="font-size:14px;color:#57524A">{{ s.ctaNote }}</span></sc-if>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ s.isFaq }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-wrap:wrap;gap:24px clamp(32px,5vw,80px);align-items:flex-start">
+          <div style="flex:1 1 300px;min-width:0;display:flex;flex-direction:column;gap:16px">
+            <div style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:#A1120A">{{ s.eyebrow }}</div>
+            <h2 style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:clamp(34px,4.2vw,58px);line-height:1.05;letter-spacing:-0.015em">{{ s.title }}</h2>
+          </div>
+          <div style="flex:2 1 460px;min-width:0;border-top:1px solid #171512">
+            <sc-for list="{{ s.faqList }}" as="f" hint-placeholder-count="3">
+              <details style="border-bottom:1px solid #D9D4CC"><summary style="display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 0;font-family:'Noto Serif Display',Georgia,serif;font-size:clamp(20px,1.9vw,25px);line-height:1.25">{{ f.q }}<span style="flex:none;font-family:Inter,sans-serif;font-weight:300;font-size:28px;line-height:1;color:#A1120A">+</span></summary><p style="margin:0 0 22px;max-width:38em;font-size:17px;color:#3A3631">{{ f.a }}</p></details>
+            </sc-for>
+          </div>
+        </div>
+      </sc-if>
+
+    </div>
+  </section>
+</sc-for>
+
+<dc-import name="ContactBlock" direction="{{ svc.name }}" hint-size="100%,760px"></dc-import>
+
+<section style="background:#E6E2DA">
+  <div style="max-width:1440px;margin:0 auto;padding:clamp(48px,6vw,80px) clamp(20px,4.4vw,56px)">
+    <h2 style="margin:0 0 24px;font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:#57524A">Другие направления</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));border-top:1px solid #171512">
+      <sc-for list="{{ others }}" as="o" hint-placeholder-count="4">
+        <a href="{{ o.href }}" style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:20px 24px 20px 0;border-bottom:1px solid #CFC9BF;text-decoration:none;font-family:'Noto Serif Display',Georgia,serif;font-size:22px;line-height:1.2"><span>{{ o.name }}</span><span style="font-family:Inter,sans-serif;font-size:18px;color:#A1120A">↗</span></a>
+      </sc-for>
+    </div>
+  </div>
+</section>
+</sc-if>
+
+<dc-import name="SiteFooter" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;slug&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;muzhskie-kostyumy&quot;,&quot;zhenskie-kostyumy-i-palto&quot;,&quot;svadebnyj-i-sobytijnyj-poshiv&quot;,&quot;kapsulnyj-garderob&quot;,&quot;avtorskij-poshiv&quot;],&quot;default&quot;:&quot;muzhskie-kostyumy&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { slug: null, ready: !!window.SITE };
+  componentDidMount() {
+    if (!window.SITE) this._t = setInterval(() => { if (window.SITE) { clearInterval(this._t); this.setState({ ready: true }); } }, 30);
+  }
+  componentWillUnmount() { clearInterval(this._t); }
+  go(slug, e) {
+    if (e && (e.defaultPrevented || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey)) return;
+    if (e) e.preventDefault();
+    const search = '?d=' + slug;
+    if (this.props.setquery) this.props.setquery(search);
+    else {
+      try { history.replaceState(null, '', search); } catch (_) {}
+      this.setState({ slug });
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  renderVals() {
+    const S = window.SITE;
+    if (!S) return { ready: false, svc: {} };
+    let q = null; try { q = new URLSearchParams(this.props.currentquery ?? location.search).get('d'); } catch (_) {}
+    const valid = (x) => S.services.some(s => s.slug === x);
+    const slug = this.state.slug || (valid(q) ? q : (valid(this.props.slug) ? this.props.slug : S.services[0].slug));
+    const svc = S.services.find(s => s.slug === slug);
+    const X = 'clamp(20px,4.4vw,56px)', BIG = 'clamp(64px,8vw,120px)';
+    const bg = { paper: '#F3F0EA', sage: '#C9D0C2', stone: '#E6E2DA' };
+    const secs = svc.sections.map(s => ({ ...s, tone: s.tone || (s.type === 'process' ? 'sage' : 'paper') }));
+    const byId = Object.fromEntries(S.works.map(w => [w.id, w]));
+    const sections = secs.map((s, i) => {
+      const next = secs[i + 1];
+      const tinted = s.tone !== 'paper';
+      const pb = (tinted || !next || next.tone !== 'paper') ? BIG : '0';
+      const t = s.type;
+      const landscape = s.ratio && s.ratio !== '4 / 5';
+      return {
+        ...s,
+        bg: bg[s.tone], pad: `${BIG} ${X} ${pb}`,
+        eyeColor: s.tone === 'sage' ? '#6F1512' : '#A1120A',
+        stdHead: ['items', 'trio', 'works', 'process', 'wide'].includes(t),
+        isItems: t === 'items', isTrio: t === 'trio', isSplit: t === 'split', isQuote: t === 'quote', isWide: t === 'wide',
+        isWorks: t === 'works', isProcess: t === 'process', isPrep: t === 'prep', isFaq: t === 'faq',
+        hasLead: !!s.lead, hasNote: !!s.note, hasLink: !!s.link, hasStat: !!s.statNum, hasSub: !!s.subTitle,
+        hasCaption: !!s.caption, hasMeta: !!s.meta, hasText2: !!s.text2, hasCtaNote: !!s.ctaNote,
+        meta0: s.meta ? s.meta[0] : '', meta1: s.meta ? s.meta[1] : '',
+        linkHref: s.link ? s.link.href : '', linkLabel: s.link ? s.link.label : '',
+        flexDir: s.reverse ? 'row-reverse' : 'row',
+        titleStyle: s.quoteTitle ? 'italic' : 'normal',
+        imgFit: s.imgFit || ((s.alt || '').startsWith('Ольга ') ? 'cover' : 'contain'),
+        imgPos: (s.alt || '').startsWith('Ольга ') ? (s.imgPos || 'center top') : 'center center',
+        imgMax: landscape ? 'none' : '560px',
+        imgWidth: s.imgWidth || '100%',
+        minCol: (s.items && s.items.length >= 5) ? '216px' : '260px',
+        paraList: (s.paras || []).map(x => ({ t: x })),
+        list: (s.list || []).map(it => ({
+          ...it,
+          hasText: !!it.text,
+          titleBasis: it.price && !it.text ? 'auto' : '240px',
+          hasPrice: !!it.price,
+          priceText: it.price ? `от ${it.price} ₽` : ''
+        })),
+        items: (s.items || []).map(it => ({ ...it, hasN: !!it.n })),
+        workList: (s.ids || []).map(id => byId[id]).filter(Boolean).map(S.workCard),
+        faqList: s.list || [],
+        links: s.links || []
+      };
+    });
+    return {
+      ready: true,
+      svc,
+      hasSub: !!svc.sub,
+      heroPos: svc.imgPos || 'center top',
+      sections,
+      allWorksHref: 'portfolio.html?f=' + slug,
+      dirTabs: S.services.map(x => {
+        const on = x.slug === slug;
+        return { n: x.n, name: x.name, href: 'directions.html?d=' + x.slug, go: (e) => this.go(x.slug, e), color: on ? '#171512' : '#57524A', numColor: on ? '#A1120A' : '#8A857C', border: on ? '#A1120A' : 'transparent' };
+      }),
+      others: S.services.filter(x => x.slug !== slug).map(x => ({ name: x.name, href: 'directions.html?d=' + x.slug, go: (e) => this.go(x.slug, e) }))
+    };
+  }
+}
+</script>
+</body>
+</html>
