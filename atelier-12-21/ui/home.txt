@@ -18,12 +18,12 @@
     <h1 style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:min(clamp(38px,5vw,78px),10.6cqi);line-height:1;letter-spacing:-0.02em">Индивидуальный пошив <em style="font-style:italic;color:#6F7440">в Нижнем Новгороде</em></h1>
     <p style="margin:0;max-width:28em;font-size:clamp(17px,1.4vw,20px);line-height:1.55;color:#3A3631;text-wrap:pretty">Одежда, которая усиливает вас. Костюмы, пальто и капсулы с индивидуальной посадкой и личным ведением от персонального портного</p>
     <div style="display:flex;flex-wrap:wrap;gap:12px;padding-top:6px">
-      <a href="#contact" class="atelier-button" style="height:56px">Записаться на консультацию <span class="button-arrow" aria-hidden="true">→</span></a>
+      <button type="button" data-booking="" aria-haspopup="dialog" aria-controls="atelier-booking" class="atelier-button" style="height:56px">Записаться на консультацию <span class="button-arrow" aria-hidden="true">→</span></button>
       <a href="#works" class="atelier-button atelier-button--outline" style="height:56px">Смотреть работы</a>
     </div>
   </div>
   <div style="flex:1 1 360px;min-width:0;position:relative;aspect-ratio:4 / 5;overflow:hidden;background:#2E3323">
-    <img src="media/img-01.jpg" alt="Мастерская ателье 12|21" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:30% 50%;transition:opacity 1.4s ease-in-out;opacity:{{ hf0 }}">
+    <img src="media/jackets-in-progress.jpg" alt="Три пиджака на вешалках с ручной намёткой и открытыми воротниками" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%;transition:opacity 1.4s ease-in-out;opacity:{{ hf0 }}">
     <img src="media/img-12.jpg" alt="Ольга Вострецова" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;transition:opacity 1.4s ease-in-out;opacity:{{ hf1 }}">
     <img data-product-photo="true" src="media/img-03.webp" alt="Тёмно-синий двубортный женский жакет" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#F3F3F3;object-position:center center;transition:opacity 1.4s ease-in-out;opacity:{{ hf2 }}">
     <img data-product-photo="true" src="media/img-05.webp" alt="Брюки с боковыми регуляторами" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#F3F3F3;object-position:center center;transition:opacity 1.4s ease-in-out;opacity:{{ hf3 }}">
@@ -85,7 +85,7 @@
       <span style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#A1120A">{{ svc.tag }}</span>
       <p style="margin:0;font-size:17px;line-height:1.55;color:#3A3631">{{ svc.text }}</p>
       <div style="display:flex;gap:24px;flex-wrap:wrap;padding-top:6px;font-size:15px;font-weight:500">
-        <a href="#contact" style="text-underline-offset:6px;text-decoration-color:#A1120A">Обсудить пошив →</a>
+        <button type="button" data-booking="" aria-haspopup="dialog" aria-controls="atelier-booking" data-booking-direction="{{ svc.title }}" class="booking-text-action" style="text-underline-offset:6px;text-decoration-color:#A1120A">Обсудить пошив →</button>
         <a href="{{ svc.href }}" style="color:#57524A;text-decoration:none">Подробнее о направлении ↗</a>
       </div>
     </div>
@@ -108,9 +108,9 @@
       <a href="{{ w.href }}" style="min-width:0;text-decoration:none">
         <span style="display:block;aspect-ratio:4 / 5;overflow:hidden;background:#D9D4CC"><img data-product-photo="true" src="{{ w.img }}" alt="{{ w.title }}" loading="lazy" style="width:100%;height:100%;object-fit:contain;background:#F3F3F3;object-position:center;transition:transform .8s ease" style-hover="transform:scale(1.03)"></span>
         <span class="work-title work-title-numbered"><span style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:14px;color:#A1120A">{{ w.n }}</span><span style="font-size:18px;font-weight:600;line-height:1.35">{{ w.title }}</span></span>
-        <p data-work-description="" style="margin:0;font-size:15px;line-height:1.5;color:#3A3631">{{ w.description }}</p>
-        <sc-if value="{{ w.hasFabric }}" hint-placeholder-val="{{ false }}"><p class="work-fabric" style="margin:0;font-size:14px;line-height:1.45;color:#57524A"><strong style="font-weight:600;color:#39362F">Ткань и фурнитура</strong><br>{{ w.fabric }}</p></sc-if>
-        <sc-if value="{{ w.hasTiming }}" hint-placeholder-val="{{ false }}"><p class="work-timing" style="margin:0;font-size:14px;line-height:1.45;color:#57524A"><strong style="font-weight:600;color:#39362F">Пошив</strong> · {{ w.timing }}</p></sc-if>
+
+
+
       </a>
     </sc-for>
   </div>
@@ -286,28 +286,12 @@
         <div style="display:flex;flex-direction:column;gap:8px"><p style="margin:0;font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#57524A">Контакты</p><a href="tel:+79103955546" style="font-family:'Noto Serif Display',Georgia,serif;font-size:26px;white-space:nowrap;text-decoration:none">+7 (910) 395-55-46</a><a href="mailto:atelier1221nn@gmail.com" style="font-size:17px;overflow-wrap:anywhere;text-decoration:none">atelier1221nn@gmail.com</a></div>
       </div>
     </div>
-    <form onSubmit="{{ submit }}" style="flex:1 1 400px;min-width:0;background:#E6E2DA;padding:clamp(28px,3.2vw,44px);display:flex;flex-direction:column;gap:22px;container-type:inline-size">
+    <div style="flex:1 1 400px;min-width:0;background:#E6E2DA;padding:clamp(28px,3.2vw,44px);display:flex;flex-direction:column;gap:22px;container-type:inline-size">
       <div style="font-family:'Noto Sans Display',sans-serif;font-stretch:75%;font-weight:700;font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:#A1120A">Обратная связь</div>
       <h2 style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:min(clamp(30px,3.2vw,44px),13cqi);line-height:1.06">Запишитесь на консультацию</h2>
       <p style="margin:0;font-size:17px;color:#57524A">Расскажите, что хотите сшить. Обсудим изделие, материалы и смету до начала работы.</p>
-      <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
-        <div style="display:flex;flex-direction:column;gap:14px;padding:12px 0">
-          <span style="width:40px;height:2px;background:#A1120A"></span>
-          <p style="margin:0;font-family:'Noto Serif Display',Georgia,serif;font-size:30px;line-height:1.15">Спасибо, вы заполнили форму.</p>
-          <p style="margin:0;color:#57524A">Для записи позвоните в ателье по номеру <a href="tel:+79103955546">+7 (910) 395-55-46</a>.</p>
-          <button type="button" onClick="{{ resetForm }}" style="align-self:flex-start;padding:0;border:0;background:transparent;color:#171512;font-size:15px;font-weight:500;text-decoration:underline;text-underline-offset:6px;cursor:pointer">Заполнить ещё раз</button>
-        </div>
-      </sc-if>
-      <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
-      <label style="display:flex;flex-direction:column;gap:4px"><span style="font-size:14px;color:#57524A">Ваше имя</span><input required="" placeholder="Как к вам обращаться" style="background:transparent;border:0;border-bottom:1px solid #171512;padding:12px 0;font:inherit;font-size:18px;color:#171512;outline:none"></label>
-      <label style="display:flex;flex-direction:column;gap:4px"><span style="font-size:14px;color:#57524A">Телефон</span><input required="" type="tel" placeholder="+7 (___) ___-__-__" style="background:transparent;border:0;border-bottom:1px solid #171512;padding:12px 0;font:inherit;font-size:18px;color:#171512;outline:none"></label>
-      <label style="display:flex;flex-direction:column;gap:4px"><span style="font-size:14px;color:#57524A">Направление</span><span style="position:relative;display:block"><select style="width:100%;appearance:none;-webkit-appearance:none;background:transparent;border:0;border-radius:0;border-bottom:1px solid #171512;padding:12px 28px 12px 0;margin:0;font:inherit;font-size:18px;color:#171512;outline:none;cursor:pointer"><option value="">Пока не определился</option><option>Мужской костюм и верхняя одежда</option><option>Женский костюм и пальто</option><option>Свадебный и событийный пошив</option><option>Капсульный гардероб</option><option>Пошив на заказ</option></select><span style="position:absolute;right:4px;top:50%;width:8px;height:8px;border-right:1.5px solid #171512;border-bottom:1.5px solid #171512;transform:translateY(-70%) rotate(45deg);pointer-events:none"></span></span></label>
-      <label style="display:flex;flex-direction:column;gap:4px"><span style="font-size:14px;color:#57524A">Что хотите сшить?</span><textarea rows="3" placeholder="Изделие, повод, желаемая дата…" style="background:transparent;border:0;border-radius:0;border-bottom:1px solid #171512;padding:12px 0;font:inherit;font-size:18px;line-height:1.5;color:#171512;outline:none;resize:none"></textarea></label>
-      <label style="display:flex;gap:12px;align-items:flex-start;font-size:14px;color:#57524A"><input required="" type="checkbox" style="flex:none;margin-top:3px;width:18px;height:18px;accent-color:#A1120A"><span>Согласен на обработку имени, телефона и текста обращения для обратной связи. <a href="privacy.html" style="color:#171512;text-underline-offset:4px">Политика конфиденциальности</a></span></label>
-      <p style="margin:0;color:#57524A;font-size:14px">Демонстрационная форма. Записаться на встречу можно по телефону ателье.</p>
-      <button type="submit" class="atelier-button" style="height:56px">Отправить заявку</button>
-    </sc-if>
-    </form>
+      <button type="button" data-booking="" aria-haspopup="dialog" aria-controls="atelier-booking" class="atelier-button">Записаться на встречу</button>
+    </div>
   </div>
 </section>
 
@@ -317,7 +301,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { frame: 0, manualPause: false, cycle: 0, svc: 0, step: 0, stepDirection: 1, q: 0, asked: [0, 1], procOn: false, revOn: false, procPaused: false, pageHidden: false, revHold: false, narrow: false, sent: false };
+  state = { frame: 0, manualPause: false, cycle: 0, svc: 0, step: 0, stepDirection: 1, q: 0, asked: [0, 1], procOn: false, revOn: false, procPaused: false, pageHidden: false, revHold: false, narrow: false };
   stepDuration = 6000;
   procRef = React.createRef();
   revRef = React.createRef();
@@ -441,9 +425,9 @@ class Component extends DCLogic {
       stickyPos: this.state.narrow ? 'static' : 'sticky',
       featured,
       worksCols: this.state.narrow ? 'repeat(auto-fit,minmax(min(100%,230px),1fr))' : 'repeat(4,minmax(0,1fr))',
-      sent: this.state.sent, notSent: !this.state.sent,
-      submit: (e) => { e.preventDefault(); this.setState({ sent: true }); },
-      resetForm: () => this.setState({ sent: false }),
+
+
+
       frameNo: `0${frame + 1}`,
       frameLabel: this.frames[frame],
       toggleLabel: manualPause ? 'Смотреть' : 'Пауза',

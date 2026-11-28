@@ -9,7 +9,7 @@
 <x-dc>
 
 <div data-screen-label="Статья" style="background:#F3F0EA;color:#171512;font-family:Inter,sans-serif;font-size:17px;line-height:1.55">
-<dc-import name="SiteHeader" active="journal" subpage="true" hint-size="100%,72px" style="position:sticky;top:0;z-index:50;display:block"></dc-import>
+<dc-import name="SiteHeader" active="journal" subpage="true" bookingdirection="{{ a.dir }}" hint-size="100%,72px" style="position:sticky;top:0;z-index:50;display:block"></dc-import>
 
 <sc-if value="{{ ready }}" hint-placeholder-val="{{ true }}">
 <main style="max-width:1440px;margin:0 auto;padding:18px clamp(20px,4.4vw,56px) 0">
@@ -70,6 +70,7 @@
       <p style="margin:0;max-width:30em;font-size:18px;color:#2E3323">Позвоните в ателье, чтобы выбрать время встречи с Ольгой и обсудить пошив.</p>
     </div>
     <div style="flex:1 1 320px;min-width:0;display:flex;flex-direction:column;gap:14px;align-items:flex-start">
+      <button type="button" data-booking="" aria-haspopup="dialog" aria-controls="atelier-booking" class="atelier-button">Обсудить пошив</button>
       <a href="tel:+79103955546" style="font-family:'Noto Serif Display',Georgia,serif;font-size:clamp(28px,3vw,40px);line-height:1.1;white-space:nowrap;text-decoration:none;color:#171512">+7 (910) 395-55-46</a>
       <a href="index.html#services" style="font-size:15px;font-weight:500;text-underline-offset:6px;color:#171512">Посмотреть направления →</a>
     </div>

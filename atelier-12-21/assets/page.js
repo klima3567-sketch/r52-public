@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const brand = 'Ателье 12|21';
   const hash = location.hash.slice(1);
   let awaitingTitle = ['Direction', 'Case', 'Article'].includes(page);
-  let awaitingAnchor = Boolean(hash);
+  let awaitingAnchor = Boolean(hash) && hash !== 'form';
   function settle() {
     if (awaitingTitle) {
       const heading = document.querySelector('[data-screen-label] h1');

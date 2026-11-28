@@ -28,7 +28,7 @@
       </nav>
     </sc-if>
     <div class="bar-actions">
-      <a class="atelier-button header-book" href="contacts.html#form" aria-label="Записаться на встречу"><span class="book-long">Записаться на встречу</span><span class="book-short">Записаться</span><span class="button-arrow" aria-hidden="true">→</span></a>
+      <button type="button" data-booking="" aria-haspopup="dialog" aria-controls="atelier-booking" class="atelier-button header-book" aria-label="Записаться на встречу"><span class="book-long">Записаться на встречу</span><span class="book-short">Записаться</span><span class="button-arrow" aria-hidden="true">→</span></button>
       <sc-if value="{{ mobile }}" hint-placeholder-val="{{ false }}">
         <button type="button" class="menu-toggle" ref="{{ menuRef }}" onClick="{{ toggleMenu }}" aria-label="{{ menuLabel }}" aria-expanded="{{ openStr }}" aria-controls="atelier-mobile-menu"><span class="menu-glyph" aria-hidden="true"><i></i><i></i><i></i></span></button>
       </sc-if>
@@ -52,14 +52,38 @@
     </nav>
   </sc-if>
 </header>
+<dialog id="atelier-booking" class="booking-dialog" ref="{{ bookingRef }}" aria-labelledby="atelier-booking-title" onClose="{{ afterBooking }}" onPointerDown="{{ bookingPointerDown }}" onClick="{{ bookingBackdrop }}" onKeyDown="{{ bookingKeys }}">
+  <div class="booking-panel">
+    <div class="booking-heading">
+      <h2 id="atelier-booking-title" tabindex="-1">{{ bookingTitle }}</h2>
+      <button type="button" class="booking-close" aria-label="Закрыть форму" onClick="{{ closeBooking }}"><span aria-hidden="true"></span></button>
+    </div>
+    <form class="booking-form" hidden="{{ bookingSent }}" onSubmit="{{ submitBooking }}">
+      <div class="booking-pair">
+        <label>Ваше имя<input name="name" autocomplete="name" placeholder="Как к вам обращаться" required="{{ true }}"></label>
+        <label>Телефон<input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" required="{{ true }}"></label>
+      </div>
+      <label>Направление<span class="booking-select"><select name="direction"><option value="">Пока не определился</option><sc-for list="{{ services }}" as="s" hint-placeholder-count="5"><option value="{{ s.slug }}">{{ s.name }}</option></sc-for></select></span></label>
+      <label>Что хотите сшить?<textarea name="request" rows="2" placeholder="Изделие, повод, желаемая дата…"></textarea></label>
+      <div class="booking-consent"><input id="atelier-booking-consent" name="consent" type="checkbox" required="{{ true }}"><div><label for="atelier-booking-consent">Согласен на обработку имени, телефона и текста обращения для обратной связи.</label> <a href="{{ bookingPolicy }}" target="_blank" rel="noopener">Политика конфиденциальности</a></div></div>
+      <p class="booking-note">Демонстрационная форма. Для записи позвоните в ателье по номеру <a href="tel:+79103955546">+7 (910) 395-55-46</a>.</p>
+      <button type="submit" class="atelier-button booking-submit">Отправить заявку</button>
+    </form>
+    <div class="booking-result" hidden="{{ bookingFormVisible }}">
+      <p>Чтобы записаться на встречу, позвоните в ателье по номеру <a href="tel:+79103955546">+7 (910) 395-55-46</a>.</p>
+      <button type="button" class="atelier-button" onClick="{{ closeBooking }}">Готово</button>
+    </div>
+  </div>
+</dialog>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:&quot;72px&quot;},&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;&quot;,&quot;services&quot;,&quot;works&quot;,&quot;about&quot;,&quot;journal&quot;,&quot;contacts&quot;],&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
-  state = { mobile: window.innerWidth < 1040, open: false, disclosure: 'closed' };
+  state = { mobile: window.innerWidth < 1040, open: false, disclosure: 'closed', bookingSent: false };
   head = React.createRef();
   servicesBox = React.createRef();
   menuButton = React.createRef();
   trigger = React.createRef();
+  booking = React.createRef();
   nav = [['works', 'Работы', 'portfolio.html'], ['about', 'Об ателье', 'about.html'], ['journal', 'Журнал', 'journal.html'], ['contacts', 'Контакты', 'contacts.html']];
 
   componentDidMount() {
@@ -76,6 +100,8 @@ class Component extends DCLogic {
     window.visualViewport?.addEventListener('resize', this.resize);
     document.addEventListener('pointerdown', this.outside);
     document.addEventListener('focusin', this.outside);
+    document.addEventListener('click', this.bookingClick);
+    if (location.hash === '#form') this.openBooking(this.head.current?.querySelector('[data-booking]'));
   }
   componentWillUnmount() {
     clearTimeout(this.leaveTimer);
@@ -84,19 +110,73 @@ class Component extends DCLogic {
     window.visualViewport?.removeEventListener('resize', this.resize);
     document.removeEventListener('pointerdown', this.outside);
     document.removeEventListener('focusin', this.outside);
+    document.removeEventListener('click', this.bookingClick);
+    this.opener = null;
   }
   componentDidUpdate() {
-    if (this.state.open && !this.locked) {
-      let scroller = this.head.current?.parentElement;
-      while (scroller && scroller !== document.body && !/(auto|scroll)/.test(getComputedStyle(scroller).overflowY)) scroller = scroller.parentElement;
-      this.locked = scroller && scroller !== document.body ? scroller : document.scrollingElement;
-      if (this.locked) {
-        this.oldOverflow = this.locked.style.overflowY;
-        this.locked.style.overflowY = 'hidden';
-      }
+    if (this.state.open) {
+      this.lockScroll();
       this.sizeMenu();
-    } else if (!this.state.open && this.locked) this.unlock();
+    } else if (!this.booking.current?.open) this.unlock();
   }
+  lockScroll() {
+    if (this.locked) return;
+    let scroller = this.head.current?.parentElement;
+    while (scroller && scroller !== document.body && !/(auto|scroll)/.test(getComputedStyle(scroller).overflowY)) scroller = scroller.parentElement;
+    this.locked = scroller && scroller !== document.body ? scroller : document.scrollingElement;
+    if (this.locked) {
+      this.oldOverflow = this.locked.style.overflowY;
+      this.locked.style.overflowY = 'hidden';
+    }
+  }
+  bookingClick = e => {
+    const button = e.target.closest?.('button[data-booking]');
+    if (button && button.closest('[data-screen-label]') === this.head.current?.closest('[data-screen-label]')) this.openBooking(button);
+  };
+  openBooking(button) {
+    const dialog = this.booking.current;
+    if (!dialog || dialog.open || !button) return;
+    this.opener = button;
+    const context = button.dataset.bookingDirection || this.props.currentdirection || this.props.bookingdirection || '';
+    this.setState({ open: false, disclosure: 'closed', bookingSent: false }, () => {
+      if (!dialog.isConnected || dialog.open) return;
+      const service = window.SITE?.services.find(s => s.slug === context || s.name === context);
+      const slug = service?.slug || '';
+      if (this.lastBookingDirection !== slug) dialog.querySelector('select').value = slug;
+      this.lastBookingDirection = slug;
+      dialog.showModal();
+      this.lockScroll();
+      dialog.scrollTop = 0;
+      dialog.querySelector('h2').focus({ preventScroll: true });
+    });
+  }
+  closeBooking = () => { this.booking.current?.close(); };
+  afterBooking = () => {
+    if (!this.state.open) this.unlock();
+    if (this.opener?.isConnected) this.opener.focus({ preventScroll: true });
+    this.opener = null;
+  };
+  submitBooking = e => {
+    e.preventDefault();
+    e.currentTarget.reset();
+    this.lastBookingDirection = undefined;
+    this.setState({ bookingSent: true }, () => {
+      this.booking.current.scrollTop = 0;
+      this.booking.current.querySelector('h2').focus({ preventScroll: true });
+    });
+  };
+  bookingKeys = e => {
+    if (e.key !== 'Tab') return;
+    const focusable = [...e.currentTarget.querySelectorAll('button, input, select, textarea, a[href]')].filter(el => el.getClientRects().length && !el.disabled);
+    const first = focusable[0], last = focusable[focusable.length - 1];
+    if (e.shiftKey && (e.target === first || e.target.tagName === 'H2')) { e.preventDefault(); last?.focus(); }
+    else if (!e.shiftKey && e.target === last) { e.preventDefault(); first?.focus(); }
+  };
+  bookingPointerDown = e => { this.onBackdrop = e.target === e.currentTarget; };
+  bookingBackdrop = e => {
+    if (this.onBackdrop && e.target === e.currentTarget) this.closeBooking();
+    this.onBackdrop = false;
+  };
   sizeMenu() {
     const node = this.head.current;
     if (node) node.style.setProperty('--menu-room', Math.max(0, (window.visualViewport?.height || window.innerHeight) - node.getBoundingClientRect().bottom) + 'px');
@@ -161,6 +241,11 @@ class Component extends DCLogic {
     const active = this.props.active || '';
     const currentSlug = this.props.currentdirection || '';
     return {
+      bookingRef: this.booking, bookingTitle: this.state.bookingSent ? 'Форма заполнена' : 'Запись на встречу',
+      bookingSent: this.state.bookingSent, bookingFormVisible: !this.state.bookingSent,
+      bookingPolicy: window.__resourceBlobs ? location.href.split(/[?#]/)[0] + '#inner=Privacy' : 'privacy.html',
+      afterBooking: this.afterBooking, closeBooking: this.closeBooking, submitBooking: this.submitBooking,
+      bookingKeys: this.bookingKeys, bookingPointerDown: this.bookingPointerDown, bookingBackdrop: this.bookingBackdrop,
       desktop: !mobile, mobile, menuOpen: mobile && open, hideMenu: !open,
       hideServices: disclosure === 'closed', dropStr: String(disclosure !== 'closed'), openStr: String(open),
       menuLabel: open ? 'Закрыть меню' : 'Открыть меню', inServices: String(active === 'services'),
