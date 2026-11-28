@@ -252,20 +252,32 @@
     <a href="journal.html" style="font-size:15px;font-weight:500;white-space:nowrap;text-underline-offset:6px;text-decoration-color:#A1120A">Все статьи →</a>
   </div>
   <div class="aligned-grid journal-grid home-journal" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));column-gap:24px">
-    <a href="article.html?a=kak-vybrat-tkan" style="text-decoration:none" style-hover="color:#171512">
-      <span data-journal-cover="true" style="display:block;position:relative;aspect-ratio:4 / 3;overflow:hidden;background:#F3F0EA"><img src="media/journal-fabric-wide.svg" alt="Обложка статьи «Как выбрать ткань»" loading="lazy" decoding="async" style="display:block;width:100%;height:100%;object-fit:contain;transition:transform .65s ease" style-hover="transform:scale(1.025)"></span>
+    <a href="article.html?a=kak-vybrat-tkan" aria-label="Как выбрать ткань" style="text-decoration:none" style-hover="color:#171512">
+      <span data-journal-cover="true" data-cover-topic="Ткани">
+        <img src="media/journal-fabric-photo.webp" alt="Срезы шерстяных тканей в клетку, в ёлочку и с мелким переплетением" loading="lazy" decoding="async">
+        <span class="cover-masthead" aria-hidden="true"><span class="cover-brand">12<i></i>21</span><span class="cover-issue">Журнал · № 01</span></span>
+        <span class="cover-word" aria-hidden="true">Ткани</span>
+      </span>
       <strong style="font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:26px;line-height:1.15">Как выбрать ткань</strong>
       <span style="font-size:16px;color:#57524A">Сезон, образ жизни, уход и бюджет: что обсудить до пошива.</span>
       <span style="font-size:15px;font-weight:500;color:#A1120A">Читать статью →</span>
     </a>
-    <a href="article.html?a=chto-proverit-na-primerke" style="text-decoration:none" style-hover="color:#171512">
-      <span data-journal-cover="true" style="display:block;position:relative;aspect-ratio:4 / 3;overflow:hidden;background:#F3F0EA"><img src="media/journal-fitting-wide.svg" alt="Обложка статьи «Что проверить на примерке»" loading="lazy" decoding="async" style="display:block;width:100%;height:100%;object-fit:contain;transition:transform .65s ease" style-hover="transform:scale(1.025)"></span>
+    <a href="article.html?a=chto-proverit-na-primerke" aria-label="Что проверить на примерке" style="text-decoration:none" style-hover="color:#171512">
+      <span data-journal-cover="true" data-cover-topic="Посадка">
+        <img src="media/journal-fitting-photo.webp" alt="Портной проверяет посадку рукава по линии плеча" loading="lazy" decoding="async">
+        <span class="cover-masthead" aria-hidden="true"><span class="cover-brand">12<i></i>21</span><span class="cover-issue">Журнал · № 02</span></span>
+        <span class="cover-word" aria-hidden="true">Посадка</span>
+      </span>
       <strong style="font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:26px;line-height:1.15">Что проверить на примерке</strong>
       <span style="font-size:16px;color:#57524A">Длина, движение и привычные ощущения: как оценить изделие вместе с мастером.</span>
       <span style="font-size:15px;font-weight:500;color:#A1120A">Читать статью →</span>
     </a>
-    <a href="article.html?a=s-chego-nachat-kapsulu" style="text-decoration:none" style-hover="color:#171512">
-      <span data-journal-cover="true" style="display:block;position:relative;aspect-ratio:4 / 3;overflow:hidden;background:#F3F0EA"><img src="media/journal-wardrobe-wide.svg" alt="Обложка статьи «С чего начать капсулу»" loading="lazy" decoding="async" style="display:block;width:100%;height:100%;object-fit:contain;transition:transform .65s ease" style-hover="transform:scale(1.025)"></span>
+    <a href="article.html?a=s-chego-nachat-kapsulu" aria-label="С чего начать капсулу" style="text-decoration:none" style-hover="color:#171512">
+      <span data-journal-cover="true" data-cover-topic="Гардероб">
+        <img src="media/journal-wardrobe-photo.webp" alt="Бордовый пиджак, брюки, трикотаж и светлая сорочка на вешалках" loading="lazy" decoding="async">
+        <span class="cover-masthead" aria-hidden="true"><span class="cover-brand">12<i></i>21</span><span class="cover-issue">Журнал · № 03</span></span>
+        <span class="cover-word" aria-hidden="true">Гардероб</span>
+      </span>
       <strong style="font-family:'Noto Serif Display',Georgia,serif;font-weight:400;font-size:26px;line-height:1.15">С чего начать капсулу</strong>
       <span style="font-size:16px;color:#57524A">Как определить нужные сочетания и очередность пошива.</span>
       <span style="font-size:15px;font-weight:500;color:#A1120A">Читать статью →</span>
