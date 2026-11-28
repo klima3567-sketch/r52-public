@@ -406,8 +406,8 @@ html,body{margin:0;background:#F3F0EA}*{box-sizing:border-box}a{color:inherit}a:
   letter-spacing: -.045em;
 }
 [data-cover-topic="Посадка"] .cover-word { font-style: italic; }
-[data-cover-topic="Посадка"] img { object-position: 60% 44%; }
-[data-cover-topic="Гардероб"] img { object-position: 57% 48%; }
+[data-cover-topic="Посадка"] img { object-position: 60% 13%; }
+[data-cover-topic="Гардероб"] img { object-position: 48% 53%; }
 @container journal-cover (max-width: 180px) {
   .cover-masthead { display: none; }
   .cover-word { bottom: 8%; }

@@ -254,7 +254,7 @@
   <div class="aligned-grid journal-grid home-journal" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));column-gap:24px">
     <a href="article.html?a=kak-vybrat-tkan" aria-label="Как выбрать ткань" style="text-decoration:none" style-hover="color:#171512">
       <span data-journal-cover="true" data-cover-topic="Ткани">
-        <img src="media/journal-fabric-photo.webp" alt="Срезы шерстяных тканей в клетку, в ёлочку и с мелким переплетением" loading="lazy" decoding="async">
+        <img src="media/journal-fabric-photo.webp?v=3368a4cab572" alt="Срезы шерстяных тканей в клетку, в ёлочку и с мелким переплетением" loading="lazy" decoding="async">
         <span class="cover-masthead" aria-hidden="true"><span class="cover-brand">12<i></i>21</span><span class="cover-issue">Журнал · № 01</span></span>
         <span class="cover-word" aria-hidden="true">Ткани</span>
       </span>
@@ -264,7 +264,7 @@
     </a>
     <a href="article.html?a=chto-proverit-na-primerke" aria-label="Что проверить на примерке" style="text-decoration:none" style-hover="color:#171512">
       <span data-journal-cover="true" data-cover-topic="Посадка">
-        <img src="media/journal-fitting-photo.webp" alt="Портной проверяет посадку рукава по линии плеча" loading="lazy" decoding="async">
+        <img src="media/journal-fitting-photo.webp?v=21fb4c70a95b" alt="Портная проверяет, как сидит рукав пиджака на плече клиента" loading="lazy" decoding="async">
         <span class="cover-masthead" aria-hidden="true"><span class="cover-brand">12<i></i>21</span><span class="cover-issue">Журнал · № 02</span></span>
         <span class="cover-word" aria-hidden="true">Посадка</span>
       </span>
@@ -274,7 +274,7 @@
     </a>
     <a href="article.html?a=s-chego-nachat-kapsulu" aria-label="С чего начать капсулу" style="text-decoration:none" style-hover="color:#171512">
       <span data-journal-cover="true" data-cover-topic="Гардероб">
-        <img src="media/journal-wardrobe-photo.webp" alt="Бордовый пиджак, брюки, трикотаж и светлая сорочка на вешалках" loading="lazy" decoding="async">
+        <img src="media/journal-wardrobe-photo.webp?v=5ab8a754a715" alt="Пальто с поясом, бордовый костюм с юбкой и тёмно-синий двубортный жакет на вешалках" loading="lazy" decoding="async">
         <span class="cover-masthead" aria-hidden="true"><span class="cover-brand">12<i></i>21</span><span class="cover-issue">Журнал · № 03</span></span>
         <span class="cover-word" aria-hidden="true">Гардероб</span>
       </span>
