@@ -23,7 +23,7 @@
     </div>
   </div>
   <div style="flex:1 1 360px;min-width:0;position:relative;aspect-ratio:4 / 5;overflow:hidden;background:#2E3323">
-    <img src="media/jackets-in-progress.jpg" alt="Три пиджака на вешалках с ручной намёткой и открытыми воротниками" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%;transition:opacity 1.4s ease-in-out;opacity:{{ hf0 }}">
+    <img src="media/jackets-in-progress.jpg?v=dc9ccb3ebc25" fetchpriority="high" alt="Три пиджака на вешалках с ручной намёткой и открытыми воротниками" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%;transition:opacity 1.4s ease-in-out;opacity:{{ hf0 }}">
     <img src="media/img-12.jpg" alt="Ольга Вострецова" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;transition:opacity 1.4s ease-in-out;opacity:{{ hf1 }}">
     <img data-product-photo="true" src="media/img-03.webp" alt="Тёмно-синий двубортный женский жакет" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#F3F3F3;object-position:center center;transition:opacity 1.4s ease-in-out;opacity:{{ hf2 }}">
     <img data-product-photo="true" src="media/img-05.webp" alt="Брюки с боковыми регуляторами" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#F3F3F3;object-position:center center;transition:opacity 1.4s ease-in-out;opacity:{{ hf3 }}">
